@@ -1,0 +1,24 @@
+{
+  "name": "web-gulp-cmd",
+  "version": "1.0.0",
+  "description": "gulp and compass&sass",
+  "main": "app.js",
+  "scripts": {
+    "test": "no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pvfhv/web-gulp-cmd.git"
+  },
+  "keywords": [
+    "gulp",
+    "sass",
+    "compass"
+  ],
+  "author": "anchao",
+  "license": "imc",
+  "bugs": {
+    "url": "https://github.com/pvfhv/web-gulp-cmd/issues"
+  },
+  "homepage": "https://github.com/pvfhv/web-gulp-cmd"
+}
