@@ -1,5 +1,6 @@
 # web-gulp-cmd
-这是一个公共的前端开发解决方案
-css方面应用sass&compass
-js：es6
+这是一个前端应用cmd方式开发模式的解决方案
 html:jade
+css:sass&compass
+js：es6
+
