@@ -1,7 +1,7 @@
 {
   "name": "web-gulp-cmd",
-  "version": "1.0.0",
-  "description": "gulp and compass&sass",
+  "version": "0.0.1",
+  "description": "frontEnd template",
   "main": "app.js",
   "scripts": {
     "test": "no"
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/pvfhv/web-gulp-cmd",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-changed": "^1.3.0",
     "gulp-compass": "^2.1.0",
     "gulp-jade": "^1.1.0",
     "jade": "^1.11.0"

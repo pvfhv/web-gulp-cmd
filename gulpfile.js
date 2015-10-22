@@ -6,7 +6,9 @@
 var gulp = require('gulp');
 var compass = require('gulp-compass');
 var jade = require('gulp-jade');
+var changed = require('gulp-changed');
 var config = {
+    'dist':'dist',
     'sass': 'sass/**/*.scss',
     'distCss': 'dist/css'
 };
@@ -14,6 +16,7 @@ var config = {
 //样式
 gulp.task('styles', function () {
     gulp.src(config.sass)
+        .pipe(changed(config.distCss))
         .pipe(compass({
             config_file: 'config.rb',
             css: config.distCss,
@@ -33,14 +36,13 @@ gulp.task('copyFont',function(){
 
 //template
 gulp.task('templates', function() {
-    var YOUR_LOCALS = {};
-
     gulp.src('./template/*.jade')
+        .pipe(changed(config.dist,{extension: '.html'}))
         .pipe(jade({
             doctype:'html',
             pretty:true
         }))
-        .pipe(gulp.dest('./dist/'))
+        .pipe(gulp.dest(config.dist))
 });
 
 
