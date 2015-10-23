@@ -4,7 +4,7 @@
 var $=require('jquery');
 var obj={
     login:function(){
-        console.log('登录成功!');
+        console.log('哈哈，登录成功!');
     }
 };
 
