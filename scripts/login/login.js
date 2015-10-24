@@ -1,11 +1,13 @@
 /**
  * Created by Anchao on 2015/10/23.
  */
-var $=require('jquery');
-var obj={
-    login:function(){
-        console.log('哈哈，登录成功!');
-    }
-};
+var React=require('react');
+var ReactDom=require('react-dom');
+var Parent = require('./Parent.jsx');
+var $ = require('jquery');
+ReactDom.render(<Parent />, document.getElementById('container'));
 
-module.exports=obj;
+
+let a=100;
+$('#container').append(a);
+

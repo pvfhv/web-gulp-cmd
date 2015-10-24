@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/pvfhv/web-gulp-cmd",
   "devDependencies": {
+    "babelify": "^6.4.0",
     "browser-sync": "^2.9.11",
     "browserify": "^11.2.0",
     "del": "^2.0.2",
@@ -40,6 +41,8 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.5",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
   }
 }

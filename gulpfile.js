@@ -24,6 +24,7 @@ var uglify = require('gulp-uglify');
 
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
+var babelify = require('babelify');
 
 
 var config = {
@@ -39,7 +40,8 @@ var config = {
     'js':{
         entries: './scripts/main.js',
         extensions: ['.js', '.jsx', '.es6'],
-        debug: true
+        debug: true,
+        transform: [babelify]
     }
 };
 
@@ -106,6 +108,7 @@ gulp.task('watchify', function(){
     //与browserify联合使用，监听Js变化
     var b = watchify(browserify(assign({},watchify.args, config.js)));
     b.on('update', bundle); // 当任何依赖发生改变的时候，运行打包工具
+    b.transform(babelify).on('update', bundle);//当jsx发生变化，运行打包工具
     b.on('log', gutil.log); // 输出编译日志到终端
 
     function bundle() {
@@ -142,6 +145,11 @@ gulp.task('browserSync', function () {
     gulp.watch(config.sass,['styles']);
     //监听image变化
     gulp.watch(config.image,['images']);
+});
+
+gulp.task('build', function () {
+    process.env.NODE_ENV = 'production';
+    gulp.start(['clean','watchify','templates','styles','images']);
 });
 
 gulp.task('default', function () {
