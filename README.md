@@ -42,6 +42,7 @@ gulp
 ```
 
 ## 开发包说明
+```bash
 gulp 是任务运行环境，用来进行任务调度
 del 删除文件夹及文件
 gulp-changed 检查文件变化
@@ -57,3 +58,4 @@ lodash.assign 类似underscore
 gulp-uglify js压缩
 babelify 本来的主要作用是进行 ES6 的编译，但是我们这里是使用它的 JSX 编译功能
 browser-sync 多终端同时测试服务，同时可以实现监听功能
+```
