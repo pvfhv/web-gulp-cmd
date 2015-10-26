@@ -8,6 +8,6 @@ var $ = require('jquery');
 ReactDom.render(<Parent />, document.getElementById('container'));
 
 
-let a=100;
+let a=300;
 $('#container').append(a);
 

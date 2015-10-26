@@ -21,10 +21,11 @@ var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 var uglify = require('gulp-uglify');
+var babelify = require('babelify');
 
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
-var babelify = require('babelify');
+
 
 
 var config = {
@@ -46,31 +47,26 @@ var config = {
 };
 
 //删除
-gulp.task('clean', function (cb) {
-    del(['dist'], cb);
+gulp.task('clean', function () {
+    return del(['dist']);
 });
 
 
 //html_template
 gulp.task('templates', function() {
-    del.sync([config.html]);
-    return gulp.src(config.jade)
+    gulp.src(config.jade)
         .pipe(changed(config.jade))
         .pipe(jade({
             doctype:'html',
             pretty:false
         }))
-        .pipe(gulp.dest(config.dist))
-        .pipe(reload({stream: true}));
+        .pipe(gulp.dest(config.dist));
 });
 
 
 
 //样式
 gulp.task('styles', function () {
-    del.sync([config.distCss]);
-    gulp.start(['copyFont']);
-
     return gulp.src(config.sass)
         .pipe(changed(config.distCss))
         .pipe(compass({
@@ -87,7 +83,8 @@ gulp.task('copyFont',function(){
     var dest= config.distCss+'/fonts/';
 
     return gulp.src(src)
-        .pipe(gulp.dest(dest));
+        .pipe(gulp.dest(dest))
+        .pipe(reload({stream: true}));
 });
 
 
@@ -95,15 +92,14 @@ gulp.task('copyFont',function(){
 
 //image
 gulp.task('images', function () {
-    del.sync([config.distImg]);
-    return gulp.src(config.image)
+    return gulp.src([config.image,'!images/icons/*'])
         .pipe(changed(config.image))
         .pipe(minimage())
         .pipe(gulp.dest(config.distImg))
         .pipe(reload({stream: true}));
 });
 
-//js
+//监听js
 gulp.task('watchify', function(){
     //与browserify联合使用，监听Js变化
     var b = watchify(browserify(assign({},watchify.args, config.js)));
@@ -130,6 +126,20 @@ gulp.task('watchify', function(){
     return bundle();
 });
 
+//打包js
+gulp.task('browserify', function () {
+    return browserify(config.js)
+        .transform(babelify)
+        .bundle()
+        .pipe(source(config.mainJs))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(config.distScript))
+        .pipe(reload({stream: true}));
+});
+
 gulp.task('browserSync', function () {
     browserSync.init({
         server: {
@@ -147,9 +157,8 @@ gulp.task('browserSync', function () {
     gulp.watch(config.image,['images']);
 });
 
-gulp.task('build', function () {
-    process.env.NODE_ENV = 'production';
-    gulp.start(['clean','watchify','templates','styles','images']);
+gulp.task('build',['clean'],function () {
+    gulp.start(['browserify','templates','styles','images']);
 });
 
 gulp.task('default', function () {
