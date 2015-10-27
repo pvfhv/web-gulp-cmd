@@ -13,6 +13,8 @@ var compass = require('gulp-compass');
 //image
 var minimage = require('gulp-image');
 //js
+var webpack= require('webpack');
+var webpackstream = require('webpack-stream');
 var watchify = require('watchify');
 var browserify=require('browserify');
 var source = require('vinyl-source-stream');
@@ -126,6 +128,36 @@ gulp.task('watchify', function(){
     return bundle();
 });
 
+gulp.task('webpack', function() {
+    return gulp.src(config.mainJs)
+        .pipe(webpackstream({
+            watch: true,
+            entry: {
+                main: './scripts/main.js'
+            },
+            output: {
+                filename: '[name].js',
+                sourceMapFilename:'[file].map'
+            },
+            devtool:"source-map",
+            resolve: {
+                extensions: ['', '.js', '.jsx']
+            },
+            module: {
+                loaders: [
+                    {
+                        test: /\.jsx?$/,
+                        exclude: /(node_modules|bower_components)/,
+                        loader: 'babel'
+                    }
+                ]
+            },
+            plugins:[new webpack.optimize.UglifyJsPlugin({minimize: true})]
+        }))
+        .pipe(gulp.dest(config.distScript))
+        .pipe(reload({stream: true}));
+});
+
 //打包js
 gulp.task('browserify', function () {
     return browserify(config.js)
@@ -161,6 +193,10 @@ gulp.task('build',['clean'],function () {
     gulp.start(['browserify','templates','styles','images']);
 });
 
-gulp.task('default', function () {
+gulp.task('watch',['clean'],function () {
+    gulp.start(['browserSync','webpack','templates','styles','images']);
+});
+
+gulp.task('default',['clean'], function () {
     gulp.start(['browserSync','watchify','templates','styles','images']);
 });

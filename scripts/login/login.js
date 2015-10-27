@@ -5,9 +5,8 @@ var React=require('react');
 var ReactDom=require('react-dom');
 var Parent = require('./Parent.jsx');
 var $ = require('jquery');
-ReactDom.render(<Parent />, document.getElementById('container'));
 
 
-let a=300;
+let a='动态测试文';
 $('#container').append(a);
 
