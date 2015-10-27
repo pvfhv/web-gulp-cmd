@@ -50,7 +50,9 @@ var config = {
 
 //删除
 gulp.task('clean', function () {
-    return del(['dist']);
+    return del(['dist']).then(function(){
+        console.log('删除完成');
+    });
 });
 
 
@@ -193,8 +195,8 @@ gulp.task('build',['clean'],function () {
     gulp.start(['browserify','templates','styles','images']);
 });
 
-gulp.task('watch',['clean'],function () {
-    gulp.start(['browserSync','webpack','templates','styles','images']);
+gulp.task('watch',['build'],function () {
+    gulp.start(['browserSync','webpack']);
 });
 
 gulp.task('default',['clean'], function () {

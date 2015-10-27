@@ -3,3 +3,4 @@
  */
 
 require('./login/login');
+require('./test/es6');
