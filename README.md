@@ -57,5 +57,6 @@ gulp-util 日志管理
 lodash.assign 类似underscore
 gulp-uglify js压缩
 babelify 本来的主要作用是进行 ES6 的编译，但是我们这里是使用它的 JSX 编译功能
+webpack 包管理，打包react\sass等类型文件
 browser-sync 多终端同时测试服务，同时可以实现监听功能
 ```
