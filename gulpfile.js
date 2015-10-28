@@ -145,6 +145,7 @@ gulp.task('webpack', function() {
             resolve: {
                 extensions: ['', '.js', '.jsx']
             },
+            optional: ['runtime'],
             module: {
                 loaders: [
                     {

@@ -22,4 +22,25 @@ html
             .row2(something=null)
             .row3
                 input(type="checkbox" checked)
+        div#first
+        div#btns
+            button#btn_scroll
+                |测试scroll
+            button#btn_generators
+                |测试generators
+            button#btn_iterator
+                |测试iterator
+            button#btn_iterator_yield
+                |测试iterator_yield
+            button#btn_iterator_split
+                |测试iterator_split
+            button#btn_iterator_filter
+                |测试iterator_filter
+        div#scroll
+            |这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容！
+        div#template_test
+        script#firstTemplate(type="text/template")
+            <%for(var v of aRes){%>
+            <div><%= v%></div>
+            <%}%>
         script(src="scripts/main.js")

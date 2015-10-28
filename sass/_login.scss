@@ -1,5 +1,6 @@
-#div1{
-  width: 1092px;
-  height: 710px;
-  background: url("../images/whale-web.png") no-repeat;
+#scroll{
+  width: 200px;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid red;
 }
