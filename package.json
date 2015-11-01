@@ -2,7 +2,7 @@
   "name": "web-gulp-cmd",
   "version": "0.0.1",
   "description": "frontEnd template",
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
     "test": "no"
   },
@@ -13,7 +13,11 @@
   "keywords": [
     "gulp",
     "sass",
-    "compass"
+    "compass",
+    "react",
+    "babel",
+    "es6",
+    "bootstrap"
   ],
   "author": "anchao",
   "license": "MIT",

@@ -169,4 +169,29 @@ function testTemplate(user){
     var html= `测试反撇号！这里是一个变量${user.name}！`;
     return html;
 }
-$('#template_test').html(msg);
+//$('#template_test').html(msg);
+
+
+//let的作用域
+//for(let i=0;i<3;i++){
+//
+//}
+//console.log(i);//Uncaught ReferenceError: i is not defined
+
+//闭包
+var arr=[];
+//for(var i=0;i<3;i++){
+//    arr[i]=function(){
+//        console.log(i);
+//    };
+//}
+//
+//arr[1]();  //3
+
+for(let i=0;i<3;i++){
+    arr[i]=function(){
+        console.log(i);
+    };
+}
+
+arr[1](); //1

@@ -153,8 +153,8 @@ gulp.task('webpack', function() {
                         loader: 'babel'
                     }
                 ]
-            },
-            plugins:[new webpack.optimize.UglifyJsPlugin({minimize: true})]
+            }
+            //plugins:[new webpack.optimize.UglifyJsPlugin({minimize: true})]
         }))
         .pipe(gulp.dest(config.distScript))
         .pipe(reload({stream: true}));

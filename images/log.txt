@@ -1,0 +1,6 @@
+";project whale-warden; run 5252 whale-warden\src\pack\conf\debug.xml"
+
+
+
+
+";project whale-spark-test-runner; run http://localhost:9000/bus local[2]"
