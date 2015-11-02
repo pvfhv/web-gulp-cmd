@@ -179,7 +179,7 @@ function testTemplate(user){
 //console.log(i);//Uncaught ReferenceError: i is not defined
 
 //闭包
-var arr=[];
+//var arr=[];
 //for(var i=0;i<3;i++){
 //    arr[i]=function(){
 //        console.log(i);
@@ -188,10 +188,52 @@ var arr=[];
 //
 //arr[1]();  //3
 
-for(let i=0;i<3;i++){
-    arr[i]=function(){
-        console.log(i);
-    };
-}
+//for(let i=0;i<3;i++){
+//    arr[i]=function(){
+//        console.log(i);
+//    };
+//}
+//
+//arr[1](); //1
 
-arr[1](); //1
+
+//import * as constants from './constants.js';
+//console.log(constants.A);
+//console.log(constants.D);
+
+
+//import {A,B,C,D} from './constants.js';
+//console.log(A);
+//console.log(D);
+
+
+//let fibs = function* () {
+//    var a = 0;
+//    var b = 1;
+//    while (true) {
+//        yield a;
+//        //console.log("a="+a);
+//        [a, b] = [b, a + b];
+//        //console.log("a="+a+",b="+b);
+//    }
+//}
+//
+//var [first, second, third, fourth, fifth, sixth] = fibs();
+//console.log(sixth) // 5
+
+//constants
+//import * as constants from './constants.js';
+//console.log(constants);
+
+//calc.js
+//import Calc from './Calc.js';
+//import {Calc} from './Calc.js';
+//console.log(Calc);
+//var c1=new Calc(1,3);
+//console.log(c1.getResult());
+
+
+//import {getName,getAge} from './partJs.js';
+//getName();
+
+console.log(global);

@@ -195,8 +195,8 @@ gulp.task('build',['clean'],function () {
     gulp.start(['browserify','templates','styles','images']);
 });
 
-gulp.task('watch',['build'],function () {
-    gulp.start(['browserSync','webpack']);
+gulp.task('watch',['clean'],function () {
+    gulp.start(['browserSync','webpack','templates','styles','images']);
 });
 
 gulp.task('default',['clean'], function () {
