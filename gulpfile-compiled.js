@@ -24,6 +24,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 var uglify = require('gulp-uglify');
 var babelify = require('babelify');
+var transpile = require('gulp-es6-module-transpiler');
 
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
@@ -69,12 +70,25 @@ gulp.task('styles', function () {
         sass: 'sass'
     })).pipe(gulp.dest(config.distCss)).pipe(reload({ stream: true }));
 });
+
 //copy bootstrap服务器端字体
 gulp.task('copyFont', function () {
     var src = 'node_modules/bootstrap-sass/assets/fonts/bootstrap/*';
     var dest = config.distCss + '/fonts/';
 
     return gulp.src(src).pipe(gulp.dest(dest)).pipe(reload({ stream: true }));
+});
+
+//copy zeroclipboard.swf
+gulp.task('copyFlash', function () {
+    var src = 'node_modules/zeroclipboard/dist/ZeroClipboard.swf';
+    var dest = config.distScript;
+
+    gulp.src(src).pipe(gulp.dest(dest));
+});
+
+gulp.task('copy', function () {
+    gulp.start(['copyFont', 'copyFlash']);
 });
 
 //image
@@ -108,7 +122,11 @@ gulp.task('watchify', function () {
 });
 
 gulp.task('webpack', function () {
-    return gulp.src(config.mainJs).pipe(webpackstream({
+    return gulp.src(config.mainJs)
+    //.pipe(transpile({
+    //    formatter: 'bundle'
+    //}))
+    .pipe(webpackstream({
         watch: true,
         entry: {
             main: './scripts/main.js'
@@ -155,15 +173,15 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('build', ['clean'], function () {
-    gulp.start(['browserify', 'templates', 'styles', 'images']);
+    gulp.start(['browserify', 'templates', 'styles', 'images', 'copy']);
 });
 
 gulp.task('watch', ['clean'], function () {
-    gulp.start(['browserSync', 'webpack', 'templates', 'styles', 'images']);
+    gulp.start(['browserSync', 'webpack', 'templates', 'styles', 'images', 'copy']);
 });
 
 gulp.task('default', ['clean'], function () {
-    gulp.start(['browserSync', 'watchify', 'templates', 'styles', 'images']);
+    gulp.start(['browserSync', 'watchify', 'templates', 'styles', 'images', 'copy']);
 });
 
 //# sourceMappingURL=gulpfile-compiled.js.map

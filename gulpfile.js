@@ -19,7 +19,7 @@ var watchify = require('watchify');
 var browserify=require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-var gutil = require('gulp-util');
+//var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 var uglify = require('gulp-uglify');
@@ -81,6 +81,7 @@ gulp.task('styles', function () {
         .pipe(gulp.dest(config.distCss))
         .pipe(reload({stream: true}));
 });
+
 //copy bootstrap服务器端字体
 gulp.task('copyFont',function(){
     var src='node_modules/bootstrap-sass/assets/fonts/bootstrap/*';
@@ -91,7 +92,18 @@ gulp.task('copyFont',function(){
         .pipe(reload({stream: true}));
 });
 
+//copy zeroclipboard.swf
+gulp.task('copyFlash',function(){
+    var src='node_modules/zeroclipboard/dist/ZeroClipboard.swf';
+    var dest= config.distScript;
 
+    gulp.src(src)
+        .pipe(gulp.dest(dest));
+});
+
+gulp.task('copy',function(){
+    gulp.start(['copyFont','copyFlash']);
+});
 
 
 //image
@@ -150,7 +162,10 @@ gulp.task('webpack', function() {
                     {
                         test: /\.jsx?$/,
                         exclude: /(node_modules|bower_components)/,
-                        loader: 'babel'
+                        loader: 'babel',
+                        query: {
+                            presets: ['es2015']
+                        }
                     }
                 ]
             }
@@ -192,13 +207,13 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('build',['clean'],function () {
-    gulp.start(['browserify','templates','styles','images']);
+    gulp.start(['browserify','templates','styles','images','copy']);
 });
 
 gulp.task('watch',['clean'],function () {
-    gulp.start(['browserSync','webpack','templates','styles','images']);
+    gulp.start(['browserSync','webpack','templates','styles','images','copy']);
 });
 
 gulp.task('default',['clean'], function () {
-    gulp.start(['browserSync','watchify','templates','styles','images']);
+    gulp.start(['browserSync','watchify','templates','styles','images','copy']);
 });
