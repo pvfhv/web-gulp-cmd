@@ -19,7 +19,7 @@ var watchify = require('watchify');
 var browserify=require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-//var gutil = require('gulp-util');
+var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 var uglify = require('gulp-uglify');
@@ -44,7 +44,7 @@ var config = {
         entries: './scripts/main.js',
         extensions: ['.js', '.jsx', '.es6'],
         debug: true,
-        transform: [babelify]
+        transform: [["babelify", { "presets": ["es2015","stage-0","react"]}]]
     }
 };
 
@@ -116,31 +116,45 @@ gulp.task('images', function () {
 });
 
 //监听js
-gulp.task('watchify', function(){
-    //与browserify联合使用，监听Js变化
-    var b = watchify(browserify(assign({},watchify.args, config.js)));
-    b.on('update', bundle); // 当任何依赖发生改变的时候，运行打包工具
-    b.transform(babelify).on('update', bundle);//当jsx发生变化，运行打包工具
-    b.on('log', gutil.log); // 输出编译日志到终端
+//gulp.task('watchify', function(){
+//    //与browserify联合使用，监听Js变化
+//    var b = watchify(browserify(assign({},watchify.args, config.js)));
+//    b.on('update', bundle); // 当任何依赖发生改变的时候，运行打包工具
+//    b.transform(babelify).on('update', bundle);//当jsx发生变化，运行打包工具
+//    b.on('log', gutil.log); // 输出编译日志到终端
+//
+//    function bundle() {
+//        return b.bundle()
+//            // 如果有错误发生，记录这些错误
+//            .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+//            .pipe(source(config.mainJs))
+//            // 可选项，如果你不需要缓存文件内容，就删除
+//            .pipe(buffer())
+//            // 可选项，如果你不需要 sourcemaps，就删除
+//            .pipe(sourcemaps.init({loadMaps: true})) // 从 browserify 文件载入 map
+//            .pipe(uglify())
+//            // 在这里将变换操作加入管道
+//            .pipe(sourcemaps.write('./')) // 写入 .map 文件
+//            .pipe(gulp.dest(config.distScript))
+//            .pipe(reload({stream: true}));
+//    }
+//
+//    return bundle();
+//});
 
-    function bundle() {
-        return b.bundle()
-            // 如果有错误发生，记录这些错误
-            .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-            .pipe(source(config.mainJs))
-            // 可选项，如果你不需要缓存文件内容，就删除
-            .pipe(buffer())
-            // 可选项，如果你不需要 sourcemaps，就删除
-            .pipe(sourcemaps.init({loadMaps: true})) // 从 browserify 文件载入 map
-            .pipe(uglify())
-            // 在这里将变换操作加入管道
-            .pipe(sourcemaps.write('./')) // 写入 .map 文件
-            .pipe(gulp.dest(config.distScript))
-            .pipe(reload({stream: true}));
-    }
-
-    return bundle();
-});
+//打包js
+//gulp.task('browserify', function () {
+//    return browserify(config.js)
+//        .transform(babelify)
+//        .bundle()
+//        .pipe(source(config.mainJs))
+//        .pipe(buffer())
+//        .pipe(sourcemaps.init({loadMaps: true}))
+//        .pipe(uglify())
+//        .pipe(sourcemaps.write('./'))
+//        .pipe(gulp.dest(config.distScript))
+//        .pipe(reload({stream: true}));
+//});
 
 gulp.task('webpack', function() {
     return gulp.src(config.mainJs)
@@ -164,27 +178,14 @@ gulp.task('webpack', function() {
                         exclude: /(node_modules|bower_components)/,
                         loader: 'babel',
                         query: {
-                            presets: ['es2015']
+                            cacheDirectory: true,
+                            presets: ['es2015','stage-0','react']
                         }
                     }
                 ]
             }
             //plugins:[new webpack.optimize.UglifyJsPlugin({minimize: true})]
         }))
-        .pipe(gulp.dest(config.distScript))
-        .pipe(reload({stream: true}));
-});
-
-//打包js
-gulp.task('browserify', function () {
-    return browserify(config.js)
-        .transform(babelify)
-        .bundle()
-        .pipe(source(config.mainJs))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(config.distScript))
         .pipe(reload({stream: true}));
 });
@@ -207,7 +208,7 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('build',['clean'],function () {
-    gulp.start(['browserify','templates','styles','images','copy']);
+    gulp.start(['webpack','templates','styles','images','copy']);
 });
 
 gulp.task('watch',['clean'],function () {
@@ -215,5 +216,5 @@ gulp.task('watch',['clean'],function () {
 });
 
 gulp.task('default',['clean'], function () {
-    gulp.start(['browserSync','watchify','templates','styles','images','copy']);
+    gulp.start(['browserSync','webpack','templates','styles','images','copy']);
 });

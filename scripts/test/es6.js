@@ -1,7 +1,9 @@
 /**
  * Created by Anchao on 2015/10/27.
  */
-//require('babelify/polyfill');
+//require('babel-core/register');
+import 'babel-polyfill';
+
 //var $ = require('jquery');
 import $ from 'jquery';
 //var _ = require('underscore');
@@ -9,17 +11,17 @@ import $ from 'jquery';
 //console.log($('body').length);
 
 //import ZeroClipboard from'zeroclipboard';
-var ZeroClipboard=require('zeroclipboard');
-var client = new ZeroClipboard(document.getElementById("copy-button"));
-client.on( "ready", function( readyEvent ) {
-    // alert( "ZeroClipboard SWF is ready!" );
-
-    client.on( "aftercopy", function( event ) {
-        console.log(event.data);
-        //event.data["text/plain"]=$('.language-html').text();
-        alert("Copied text to clipboard: " + event.data["text/plain"] );
-    } );
-});
+//var ZeroClipboard=require('zeroclipboard');
+//var client = new ZeroClipboard(document.getElementById("copy-button"));
+//client.on( "ready", function( readyEvent ) {
+//    // alert( "ZeroClipboard SWF is ready!" );
+//
+//    client.on( "aftercopy", function( event ) {
+//        console.log(event.data);
+//        //event.data["text/plain"]=$('.language-html').text();
+//        alert("Copied text to clipboard: " + event.data["text/plain"] );
+//    } );
+//});
 
 
 //for of
@@ -66,29 +68,30 @@ client.on( "ready", function( readyEvent ) {
 //    console.log($('#scroll').scrollTop());
 //});
 
-//var timer=null;
-//$('#btn_generators').click(function(){
-//    //Generators
-//    function* quips(name) {
-//        yield '你好' + name + '!';
-//        yield '早上好！';
-//        if(name.startsWith("A")){
-//            yield '你的名字以A开头';
-//        }
-//        yield 'bye';
-//    }
-//
-//    var iter=quips('Anchao');
-//    clearInterval(timer);
-//    timer=setInterval(function(){
-//        var obj=iter.next();
-//        if(obj.done){
-//            clearInterval(timer);
-//        }else{
-//            console.log(obj.value);
-//        }
-//    },2000);
-//});
+
+var timer=null;
+$('#btn_generators').click(function(){
+    //Generators
+    function* quips(name) {
+        yield '你好' + name + '!';
+        yield '早上好！';
+        if(name.startsWith("A")){
+            yield '你的名字以A开头';
+        }
+        yield 'bye';
+    }
+
+    var iter=quips('Anchao');
+    clearInterval(timer);
+    timer=setInterval(function(){
+        var obj=iter.next();
+        if(obj.done){
+            clearInterval(timer);
+        }else{
+            console.log(obj.value);
+        }
+    },2000);
+});
 
 //实现迭代,可以使用for of
 //class RangeIterator {
