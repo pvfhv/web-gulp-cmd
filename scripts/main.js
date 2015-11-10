@@ -6,4 +6,5 @@ import './global.js';
 
 import './login/login.js';
 import './test/es6.js';
+import './test/reactTest.js';
 

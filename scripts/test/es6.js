@@ -1,11 +1,19 @@
 /**
  * Created by Anchao on 2015/10/27.
  */
+//import {foo} from './Person.js';
+//foo();
+
+
+//var Test=require('./Person');
+//Test.foo();
+
+
 //require('babel-core/register');
-import 'babel-polyfill';
+//import 'babel-polyfill';
 
 //var $ = require('jquery');
-import $ from 'jquery';
+//import $ from 'jquery';
 //var _ = require('underscore');
 //import $ from "jquery";
 //console.log($('body').length);
@@ -69,29 +77,29 @@ import $ from 'jquery';
 //});
 
 
-var timer=null;
-$('#btn_generators').click(function(){
-    //Generators
-    function* quips(name) {
-        yield '你好' + name + '!';
-        yield '早上好！';
-        if(name.startsWith("A")){
-            yield '你的名字以A开头';
-        }
-        yield 'bye';
-    }
-
-    var iter=quips('Anchao');
-    clearInterval(timer);
-    timer=setInterval(function(){
-        var obj=iter.next();
-        if(obj.done){
-            clearInterval(timer);
-        }else{
-            console.log(obj.value);
-        }
-    },2000);
-});
+//var timer=null;
+//$('#btn_generators').click(function(){
+//    //Generators
+//    function* quips(name) {
+//        yield '你好' + name + '!';
+//        yield '早上好！';
+//        if(name.startsWith("A")){
+//            yield '你的名字以A开头';
+//        }
+//        yield 'bye';
+//    }
+//
+//    var iter=quips('Anchao');
+//    clearInterval(timer);
+//    timer=setInterval(function(){
+//        var obj=iter.next();
+//        if(obj.done){
+//            clearInterval(timer);
+//        }else{
+//            console.log(obj.value);
+//        }
+//    },2000);
+//});
 
 //实现迭代,可以使用for of
 //class RangeIterator {

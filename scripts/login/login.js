@@ -8,5 +8,5 @@ var $ = require('jquery');
 //let a='动态测试文';
 //$('#first').append(a);
 
-ReactDOM.render(<Parent />,document.getElementById('first'));
+//ReactDOM.render(<Parent />,document.getElementById('first'));
 
