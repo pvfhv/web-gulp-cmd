@@ -45,4 +45,6 @@ html
             <%for(var v of aRes){%>
             <div><%= v%></div>
             <%}%>
+        script#ReactTemplate(type="text/babel")
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
         script(src="scripts/main.js")

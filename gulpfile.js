@@ -36,6 +36,8 @@ var config = {
     'jade': 'template/*.jade',
     'sass': 'sass/**/*.scss',
     'distCss': 'dist/css',
+    'simulate':'simulates/*.json',
+    'distsimulate':'dist/simulates',
     'distScript': 'dist/scripts',
     'image':'images/{,*/}*.{gif,jpeg,jpg,png,ico}',
     'distImg': 'dist/images',
@@ -101,10 +103,15 @@ gulp.task('copyFlash',function(){
         .pipe(gulp.dest(dest));
 });
 
-gulp.task('copy',function(){
-    gulp.start(['copyFont','copyFlash']);
+//copy simulates
+gulp.task('copySimulate',function(){
+    gulp.src(config.simulate)
+        .pipe(gulp.dest(config.distsimulate));
 });
 
+gulp.task('copy',function(){
+    gulp.start(['copyFont','copyFlash','copySimulate']);
+});
 
 //image
 gulp.task('images', function () {
