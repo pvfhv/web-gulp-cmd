@@ -4,10 +4,10 @@
 
 import './global.js';
 
-import PromiseDemo from './test/Promise.js';
-import './login/login.js';
-import './test/es6.js';
-import './test/reactTest.js';
+import PromiseDemo from './test/Promise';
+import './login/login';
+import './test/es6';
+import './test/reactTest';
 
 //推荐方式一：
 //new PromiseDemo().getPromise().done(function (oData) {
