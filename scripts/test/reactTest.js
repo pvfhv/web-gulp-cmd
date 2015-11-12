@@ -7,8 +7,10 @@
 //import './MarkdownEditor';
 //import './CommentBox';
 //import './CommentBoxHasMarkdown';
-import './CommentBoxReal';
-
+//import './CommentBoxReal';
+//import './CommentBoxReal1';
+//import './CommentBoxReal2';
+import './CommentBoxReal3';
 
 let oFirst = $('#first').get(0);
 
