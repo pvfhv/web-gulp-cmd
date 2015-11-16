@@ -10,3 +10,14 @@ var $ = require('jquery');
 
 //ReactDOM.render(<Parent />,document.getElementById('first'));
 
+var fnClick=null;
+$('#first').click(function(){
+    console.log('click');
+}).on('mouseenter',function(){
+    fnClick = fnClick===null? $._data($('#first')[0], "events")["click"][0].handler:fnClick;
+    $(this).off('click');
+}).dblclick(function(e){
+    //console.log(fnClick);
+    fnClick.call(this);
+});
+

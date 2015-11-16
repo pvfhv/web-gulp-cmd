@@ -85,14 +85,22 @@ class CommentList extends React.Component{
 }
 
 class Comment extends React.Component{
+    handleMouseEnter(author){
+        return (e)=>{
+            //console.log(e.currentTarget);
+            console.log(author);
+            //console.log(e.target);
+        }
+    }
 
     render(){
+        let handleMouseEnter = this.handleMouseEnter;
         return (
             <ul>
                 {
                     this.props.data.map(function(obj,index){
                         return (
-                           <li author={obj.author} key={index}>{obj.comment+'_'+Date.now()}</li>
+                           <li author={obj.author} key={index}  onMouseEnter={handleMouseEnter(obj.author)}>{obj.comment+'_'+Date.now()}</li>
                         );
                     })
                 }

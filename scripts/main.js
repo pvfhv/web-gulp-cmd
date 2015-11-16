@@ -8,6 +8,9 @@ import PromiseDemo from './test/Promise';
 import './login/login';
 import './test/es6';
 import './test/reactTest';
+import './test/rxTest';
+
+
 
 //推荐方式一：
 //new PromiseDemo().getPromise().done(function (oData) {

@@ -1,0 +1,9 @@
+响应式编程（Reactive Programming）介绍
+http://wiki.jikexueyuan.com/project/android-weekly/issue-145/introduction-to-RP.html
+
+那些年我们错过的响应式编程
+https://github.com/bboyfeiyu/android-tech-frontier/tree/master/androidweekly/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E9%94%99%E8%BF%87%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B
+
+rxjs
+http://xgrommx.github.io/rx-book/
+https://github.com/liulongbiao/liulb-docs/blob/master/doc/javascript/RxJs/RxJs_notes.md
