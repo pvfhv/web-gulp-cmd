@@ -1,5 +1,5 @@
 /**
- * Created by Anchao on 2015/11/12.
+ * Created by Anchao on 2015/11/12.view
  */
 
 class CommentBox extends React.Component{
