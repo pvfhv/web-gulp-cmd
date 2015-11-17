@@ -8,7 +8,8 @@ import PromiseDemo from './test/Promise';
 import './login/login';
 import './test/es6';
 import './test/reactTest';
-import './test/rxTest';
+import './test/RxTest';
+import './test/baconTest';
 
 
 
