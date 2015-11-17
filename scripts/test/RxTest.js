@@ -2,7 +2,28 @@
  * Created by Anchao on 2015/11/16.
  */
 
-var requestScream = Rx.Observable.just('../simulates/comment.json');
+var windowstream =  Rx.Observable.fromEvent(window,'resize');
+var btnstream = Rx.Observable.fromEvent($('#btn_Rx').get(0),'click');
+var btnstream1 = Rx.Observable.fromEvent($('#btn_Bacon').get(0),'click');
+
+var requeststream=btnstream.map(()=>'../simulates/comment.json');
+var requeststream1=btnstream1.map(()=>'../simulates/PersonData.json');
+var responsestream =requeststream.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
+var responsestream1 =requeststream1.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
+var suggeststream =responsestream.merge(responsestream1).merge(windowstream.map(()=>null));
+suggeststream.subscribe((suggest)=>{
+    if(suggest==null){
+        console.log('window resize');
+    }else{
+        console.log(JSON.stringify(suggest));
+    }
+});
+
+//windowstream.subscribe(()=>{
+//    console.log('resize');
+//});
+
+//var requestScream = Rx.Observable.just('../simulates/comment.json');
 
 //测试一
 //requestScream.subscribe(function(requestUrl){
@@ -47,10 +68,10 @@ var requestScream = Rx.Observable.just('../simulates/comment.json');
 
 
 //按钮的click
-var refreshClickStream = Rx.Observable.fromEvent($('#btn_Rx').get(0), 'click');
-var requestOnRefreshStream = refreshClickStream.map(function () {
-    return '../simulates/comment.json?t=' + Date.now();
-});
+//var refreshClickStream = Rx.Observable.fromEvent($('#btn_Rx').get(0), 'click');
+//var requestOnRefreshStream = refreshClickStream.map(function () {
+//    return '../simulates/comment.json?t=' + Date.now();
+//});
 
 //写法一
 //var startupscream=Rx.Observable.just('../simulates/comment.json');
@@ -68,17 +89,17 @@ var requestOnRefreshStream = refreshClickStream.map(function () {
 //}).startWith('../simulates/comment.json');
 
 //写法三
-var requestScream = refreshClickStream.startWith('startup click').map(function () {
-    return '../simulates/comment.json?t=' + Date.now();
-});
+//var requestScream = refreshClickStream.startWith('startup click').map(function () {
+//    return '../simulates/comment.json?t=' + Date.now();
+//});
 
 //requestScream.subscribe(function(obj){
 //    $('#first').html('清空数据！');
 //});
 
-var responseScream = requestScream.flatMap(function (url) {
-    return Rx.Observable.fromPromise($.getJSON(url));
-});
+//var responseScream = requestScream.flatMap(function (url) {
+//    return Rx.Observable.fromPromise($.getJSON(url));
+//});
 
 //responseScream.subscribe(function(oRes){
 //    console.log(oRes);
@@ -93,17 +114,17 @@ var responseScream = requestScream.flatMap(function (url) {
 //    console.log(oComment);
 //});
 
-var suggestion1Stream = responseScream.map(function (listUser) {
-    return listUser[Math.floor(Math.random() * listUser.length)];
-}).merge(
-    refreshClickStream.map(function () {
-        return null;
-})).startWith(null);
-
-suggestion1Stream.subscribe(function (suggestion) {
-    if (suggestion === null) {
-        $('#first').hide();
-    } else {
-        $('#first').show().html(suggestion.author);
-    }
-});
+//var suggestion1Stream = responseScream.map(function (listUser) {
+//    return listUser[Math.floor(Math.random() * listUser.length)];
+//}).merge(
+//    refreshClickStream.map(function () {
+//        return null;
+//})).startWith(null);
+//
+//suggestion1Stream.subscribe(function (suggestion) {
+//    if (suggestion === null) {
+//        $('#first').hide();
+//    } else {
+//        $('#first').show().html(suggestion.author);
+//    }
+//});
