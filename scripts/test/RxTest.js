@@ -47,9 +47,9 @@ var requestScream = Rx.Observable.just('../simulates/comment.json');
 
 
 //按钮的click
-var refreshClickStream =Rx.Observable.fromEvent($('#btn_Rx').get(0),'click');
-var requestOnRefreshStream  = refreshClickStream.map(function(){
-    return '../simulates/comment.json?t='+Date.now();
+var refreshClickStream = Rx.Observable.fromEvent($('#btn_Rx').get(0), 'click');
+var requestOnRefreshStream = refreshClickStream.map(function () {
+    return '../simulates/comment.json?t=' + Date.now();
 });
 
 //写法一
@@ -68,10 +68,42 @@ var requestOnRefreshStream  = refreshClickStream.map(function(){
 //}).startWith('../simulates/comment.json');
 
 //写法三
-var requestScream = refreshClickStream.startWith('startup click').map(function(){
-    return '../simulates/comment.json?t='+Date.now();
+var requestScream = refreshClickStream.startWith('startup click').map(function () {
+    return '../simulates/comment.json?t=' + Date.now();
 });
 
-requestScream.subscribe(function(obj){
-    console.log(obj);
+//requestScream.subscribe(function(obj){
+//    $('#first').html('清空数据！');
+//});
+
+var responseScream = requestScream.flatMap(function (url) {
+    return Rx.Observable.fromPromise($.getJSON(url));
+});
+
+//responseScream.subscribe(function(oRes){
+//    console.log(oRes);
+//});
+
+//
+//var suggestion1Stream = responseScream.map(function(listUser){
+//    return listUser[Math.floor(Math.random()*listUser.length)];
+//});
+//
+//suggestion1Stream.subscribe(function(oComment){
+//    console.log(oComment);
+//});
+
+var suggestion1Stream = responseScream.map(function (listUser) {
+    return listUser[Math.floor(Math.random() * listUser.length)];
+}).merge(
+    refreshClickStream.map(function () {
+        return null;
+})).startWith(null);
+
+suggestion1Stream.subscribe(function (suggestion) {
+    if (suggestion === null) {
+        $('#first').hide();
+    } else {
+        $('#first').show().html(suggestion.author);
+    }
 });
