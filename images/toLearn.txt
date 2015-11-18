@@ -7,3 +7,5 @@ https://github.com/bboyfeiyu/android-tech-frontier/tree/master/androidweekly/%E9
 rxjs
 http://xgrommx.github.io/rx-book/
 https://github.com/liulongbiao/liulb-docs/blob/master/doc/javascript/RxJs/RxJs_notes.md
+
+https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Create.html

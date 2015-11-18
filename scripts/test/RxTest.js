@@ -1,8 +1,114 @@
 /**
  * Created by Anchao on 2015/11/16.
  */
+//create range
+//var rangestream = Rx.Observable.range(1,5);
+//rangestream.subscribe(x=>console.log(x),error=>console.log(error),()=>console.log('completed'));
 
-var requestScream = Rx.Observable.just('../simulates/comment.json');
+
+//create create
+//var sourcestream=Rx.Observable.create(function(observer){
+//   observer.onNext(100);
+//    observer.onCompleted();
+//
+//    //return function (){
+//    //    console.log('dispose+++');
+//    //}
+//
+//    return Rx.Disposable.create(()=>console.log('dispose'));
+//});
+//
+//var subscription = sourcestream.subscribe(function(x){
+//   console.log('onnext='+x);
+//},function(e){
+//    console.log('error'+e);
+//},function(){
+//    console.log('completed!!!!');
+//});
+//
+//subscription.dispose();
+
+//create defer
+//var sourcestream=Rx.Observable.defer(()=>Rx.Observable.return(100));
+//var sourcestream=Rx.Observable.defer(()=>$.Deferred().resolve(100));
+//
+//var subscribe=sourcestream.subscribe(
+//    data=>console.log(data),
+//    ()=>console.log('error'),
+//    ()=>console.log('complete!!!')
+//);
+
+//empty 创建一个不发射任何数据但是正常终止的Observable
+//var sourcestream =Rx.Observable.empty();
+//sourcestream.subscribe(
+//    data=>console.log(data),
+//    ()=>console.log('error'),
+//    ()=>console.log('complete!!!')
+//);
+
+//never 创建一个不发射数据也不终止的Observable
+//var sourcestream =Rx.Observable.never();
+//sourcestream.subscribe(
+//    data=>console.log(data),
+//    ()=>console.log('error'),
+//    ()=>console.log('complete!!!')
+//);
+
+//Throw 创建一个不发射数据以一个错误终止的Observable
+//var sourcestream =Rx.Observable.return(100)
+//    .selectMany(function(){Rx.Observable.throw(new Error('error!!!!'))});
+//sourcestream.subscribe(
+//    data=>console.log(data),
+//    ()=>console.log('error'),
+//    ()=>console.log('complete!!!')
+//);
+
+//from arguments array Iterable
+var f=function(){
+    return Rx.Observable.from(arguments);
+}
+
+f(1,2,3).subscribe(
+    data=>console.log(data),
+    ()=>console.log('error'),
+    ()=>console.log('complete!!!')
+);
+
+
+
+
+//zip
+//var rangestream=Rx.Observable.range(0,5);
+//var a=rangestream.skip(4);
+//var b=rangestream.skip(2);
+//
+//Rx.Observable.zip(rangestream,a, b,function(x,y,z){
+//    return x+y+z;
+//}).subscribe(function(res){
+//    console.log(res);
+//});
+
+
+//超过500ms的搜索功能！
+//var keyupstream = Rx.Observable.fromEvent($('#searchbaidu').get(0),'keyup')
+//    .map(e=>e.target.value)
+//    .filter(text=>text.length>2);
+//
+//var throttled= keyupstream.throttle(500);
+//var distinct= throttled.distinctUntilChanged();
+//
+//var suggestions = distinct.flatMapLatest(function(term){
+//    return $.getJSON('../simulates/comment.json',{search:term}).promise();
+//});
+//
+//suggestions.subscribe(function(data){
+//    console.log(data);
+//});
+
+
+
+
+//var requestScream = Rx.Observable.just('../simulates/comment.json');
 
 //测试一
 //requestScream.subscribe(function(requestUrl){
@@ -47,10 +153,10 @@ var requestScream = Rx.Observable.just('../simulates/comment.json');
 
 
 //按钮的click
-var refreshClickStream = Rx.Observable.fromEvent($('#btn_Rx').get(0), 'click');
-var requestOnRefreshStream = refreshClickStream.map(function () {
-    return '../simulates/comment.json?t=' + Date.now();
-});
+//var refreshClickStream = Rx.Observable.fromEvent($('#btn_Rx').get(0), 'click');
+//var requestOnRefreshStream = refreshClickStream.map(function () {
+//    return '../simulates/comment.json?t=' + Date.now();
+//});
 
 //写法一
 //var startupscream=Rx.Observable.just('../simulates/comment.json');
@@ -68,17 +174,17 @@ var requestOnRefreshStream = refreshClickStream.map(function () {
 //}).startWith('../simulates/comment.json');
 
 //写法三
-var requestScream = refreshClickStream.startWith('startup click').map(function () {
-    return '../simulates/comment.json?t=' + Date.now();
-});
+//var requestScream = refreshClickStream.startWith('startup click').map(function () {
+//    return '../simulates/comment.json?t=' + Date.now();
+//});
 
 //requestScream.subscribe(function(obj){
 //    $('#first').html('清空数据！');
 //});
 
-var responseScream = requestScream.flatMap(function (url) {
-    return Rx.Observable.fromPromise($.getJSON(url));
-});
+//var responseScream = requestScream.flatMap(function (url) {
+//    return Rx.Observable.fromPromise($.getJSON(url));
+//});
 
 //responseScream.subscribe(function(oRes){
 //    console.log(oRes);
@@ -93,17 +199,52 @@ var responseScream = requestScream.flatMap(function (url) {
 //    console.log(oComment);
 //});
 
-var suggestion1Stream = responseScream.map(function (listUser) {
-    return listUser[Math.floor(Math.random() * listUser.length)];
-}).merge(
-    refreshClickStream.map(function () {
-        return null;
-})).startWith(null);
+//var suggestion1Stream = responseScream.map(function (listUser) {
+//    return listUser[Math.floor(Math.random() * listUser.length)];
+//}).merge(
+//    refreshClickStream.map(function () {
+//        return null;
+//})).startWith(null);
+//
+//suggestion1Stream.subscribe(function (suggestion) {
+//    if (suggestion === null) {
+//        $('#first').hide();
+//    } else {
+//        $('#first').show().html(suggestion.author);
+//    }
+//},function(oError){
+//    console.log(oError.status);
+//},function(){
+//    console.log('complete!');
+//});
 
-suggestion1Stream.subscribe(function (suggestion) {
-    if (suggestion === null) {
-        $('#first').hide();
-    } else {
-        $('#first').show().html(suggestion.author);
-    }
-});
+
+//综合完成
+//var refreshstream = Rx.Observable.fromEvent($('#btn_Rx').get(0),'click');
+//var closestream = Rx.Observable.fromEvent($('#btn_Rx_close').get(0),'click');
+//
+//var requestStream = refreshstream.startWith('startup click')
+//    .merge(closestream)
+//    .map(function(){
+//        return '../simulates/comment.json?t=' + Date.now();
+//    });
+//
+//var responsestream = requestScream.flatMap(function(url){
+//    return Rx.Observable.fromPromise($.getJSON(url));
+//});
+//
+//var suggeststream =  closestream.startWith('startup click').combineLatest(responsestream,function(click,userList){
+//    return userList[Math.floor(Math.random()*userList.length)];
+//}).merge(refreshstream.map(function(){
+//    //点击“刷新”按钮后，马上返回没有数据
+//    return null;
+//})).startWith(null);
+//
+//suggeststream.subscribe(function(suggest){
+//    if(suggest==null){
+//        $('#first').addClass('hidden');
+//    }else {
+//        $('#first').removeClass('hidden').text(suggest.author);
+//    }
+//});
+
