@@ -5,7 +5,6 @@
 //var rangestream = Rx.Observable.range(1,5);
 //rangestream.subscribe(x=>console.log(x),error=>console.log(error),()=>console.log('completed'));
 
-
 //create create
 //var sourcestream=Rx.Observable.create(function(observer){
 //   observer.onNext(100);
@@ -64,15 +63,15 @@
 //);
 
 //from arguments array Iterable
-var f=function(){
-    return Rx.Observable.from(arguments);
-}
-
-f(1,2,3).subscribe(
-    data=>console.log(data),
-    ()=>console.log('error'),
-    ()=>console.log('complete!!!')
-);
+//var f=function(){
+//    return Rx.Observable.from(arguments);
+//}
+//
+//f(1,2,3).subscribe(
+//    data=>console.log(data),
+//    ()=>console.log('error'),
+//    ()=>console.log('complete!!!')
+//);
 
 
 
@@ -106,8 +105,28 @@ f(1,2,3).subscribe(
 //});
 
 
+var windowstream =  Rx.Observable.fromEvent(window,'resize');
+var btnstream = Rx.Observable.fromEvent($('#btn_Rx').get(0),'click');
+var btnstream1 = Rx.Observable.fromEvent($('#btn_Bacon').get(0),'click');
 
+var requeststream=btnstream.map(()=>'../simulates/comment.json');
+var requeststream1=btnstream1.map(()=>'../simulates/PersonData.json');
+var responsestream =requeststream.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
+var responsestream1 =requeststream1.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
+var suggeststream =responsestream.merge(responsestream1).merge(windowstream.map(()=>null));
+suggeststream.subscribe((suggest)=>{
+    if(suggest==null){
+        console.log('window resize');
+    }else{
+        console.log(JSON.stringify(suggest));
+    }
+});
 
+//windowstream.subscribe(()=>{
+//    console.log('resize');
+//});
+
+>>>>>>> origin/master
 //var requestScream = Rx.Observable.just('../simulates/comment.json');
 
 //测试一
@@ -247,4 +266,3 @@ f(1,2,3).subscribe(
 //        $('#first').removeClass('hidden').text(suggest.author);
 //    }
 //});
-
