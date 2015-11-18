@@ -1,6 +1,22 @@
 /**
  * Created by Anchao on 2015/11/16.
  */
+
+//var source1=Rx.Observable.interval(1000).map(()=>null);
+//var source2=Rx.Observable.return('../simulates/comment.json')
+//    .flatMap(url=>Rx.Observable.fromPromise($.getJSON(url)))
+//    .combineLatest(source1,(data,n)=>data)
+//    .flatMap(data=>Rx.Observable.from(data));
+//
+//source2.subscribe(
+//    x=>console.log(x+'_'+Date.now()),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//)
+//
+////退订
+//source2.unsubscribe();
+
 //create range
 //var rangestream = Rx.Observable.range(1,5);
 //rangestream.subscribe(x=>console.log(x),error=>console.log(error),()=>console.log('completed'));
@@ -105,28 +121,27 @@
 //});
 
 
-var windowstream =  Rx.Observable.fromEvent(window,'resize');
-var btnstream = Rx.Observable.fromEvent($('#btn_Rx').get(0),'click');
-var btnstream1 = Rx.Observable.fromEvent($('#btn_Bacon').get(0),'click');
-
-var requeststream=btnstream.map(()=>'../simulates/comment.json');
-var requeststream1=btnstream1.map(()=>'../simulates/PersonData.json');
-var responsestream =requeststream.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
-var responsestream1 =requeststream1.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
-var suggeststream =responsestream.merge(responsestream1).merge(windowstream.map(()=>null));
-suggeststream.subscribe((suggest)=>{
-    if(suggest==null){
-        console.log('window resize');
-    }else{
-        console.log(JSON.stringify(suggest));
-    }
-});
+//var windowstream =  Rx.Observable.fromEvent(window,'resize');
+//var btnstream = Rx.Observable.fromEvent($('#btn_Rx').get(0),'click');
+//var btnstream1 = Rx.Observable.fromEvent($('#btn_Bacon').get(0),'click');
+//
+//var requeststream=btnstream.map(()=>'../simulates/comment.json');
+//var requeststream1=btnstream1.map(()=>'../simulates/PersonData.json');
+//var responsestream =requeststream.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
+//var responsestream1 =requeststream1.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
+//var suggeststream =responsestream.merge(responsestream1).merge(windowstream.map(()=>null));
+//suggeststream.subscribe((suggest)=>{
+//    if(suggest==null){
+//        console.log('window resize');
+//    }else{
+//        console.log(JSON.stringify(suggest));
+//    }
+//});
 
 //windowstream.subscribe(()=>{
 //    console.log('resize');
 //});
 
->>>>>>> origin/master
 //var requestScream = Rx.Observable.just('../simulates/comment.json');
 
 //测试一
