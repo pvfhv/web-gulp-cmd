@@ -1,6 +1,26 @@
 /**
  * Created by Anchao on 2015/10/27.
  */
+
+//var name='tom';
+//class Person{
+//    constructor(){
+//        this.testEv();
+//    }
+//   testEv(){
+//        this.name="jerry";
+//        //setTimeout(()=>console.log(this.name),1000);
+//       //setTimeout(function(){
+//       //    console.log(this.name);//""
+//       //},1000);
+//    }
+//}
+//
+//var p1=new Person();
+
+
+
+
 //import {foo} from './Person.js';
 //foo();
 
@@ -53,7 +73,7 @@
 //    console.log(value);
 //}
 
-//Map
+//Map,单一值的json数组
 //var oMap=new Map([["name", "ac"], ["age", "34"]]);
 ////oMap.set('name','ac');
 ////oMap.set('age',34);

@@ -15,15 +15,15 @@ var minimage = require('gulp-image');
 //js
 var webpack= require('webpack');
 var webpackstream = require('webpack-stream');
-var watchify = require('watchify');
-var browserify=require('browserify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var gutil = require('gulp-util');
-var sourcemaps = require('gulp-sourcemaps');
-var assign = require('lodash.assign');
-var uglify = require('gulp-uglify');
-var babelify = require('babelify');
+//var watchify = require('watchify');
+//var browserify=require('browserify');
+//var source = require('vinyl-source-stream');
+//var buffer = require('vinyl-buffer');
+//var gutil = require('gulp-util');
+//var sourcemaps = require('gulp-sourcemaps');
+//var assign = require('lodash.assign');
+//var uglify = require('gulp-uglify');
+//var babelify = require('babelify');
 
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
@@ -82,6 +82,17 @@ gulp.task('styles', function () {
         }))
         .pipe(gulp.dest(config.distCss))
         .pipe(reload({stream: true}));
+});
+
+gulp.task('styles_build', function () {
+    return gulp.src(config.sass)
+        .pipe(changed(config.distCss))
+        .pipe(compass({
+            config_file: 'config_build.rb',
+            css: config.distCss,
+            sass: 'sass'
+        }))
+        .pipe(gulp.dest(config.distCss));
 });
 
 //copy bootstrap服务器端字体
@@ -191,10 +202,40 @@ gulp.task('webpack', function() {
                     }
                 ]
             }
-            //plugins:[new webpack.optimize.UglifyJsPlugin({minimize: true})]
         }))
         .pipe(gulp.dest(config.distScript))
         .pipe(reload({stream: true}));
+});
+
+gulp.task('webpack_build', function() {
+    return gulp.src(config.mainJs)
+        .pipe(webpackstream({
+            watch: false,
+            entry: {
+                main: './scripts/main.js'
+            },
+            output: {
+                filename: '[name].js'
+            },
+            resolve: {
+                extensions: ['', '.js', '.jsx']
+            },
+            module: {
+                loaders: [
+                    {
+                        test: /\.jsx?$/,
+                        exclude: /(node_modules|bower_components)/,
+                        loader: 'babel',
+                        query: {
+                            cacheDirectory: true,
+                            presets: ['es2015','stage-0','react']
+                        }
+                    }
+                ]
+            },
+            plugins:[new webpack.optimize.UglifyJsPlugin({minimize: true})]
+        }))
+        .pipe(gulp.dest(config.distScript));
 });
 
 gulp.task('browserSync', function () {
@@ -215,7 +256,7 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('build',['clean'],function () {
-    gulp.start(['webpack','templates','styles','images','copy']);
+    gulp.start(['webpack_build','templates','styles_build','images','copy']);
 });
 
 gulp.task('watch',['clean'],function () {
@@ -223,5 +264,5 @@ gulp.task('watch',['clean'],function () {
 });
 
 gulp.task('default',['clean'], function () {
-    gulp.start(['browserSync','webpack','templates','styles','images','copy']);
+    gulp.start(['watch']);
 });

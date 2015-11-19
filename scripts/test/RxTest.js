@@ -1,6 +1,60 @@
 /**
  * Created by Anchao on 2015/11/16.
  */
+
+//subject
+var observer = Rx.Observable.create(obs=> {
+
+});
+
+var subject = new Rx.Subject();
+//console.log(subject.hasObservers());//false
+
+function getData() {
+    return $.getJSON('../simulates/comment.json');
+}
+
+
+subject.subscribe(
+    (data)=> {
+        console.log(data)
+    },
+    ()=>console.log('error'),
+    ()=> {
+        return getData();
+        console.log('complete后再次请求数据');
+    }
+);
+
+subject.onNext(getData());
+console.log(subject.hasObservers());
+
+
+//let intervalStream = Rx.Observable.interval(1000);
+//let suggeststream = intervalStream.map(()=>{
+//    return {name:'tom'};
+//});
+
+//let sourcestream=Rx.Observable.just('../simulates/comment.json')
+//    .flatMap(url=>{
+//        return Rx.Observable.fromPromise($.getJSON(url));
+//    }).flatMap(oComment=>{
+//        return Rx.Observable.from(oComment);
+//    });
+//
+//var suggeststream = sourcestream.subscribe(
+//    (data)=>console.log(data),
+//    ()=>console.log('error'),
+//    ()=>{
+//        setTimeout(()=>{
+//        },50);
+//    }
+//);
+//
+//
+//console.log(suggeststream.hasObservers());
+
+
 //create range
 //var rangestream = Rx.Observable.range(1,5);
 //rangestream.subscribe(x=>console.log(x),error=>console.log(error),()=>console.log('completed'));
@@ -62,7 +116,7 @@
 //    ()=>console.log('complete!!!')
 //);
 
-//from arguments array Iterable
+//[from] arguments array Iterable
 //var f=function(){
 //    return Rx.Observable.from(arguments);
 //}
@@ -73,7 +127,31 @@
 //    ()=>console.log('complete!!!')
 //);
 
+//var set1 = new Set(["a", "b"]);
+//Rx.Observable.from(set1).subscribe(
+//    x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
 
+//var map1=new Map([[1,'tom'],[2,'jerry']]);
+//Rx.Observable.from(map1).subscribe(
+//    x=>console.log(`key=${x[0]},value=${x[1]}`),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
+
+//Rx.Observable.from('abcd').subscribe(
+//     x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
+
+//Rx.Observable.from([1,2,3,4],x=>x*x).subscribe(
+//    x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
 
 
 //zip
@@ -86,6 +164,83 @@
 //}).subscribe(function(res){
 //    console.log(res);
 //});
+
+//生成序列号，0，1，2，3，4
+//Rx.Observable.from({length:5},(v,k)=>k).subscribe(
+//    x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
+
+//interval 创建一个按固定时间间隔发射整数序列的Observable
+//timeInterval()记录在可观察序列的连续值之间的时间间隔
+//Rx.Observable.interval(1000).timeInterval().take(3)
+//    .subscribe(
+//        x=>console.log(x),
+//        ()=>console.log('error'),
+//        ()=>console.log('completed')
+//    );
+
+//常量 just|return
+//Rx.Observable.just('abc').subscribe(
+//        x=>console.log(x),
+//        ()=>console.log('error'),
+//        ()=>console.log('completed')
+//);
+
+//Rx.Observable.return('hello').subscribe(
+//    x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
+
+
+//rang(start,count)100,101,102
+//Rx.Observable.range(100,3).subscribe(
+//    x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
+
+//repeat(value,repeatCount) repeatCount=-1无限次
+//Rx.Observable.repeat('abc',2).subscribe(
+//    x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
+
+//start(fn,Schedular.timeout,fn的参数）
+//Rx.Observable.start(function(){
+//    return this.name;
+//},{id:1,name:'tom'}).subscribe(
+//        x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//);
+
+//timer(产生第一个值的时间，（周期产生后续值的时间，不指定则不重复）)
+//var source = Rx.Observable.timer(200, 100)
+//    .take(3);
+//
+//var subscription = source.subscribe(
+//    function (x) {
+//        console.log('Next: ' + x);
+//    },
+//    function (err) {
+//        console.log('Error: ' + err);
+//    },
+//    function () {
+//        console.log('Completed');
+//    });
+
+//pluck，通过合并索引生成一个新的Observable序列
+//Rx.Observable.from([{name:'tome'},{name:'jerry'},{name:'lili'}])
+//    .pluck('name')
+//    .subscribe(
+//    x=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('completed')
+//    );
 
 
 //超过500ms的搜索功能！
@@ -105,28 +260,27 @@
 //});
 
 
-var windowstream =  Rx.Observable.fromEvent(window,'resize');
-var btnstream = Rx.Observable.fromEvent($('#btn_Rx').get(0),'click');
-var btnstream1 = Rx.Observable.fromEvent($('#btn_Bacon').get(0),'click');
-
-var requeststream=btnstream.map(()=>'../simulates/comment.json');
-var requeststream1=btnstream1.map(()=>'../simulates/PersonData.json');
-var responsestream =requeststream.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
-var responsestream1 =requeststream1.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
-var suggeststream =responsestream.merge(responsestream1).merge(windowstream.map(()=>null));
-suggeststream.subscribe((suggest)=>{
-    if(suggest==null){
-        console.log('window resize');
-    }else{
-        console.log(JSON.stringify(suggest));
-    }
-});
+//var windowstream = Rx.Observable.fromEvent(window, 'resize');
+//var btnstream = Rx.Observable.fromEvent($('#btn_Rx').get(0), 'click');
+//var btnstream1 = Rx.Observable.fromEvent($('#btn_Bacon').get(0), 'click');
+//
+//var requeststream = btnstream.map(()=>'../simulates/comment.json');
+//var requeststream1 = btnstream1.map(()=>'../simulates/PersonData.json');
+//var responsestream = requeststream.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
+//var responsestream1 = requeststream1.flatMap((url)=>Rx.Observable.fromPromise($.getJSON(url)));
+//var suggeststream = responsestream.merge(responsestream1).merge(windowstream.map(()=>null));
+//suggeststream.subscribe((suggest)=> {
+//    if (suggest == null) {
+//        console.log('window resize');
+//    } else {
+//        console.log(JSON.stringify(suggest));
+//    }
+//});
 
 //windowstream.subscribe(()=>{
 //    console.log('resize');
 //});
 
->>>>>>> origin/master
 //var requestScream = Rx.Observable.just('../simulates/comment.json');
 
 //测试一
