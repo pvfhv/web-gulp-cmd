@@ -10,6 +10,7 @@ import './test/es6';
 //import './test/reactTest';
 import './test/RxTest';
 import './test/baconTest';
+import './test/testPromise';
 
 
 
