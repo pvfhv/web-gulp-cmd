@@ -28,7 +28,25 @@ subject.map(x=>x).combineLatest(Rx.Observable.interval(1000),(x,no)=>x).subscrib
     (x)=>console.log(x)
 );
 
+import RSVP from 'rsvp';
+import 'rx-jquery';
 
+Rx.Observable.range(1,3)
+    .map(v=>x*x).subscribe(v=>console.log(v));
+
+
+
+//$('#btn_Rx').clickAsObservable().flatMap(()=>{
+//    return $('#container').animateAsObservable({
+//        opacity:0
+//    },2000);
+//}).subscribe();
+
+//$('#btn_Rx').clickAsObservable().flatMap(()=>{
+//    return Rx.Observable.fromPromise($.getJSON('../simulates/comment.json'))
+//}).subscribe(
+//    data=>console.log(data)
+//);
 
 //subject
 //var observer = Rx.Observable.create(obs=> {
@@ -55,6 +73,16 @@ subject.map(x=>x).combineLatest(Rx.Observable.interval(1000),(x,no)=>x).subscrib
 //
 //subject.onNext(100);
 //console.log(subject.hasObservers());
+
+//配置符合ES6promise+规范的promise接口
+//Rx.config.Promise= RSVP.Promise;
+//Rx.Observable.just(1).toPromise().then(v=>console.log('value:%s',v));
+
+//使用原生事件true
+//Rx.config.useNativeEvents=false;
+//Rx.Observable.fromEvent(document,'click').subscribe(
+//    e=>console.log('e.PageX=%s,e.type=%s',e.pageX,e.type)
+//);
 
 
 //let intervalStream = Rx.Observable.interval(1000);

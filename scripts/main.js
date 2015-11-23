@@ -11,6 +11,8 @@ import './test/es6';
 //import './test/RxTest';
 import './test/baconTest';
 import './test/testJquery';
+import './test/testPromise';
+
 
 
 
