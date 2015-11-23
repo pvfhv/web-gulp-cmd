@@ -2,32 +2,59 @@
  * Created by Anchao on 2015/11/16.
  */
 
-//subject
-var observer = Rx.Observable.create(obs=> {
+/*------------------循环拉取数据开始------------------*/
+//var source=Rx.Observable.return(100);
+//var observer = Rx.Observer.create(
+//    (x)=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('complete')
+//);
+//
+//source.combineLatest(Rx.Observable.interval(1000),(x,no)=>{
+//    return x;
+//}).subscribe(observer);
+/*------------------循环拉取数据结束------------------*/
 
-});
-
-var subject = new Rx.Subject();
-//console.log(subject.hasObservers());//false
-
-function getData() {
-    return $.getJSON('../simulates/comment.json');
-}
-
-
-subject.subscribe(
-    (data)=> {
-        console.log(data)
-    },
+var observer = Rx.Observer.create(
+    (x)=>console.log(x),
     ()=>console.log('error'),
-    ()=> {
-        return getData();
-        console.log('complete后再次请求数据');
-    }
+    ()=>console.log('complete')
+);
+var sourceStream=Rx.Observable.fromPromise($.getJSON('../simulates/comment.json'));
+
+var subject = Rx.Subject.create(observer,sourceStream);
+
+subject.map(x=>x).combineLatest(Rx.Observable.interval(1000),(x,no)=>x).subscribe(
+    (x)=>console.log(x)
 );
 
-subject.onNext(getData());
-console.log(subject.hasObservers());
+
+
+//subject
+//var observer = Rx.Observable.create(obs=> {
+//
+//});
+
+//var subject = new Rx.Subject();
+//console.log(subject.hasObservers());//false
+
+//function getData() {
+//    return $.getJSON('../simulates/comment.json');
+//}
+//
+//
+//subject.subscribe(
+//    (data)=> {
+//        console.log(data)
+//    },
+//    ()=>console.log('error'),
+//    ()=> {
+//        console.log('complete后再次请求数据');
+//    }
+//);
+//
+//subject.onNext(100);
+//console.log(subject.hasObservers());
 
 
 //let intervalStream = Rx.Observable.interval(1000);
@@ -54,42 +81,49 @@ console.log(subject.hasObservers());
 //
 //console.log(suggeststream.hasObservers());
 
-//var source1=Rx.Observable.interval(1000).map(()=>null);
+//var source1=Rx.Observable.interval(2000).map(()=>null);
 //var source2=Rx.Observable.return('../simulates/comment.json')
 //    .flatMap(url=>Rx.Observable.fromPromise($.getJSON(url)))
 //    .combineLatest(source1,(data,n)=>data)
 //    .flatMap(data=>Rx.Observable.from(data));
 //
-//source2.subscribe(
-//    x=>console.log(x+'_'+Date.now()),
+//var observer = source2.subscribe(
+//    x=>{
+//        if($('#first').length==0){
+//            //退订
+//            observer.dispose();
+//        }else {
+//            console.log(x+'_'+Date.now());
+//        }
+//    },
 //    ()=>console.log('error'),
-//    ()=>console.log('completed')
-//)
-//
-////退订
-//source2.unsubscribe();
+//    ()=>{
+//        console.log('completed');
+//    }
+//);
+
 
 //create range
 //var rangestream = Rx.Observable.range(1,5);
 //rangestream.subscribe(x=>console.log(x),error=>console.log(error),()=>console.log('completed'));
 
 //create create
-//var sourcestream=Rx.Observable.create(function(observer){
-//   observer.onNext(100);
-//    observer.onCompleted();
+//var sourcestream = Rx.Observable.create(function (observer) {
+//    observer.onNext(100);
+//    observer.onCompleted('abc');
 //
-//    //return function (){
-//    //    console.log('dispose+++');
-//    //}
+//    return function () {
+//        console.log('dispose+++');
+//    }
 //
 //    return Rx.Disposable.create(()=>console.log('dispose'));
 //});
 //
-//var subscription = sourcestream.subscribe(function(x){
-//   console.log('onnext='+x);
-//},function(e){
-//    console.log('error'+e);
-//},function(){
+//var subscription = sourcestream.subscribe(function (x) {
+//    console.log('onnext=' + x);
+//}, function (e) {
+//    console.log('error' + e);
+//}, function () {
 //    console.log('completed!!!!');
 //});
 //
