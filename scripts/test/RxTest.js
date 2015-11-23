@@ -5,17 +5,22 @@
 import RSVP from 'rsvp';
 import 'rx-jquery';
 
+Rx.Observable.range(1,3)
+    .map(v=>x*x).subscribe(v=>console.log(v));
+
+
+
 //$('#btn_Rx').clickAsObservable().flatMap(()=>{
 //    return $('#container').animateAsObservable({
 //        opacity:0
 //    },2000);
 //}).subscribe();
 
-$('#btn_Rx').clickAsObservable().flatMap(()=>{
-    return Rx.Observable.fromPromise($.getJSON('../simulates/comment.json'))
-}).subscribe(
-    data=>console.log(data)
-);
+//$('#btn_Rx').clickAsObservable().flatMap(()=>{
+//    return Rx.Observable.fromPromise($.getJSON('../simulates/comment.json'))
+//}).subscribe(
+//    data=>console.log(data)
+//);
 
 
 //配置符合ES6promise+规范的promise接口
