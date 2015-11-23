@@ -2,6 +2,46 @@
  * Created by Anchao on 2015/11/16.
  */
 
+//var oSub=new Rx.Subject();
+//var b = oSub.hasObservers();
+////var b1=oSub.create();
+//console.log(b);
+//
+//
+//oSub.subscribe(
+//    x=>console.log(x)
+//);
+//oSub.subscribe(
+//    x=>console.log('hehe:'+x)
+//)
+//oSub.onNext("abc");
+
+
+//var reqData1 = (url, cb) => setTimeout(() => cb(42), 1000);
+//var reqData2 = (url, cb) => setTimeout(() => cb(52), 500);
+//var reqData3 = (url, params, cb) => setTimeout(() => cb(62), 800);
+//
+//var dataReq1 = new Rx.Subject();
+//var dataReq2 = new Rx.Subject();
+//Rx.Observable.when(dataReq1.and(dataReq2).thenDo((data1, data2) => {
+//    console.log(data1);
+//    return {data1: data1, data2: data2}
+//})).flatMap(data => {
+//    //var s = new Rx.Subject()
+//    //reqData3(api_3, {id: e.data2.id}, e => {
+//    //    data.data3 = e;
+//    //    s.onNext(data);
+//    //    s.onCompleted();
+//    //});
+//    //return s;
+//    return data;
+//}).subscribe(data => {
+//    console.log(data);
+//});
+//reqData1(api_1, (e) => dataReq1.onNext(e));
+//reqData2(api_2, (e) => dataReq2.onNext(e));
+
+
 /*------------------循环拉取数据开始------------------*/
 //var source=Rx.Observable.return(100);
 //var observer = Rx.Observer.create(
@@ -15,25 +55,24 @@
 //}).subscribe(observer);
 /*------------------循环拉取数据结束------------------*/
 
-var observer = Rx.Observer.create(
-    (x)=>console.log(x),
-    ()=>console.log('error'),
-    ()=>console.log('complete')
-);
-var sourceStream=Rx.Observable.fromPromise($.getJSON('../simulates/comment.json'));
-
-var subject = Rx.Subject.create(observer,sourceStream);
-
-subject.map(x=>x).combineLatest(Rx.Observable.interval(1000),(x,no)=>x).subscribe(
-    (x)=>console.log(x)
-);
-
-import RSVP from 'rsvp';
-import 'rx-jquery';
-
-Rx.Observable.range(1,3)
-    .map(v=>x*x).subscribe(v=>console.log(v));
-
+//var observer = Rx.Observer.create(
+//    (x)=>console.log(x),
+//    ()=>console.log('error'),
+//    ()=>console.log('complete')
+//);
+//var sourceStream=Rx.Observable.fromPromise($.getJSON('../simulates/comment.json'));
+//
+//var subject = Rx.Subject.create(observer,sourceStream);
+//
+//subject.map(x=>x).combineLatest(Rx.Observable.interval(1000),(x,no)=>x).subscribe(
+//    (x)=>console.log(x)
+//);
+//
+//import RSVP from 'rsvp';
+//import 'rx-jquery';
+//
+//Rx.Observable.range(1,3)
+//    .map(v=>x*x).subscribe(v=>console.log(v));
 
 
 //$('#btn_Rx').clickAsObservable().flatMap(()=>{
