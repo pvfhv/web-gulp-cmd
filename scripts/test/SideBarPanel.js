@@ -25,6 +25,11 @@ var source =$('#container').data('conObj').subscribe(
     x=>console.log('hello:'+x)
 );
 
+if($('#container').data('conObj').hasObservers()){
+    $('#container').data('conObj').dispose();
+    $('#container').data('conObj',new Rx.Subject());
+}
+
 $('#btn_Rx').on('click',function(){
     //$('#container').remove();
     if($('#container').data('conObj')){

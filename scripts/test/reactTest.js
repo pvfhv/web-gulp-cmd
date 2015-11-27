@@ -10,7 +10,8 @@
 //import './CommentBoxReal';
 //import './CommentBoxReal1';
 //import './CommentBoxReal2';
-import './CommentBoxReal3';
+//import './CommentBoxReal3';
+import './FilterableProduct';
 
 let oFirst = $('#first').get(0);
 

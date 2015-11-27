@@ -1,7 +1,6 @@
 /**
  * Created by Anchao on 2015/11/16.
  */
-
 //var oSub=new Rx.Subject();
 //var b = oSub.hasObservers();
 ////var b1=oSub.create();
