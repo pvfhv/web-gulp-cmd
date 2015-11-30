@@ -14,7 +14,8 @@
 //import './FilterableProduct2';
 //import './reactFactory';
 //import './reactLinked';
-import './reactVariable';
+//import './reactVariable';
+import './reactspread';
 
 let oFirst = $('#first').get(0);
 
