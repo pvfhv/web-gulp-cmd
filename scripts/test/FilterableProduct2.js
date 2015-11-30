@@ -1,5 +1,5 @@
 /**
- * Created by Anchao on 2015/11/27.
+ * Created by Administrator on 2015/11/27.
  */
 var data = [
     {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
@@ -10,37 +10,41 @@ var data = [
     {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
 ];
 
-var FilterableProductTable = React.createClass({
-    getInitialState:function(){
-        return {
-            filterText:'',
-            inStockOnly:false
+class FilterableProductTable extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            filterText: '',
+            inStockOnly: false
         }
-    },
-    handleUserChange:function(filterText,inStockOnly){
+    }
+
+    handleUserChange(filterText,inStockOnly){
         this.setState({
             filterText:filterText,
             inStockeOnly:inStockOnly
         });
-    },
-    render: function () {
+    }
+
+    render() {
         return (
             <div>
-                <SearchBar filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onUserChange={this.handleUserChange} />
+                <SearchBar filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onUserChange={this.handleUserChange.bind(this)} />
                 <ProductTable products={data} filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} />
             </div>
         );
     }
-});
+}
 
-var SearchBar=React.createClass({
-    handleChange:function (){
+class SearchBar extends React.Component{
+    handleChange (){
         this.props.onUserChange(this.refs.searchText.value,this.refs.stockCheckbox.checked);
-    },
-    render:function(){
+    }
+
+    render(){
         return (
             <form>
-                <input type="text" value={this.props.filterText} ref="searchText" onChange={this.handleChange} />
+                <input type="text" value={this.props.filterText} ref="searchText" onChange={this.handleChange.bind(this)} />
                 <p>
                     <input type="checkbox" ref="stockCheckbox" onChange={this.handleChange} />
                     Only show products in stock
@@ -48,20 +52,20 @@ var SearchBar=React.createClass({
             </form>
         );
     }
-});
+}
 
-var ProductCategoryRow = React.createClass({
-    render: function () {
+class ProductCategoryRow extends React.Component{
+    render(){
         return (
             <tr>
                 <td colSpan="2">{this.props.category}</td>
             </tr>
         );
     }
-});
+}
 
-var ProductRow = React.createClass({
-    render: function () {
+class ProductRow extends React.Component{
+    render () {
         var name = this.props.product.stocked ? this.props.product.name :
             <span style={{color:'red'}}>{this.props.product.name}</span>;
         return (
@@ -71,19 +75,10 @@ var ProductRow = React.createClass({
             </tr>
         );
     }
-});
+}
 
-var ProductTable = React.createClass({
-    render: function () {
-        //var rows = [];
-        //var lastCategory = null;
-        //this.props.products.forEach(function (product) {
-        //    if (product.category !== lastCategory) {
-        //        rows.push(<ProductCategoryRow category={product.category} key={product.category}/>);
-        //    }
-        //    rows.push(<ProductRow product={product} key={product.name}/>);
-        //    lastCategory = product.category;
-        //});
+class ProductTable extends React.Component{
+    render() {
         var rows=[];
         var lastCategory=null;
         for(var product of this.props.products){
@@ -112,6 +107,6 @@ var ProductTable = React.createClass({
             </table>
         );
     }
-});
+}
 
 ReactDOM.render(<FilterableProductTable />, $('#first').get(0));

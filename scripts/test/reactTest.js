@@ -11,10 +11,12 @@
 //import './CommentBoxReal1';
 //import './CommentBoxReal2';
 //import './CommentBoxReal3';
+//import './FilterableProduct2';
+//import './reactFactory';
+//import './reactLinked';
+import './reactVariable';
 
 let oFirst = $('#first').get(0);
-
-
 
 //let HelloMsg=React.createClass({
 //   render:function(){
