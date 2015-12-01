@@ -29,7 +29,7 @@
 //ReactDOM.render(<CheckLink href="http://www.sohu.com">checked it!</CheckLink>,document.querySelector('#first'));
 
 
-//单个子级
+//单个子级[children不能只是文本节点]
 //var MyComponent = React.createClass({
 //    propTypes: {
 //        children: React.PropTypes.element.isRequired
