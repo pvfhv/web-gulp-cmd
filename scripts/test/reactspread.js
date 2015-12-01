@@ -31,8 +31,8 @@
 
 //单个子级
 //var MyComponent = React.createClass({
-//    propTypes:{
-//        children:React.PropTypes.element.isRequired
+//    propTypes: {
+//        children: React.PropTypes.element.isRequired
 //    },
 //    render:function(){
 //        return (
@@ -52,6 +52,14 @@ class MyComponent extends React.Component{
         alert('ok');
     }
 
+    static propTypes={
+        children:React.PropTypes.element.isRequired
+    }
+
+    static defaultProps = {
+        children: <div>abc</div>
+    }
+
     render(){
         return (
             <div onClick={this.handlerClick}>{this.props.children}</div>
@@ -59,8 +67,4 @@ class MyComponent extends React.Component{
     }
 }
 
-MyComponent.propTypes={
-    children:React.PropTypes.element.isRequired
-}
-
-ReactDOM.render(<MyComponent title="abc">hello</MyComponent>,document.querySelector('#first'));
+ReactDOM.render(<MyComponent></MyComponent>,document.querySelector('#first'));
