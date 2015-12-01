@@ -18,13 +18,17 @@
 //    }
 //}
 
-//var CheckLink = React.createClass({
-//    render:function(){
-//        return (
-//            <a {...this.props}>{this.props.children}</a>
-//        );
-//    }
-//});
+var CheckLink = React.createClass({
+    getInitialState:function(){
+
+    },
+    getDefaultProps:function(){},
+    render:function(){
+        return (
+            <a {...this.props}>{this.props.children}</a>
+        );
+    }
+});
 //
 //ReactDOM.render(<CheckLink href="http://www.sohu.com">checked it!</CheckLink>,document.querySelector('#first'));
 
@@ -43,28 +47,28 @@
 //    }
 //});
 
-class MyComponent extends React.Component{
-    constructor(props){
+class MyComponent extends React.Component {
+    constructor(props) {
         super(props);
+
+        this.handlerClick =()=>{
+            console.log(this.refs.div1.id);
+        }
     }
 
-    handlerClick=()=>{
-        alert('ok');
-    }
-
-    static propTypes={
-        children:React.PropTypes.element.isRequired
+    static propTypes = {
+        children: React.PropTypes.element.isRequired
     }
 
     static defaultProps = {
         children: <div>abc</div>
     }
 
-    render(){
+    render() {
         return (
-            <div onClick={this.handlerClick}>{this.props.children}</div>
+            <div id="div1" ref="div1" onClick={this.handlerClick}>{this.props.children}</div>
         );
     }
 }
 
-ReactDOM.render(<MyComponent></MyComponent>,document.querySelector('#first'));
+ReactDOM.render(<MyComponent><span>e</span></MyComponent>, document.querySelector('#first'));

@@ -15,7 +15,9 @@
 //import './reactFactory';
 //import './reactLinked';
 //import './reactVariable';
-import './reactspread';
+//import './reactspread';
+//import './reactMixin';
+import './reactJiegou';
 
 let oFirst = $('#first').get(0);
 
