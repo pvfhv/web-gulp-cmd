@@ -14,6 +14,7 @@ import './test/reactTest';
 //import './test/testJquery';
 //import './test/testPromise';
 import './test/immutable1';
+import './test/jqueryTextSelect';
 
 
 
