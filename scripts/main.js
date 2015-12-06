@@ -4,17 +4,18 @@
 
 import './global.js';
 
-import PromiseDemo from './test/Promise';
-import './login/login';
-import './test/es6';
-import './test/reactTest';
+//import PromiseDemo from './test/Promise';
+//import './login/login';
+//import './test/es6';
+//import './test/reactTest';
 //import './test/RxTest';
 //import './test/SideBarPanel';
 //import './test/baconTest';
 //import './test/testJquery';
 //import './test/testPromise';
-import './test/immutable1';
-import './test/jqueryTextSelect';
+//import './test/immutable1';
+//import './test/jqueryTextSelect';
+//import './test/plotlytest';
 
 
 
