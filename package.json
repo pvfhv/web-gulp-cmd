@@ -52,6 +52,7 @@
     "webpack-stream": "^2.2.0"
   },
   "dependencies": {
+    "backbone": "^1.2.3",
     "baconjs": "^0.7.80",
     "bootstrap-sass": "^3.3.5",
     "immutable": "^3.7.5",

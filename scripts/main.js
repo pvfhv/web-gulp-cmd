@@ -16,6 +16,7 @@ import './global.js';
 //import './test/immutable1';
 //import './test/jqueryTextSelect';
 //import './test/plotlytest';
+import './backbone/backbone';
 
 
 
