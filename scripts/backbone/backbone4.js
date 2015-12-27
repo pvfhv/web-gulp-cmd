@@ -43,7 +43,8 @@ var Student=Backbone.Model.extend({
         if(!_.isNumber(attrs.age)){
             return '年龄必须为数字';
         }
-    }
+    },
+    url:'/hehe.aspx'
 });
 
 var stu1=new Student;
@@ -55,8 +56,13 @@ var stu1=new Student;
 
 //静默验证
 stu1.set({
-    name:11,
-    age:'r'
+    name:'jerry',
+    age:35
+});
+
+stu1.save(null,{
+    success:function(){},
+    error:function(){}
 });
 
 //stu1.set({
@@ -69,18 +75,18 @@ stu1.set({
 //stu1.unset('name');
 //stu1.clear();
 //console.log(stu1.has('title'));
-console.log(stu1.toJSON());
-console.log(stu1.previousAttributes());
+//console.log(stu1.toJSON());
+//console.log(stu1.previousAttributes());
 
 //数据回滚
-if(!_.isString(stu1.get('name'))||!_.isNumber(stu1.get('age'))){
-    stu1.set({
-        name:stu1.previous('name'),
-        age:stu1.previous('age')
-    });
-}
-
-console.log(stu1.toJSON());
+//if(!_.isString(stu1.get('name'))||!_.isNumber(stu1.get('age'))){
+//    stu1.set({
+//        name:stu1.previous('name'),
+//        age:stu1.previous('age')
+//    });
+//}
+//
+//console.log(stu1.toJSON());
 
 //_.each(stu1.attributes,function(v,k){
 //    console.log(`${k}=${v}`);
