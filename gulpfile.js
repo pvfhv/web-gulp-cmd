@@ -15,15 +15,6 @@ var minimage = require('gulp-image');
 //js
 var webpack= require('webpack');
 var webpackstream = require('webpack-stream');
-//var watchify = require('watchify');
-//var browserify=require('browserify');
-//var source = require('vinyl-source-stream');
-//var buffer = require('vinyl-buffer');
-//var gutil = require('gulp-util');
-//var sourcemaps = require('gulp-sourcemaps');
-//var assign = require('lodash.assign');
-//var uglify = require('gulp-uglify');
-//var babelify = require('babelify');
 
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
@@ -133,47 +124,6 @@ gulp.task('images', function () {
         .pipe(reload({stream: true}));
 });
 
-//监听js
-//gulp.task('watchify', function(){
-//    //与browserify联合使用，监听Js变化
-//    var b = watchify(browserify(assign({},watchify.args, config.js)));
-//    b.on('update', bundle); // 当任何依赖发生改变的时候，运行打包工具
-//    b.transform(babelify).on('update', bundle);//当jsx发生变化，运行打包工具
-//    b.on('log', gutil.log); // 输出编译日志到终端
-//
-//    function bundle() {
-//        return b.bundle()
-//            // 如果有错误发生，记录这些错误
-//            .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-//            .pipe(source(config.mainJs))
-//            // 可选项，如果你不需要缓存文件内容，就删除
-//            .pipe(buffer())
-//            // 可选项，如果你不需要 sourcemaps，就删除
-//            .pipe(sourcemaps.init({loadMaps: true})) // 从 browserify 文件载入 map
-//            .pipe(uglify())
-//            // 在这里将变换操作加入管道
-//            .pipe(sourcemaps.write('./')) // 写入 .map 文件
-//            .pipe(gulp.dest(config.distScript))
-//            .pipe(reload({stream: true}));
-//    }
-//
-//    return bundle();
-//});
-
-//打包js
-//gulp.task('browserify', function () {
-//    return browserify(config.js)
-//        .transform(babelify)
-//        .bundle()
-//        .pipe(source(config.mainJs))
-//        .pipe(buffer())
-//        .pipe(sourcemaps.init({loadMaps: true}))
-//        .pipe(uglify())
-//        .pipe(sourcemaps.write('./'))
-//        .pipe(gulp.dest(config.distScript))
-//        .pipe(reload({stream: true}));
-//});
-
 gulp.task('webpack', function() {
     return gulp.src(config.mainJs)
         .pipe(webpackstream({
@@ -243,7 +193,7 @@ gulp.task('browserSync', function () {
         server: {
             baseDir: './dist/'
         },
-        port: 3000,
+        port: 4000,
         open: false
     });
 

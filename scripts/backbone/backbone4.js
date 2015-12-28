@@ -27,6 +27,7 @@
 
 var Student=Backbone.Model.extend({
     defaults:{
+        id:1,
         name:'tom',
         age:12
     },
@@ -44,8 +45,14 @@ var Student=Backbone.Model.extend({
             return '年龄必须为数字';
         }
     },
-    url:'/hehe.aspx'
+    url:'/response.html',
+    idAttribute:'id'
 });
+
+//Backbone.sync = function(method, model) {
+//    alert(method + ": " + JSON.stringify(model));
+//    model.set('id', 1);
+//};
 
 var stu1=new Student;
 //开启验证
@@ -60,9 +67,37 @@ stu1.set({
     age:35
 });
 
-stu1.save(null,{
-    success:function(){},
-    error:function(){}
+//创建
+//stu1.save(null,{
+//    success:function(model,response){
+//        console.log(response);
+//    },
+//    error:function(model,response){
+//        console.log(response);
+//    },
+//    wait:true
+//});
+
+//更新
+//stu1.fetch({
+//    success:function(model,response){
+//        console.log(stu1.toJSON());
+//    },
+//    error:function(model,response){
+//        console.log(response);
+//    },
+//    wait:true
+//});
+
+//删除
+stu1.destroy({
+    success:function(model,response){
+        console.log(stu1.toJSON());
+    },
+    error:function(model,response){
+        console.log(response);
+    },
+    wait:true
 });
 
 //stu1.set({
