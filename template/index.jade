@@ -62,6 +62,37 @@ html
         div#scroll
             |这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容！
         div#template_test
+        script#scoreTemplate(type="text/template")
+            <%= score >600? '优秀':'良好' %>
+        script#personTemplate(type="text/template")
+            div.person
+                <%= name%>|<%= age%>
+        script#personTemplate2(type="text/template")
+            div.person
+                {{name}}*{{age}}
+        script#divTemplate(type="text/template")
+            div.mess
+                <%=mess%>
+            div.btn
+                button.btn100
+                    |哈哈
+        script#bindTemplate(type="text/template")
+            div.message
+                |这里是一些动态的内容
+            button.btn-unbind
+                |取消事件绑定
+            button.btn-bind(onclick="stuv.rebind()")
+                |重新绑定事件
+        script#appTemplate(type="text/template")
+            ul.personlist
+                li
+                    |姓名
+                li
+                    |年龄
+            div.personinfo
+                input.username(type="text")
+                input.age(type="text")
+                input.btnsubmit(type="button",value="提交")
         script#firstTemplate(type="text/template")
             <%for(var v of aRes){%>
             <div><%= v%></div>

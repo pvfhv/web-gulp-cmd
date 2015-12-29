@@ -13,11 +13,15 @@ var Student = Backbone.Model.extend({
 var StuList = Backbone.Collection.extend({
     model: Student,
     initialize:function(){
-        console.log('reset事件触发');
         this.on('reset',function(render){
+            console.log('reset事件触发');
             render.forEach(function(model){
                 console.log(model.toJSON());
             });
+        });
+
+        this.on('add',function(model,response,option){
+            console.log(this.models[this.length-1].toJSON());
         });
     },
     url: 'collection.html',
@@ -37,6 +41,16 @@ var aData = [
 ];
 
 var List=new StuList(aData);
+//创建
+List.create({
+    "id":10,
+    "name":'jay',
+    "age":45
+},{wait:false,slient:true,
+success:function(model,response,option){
+    console.log(model);
+}});
+
 //var List = new Backbone.Collection(aData, {
 //    model: Student,
 //    comparator: function (model1, model2) {
@@ -47,14 +61,15 @@ var List=new StuList(aData);
 //    }
 //});
 
-List.fetch({
-    reset:false,
-    success:function(collection,resp,options){
-        collection.forEach(function(model){
-            console.log(model.toJSON());
-        });
-    }
-});
+//获得集合信息
+//List.fetch({
+//    reset:false,
+//    success:function(collection,resp,options){
+//        collection.forEach(function(model){
+//            console.log(model.toJSON());
+//        });
+//    }
+//});
 
 //删除
 //List.shift();
@@ -62,9 +77,9 @@ List.fetch({
 //List.pop();
 
 //增加
-List.unshift({"id": 7, "name": "tom", "age": 45});
-List.add({"id": 8, "name": "dog", "age": 5}, {at: 2});
-List.push({"id": 9, "name": "cat", "age": 25});
+//List.unshift({"id": 7, "name": "tom", "age": 45});
+//List.add({"id": 8, "name": "dog", "age": 5}, {at: 2});
+//List.push({"id": 9, "name": "cat", "age": 25});
 
 //查找
 //var Stu1=List.get(8);
