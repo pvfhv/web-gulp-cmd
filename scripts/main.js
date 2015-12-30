@@ -6,12 +6,16 @@ import './global.js';
 import Main from './common/Main';
 import LoginMain from './login/login';
 import IndexMain from './index/Index';
+import StudentManager from './studentManager/studentManager';
+import PersonSys from './personSys/personSys';
 
 
-window.config={
-    "pages":{
+window.config = {
+    "pages": {
         "login": new LoginMain(),
-        "index":new IndexMain()
+        "index": new IndexMain(),
+        "studentManager": new StudentManager(),
+        "personsys": new PersonSys()
     }
 };
 

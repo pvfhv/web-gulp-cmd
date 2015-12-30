@@ -4,8 +4,21 @@
 
 var Parent = require('./Parent.jsx');
 
+var LoginView = Backbone.View.extend({
+    el: '#first',
+    initialize: function () {
+        this.render();
+    },
+    render: function(){
+        ReactDOM.render(<Parent />,this.el);
+    }
+});
+
 class Login {
     init() {
+        var view=new LoginView;
+
+
         //ReactDOM.render(<Parent />,document.querySelector('#first'));
         //
         ////历史记录
@@ -26,8 +39,6 @@ class Login {
         //window.history.pushState(obj,'首页','index.html');
         //$('#container').html(history.length);
         //$('#first').html(JSON.stringify(history.state));
-
-
 
 
         //var fnClick=null;

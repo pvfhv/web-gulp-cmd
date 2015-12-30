@@ -8,6 +8,7 @@ var del = require('del');
 var changed = require('gulp-changed');
 //html
 var jade = require('gulp-jade');
+var htmlmin = require('gulp-htmlmin');
 //css
 var compass = require('gulp-compass');
 //image
@@ -24,6 +25,7 @@ var reload = browserSync.reload;
 var config = {
     'dist': 'dist',
     'html': 'dist/*.html',
+    'htmlSrc': 'template/*.html',
     'jade': 'template/*.jade',
     'sass': 'sass/**/*.scss',
     'distCss': 'dist/css',
@@ -58,6 +60,13 @@ gulp.task('templates', function() {
             pretty:false
         }))
         .pipe(gulp.dest(config.dist));
+});
+
+gulp.task('htmls', function () {
+    return gulp.src(config.htmlSrc)
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest(config.dist))
+        .pipe(reload({stream: true}));
 });
 
 
@@ -206,11 +215,11 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('build',['clean'],function () {
-    gulp.start(['webpack_build','templates','styles_build','images','copy']);
+    gulp.start(['webpack_build','templates','htmls','styles_build','images','copy']);
 });
 
 gulp.task('watch',['clean'],function () {
-    gulp.start(['browserSync','webpack','templates','styles','images','copy']);
+    gulp.start(['browserSync','webpack','templates','htmls','styles','images','copy']);
 });
 
 gulp.task('default',['clean'], function () {

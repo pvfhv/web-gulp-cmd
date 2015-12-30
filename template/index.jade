@@ -12,6 +12,18 @@ html
         link(rel="stylesheet" href="css/main.css")
         <!-- endbuild -->
     body
+        div#links
+            a(href="#")
+                |首页
+            a(href="#search")
+                | 查询列表
+            a(href="#search/abc")
+                | 关键字查询
+            a(href="#search/abc/p2")
+                | 页码关键字查询
+            a(href="#error")
+                | 其它
+        div#divshow
         div#container
             div
                 a(href="login.html")
@@ -36,6 +48,8 @@ html
             | 这里是一些个人信息
             input#back(type="button",value='后退',onclick="window.history.back()")
         div#btns
+            button#stopNavigate(isStop="false")
+                |停止导航
             button#btn_plotly
                 | 测试plotly
             button#btn_Once
