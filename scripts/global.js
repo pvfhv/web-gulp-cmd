@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 import Rx from 'rx';
 import Radium from 'radium';
 import Tools from './common/Tools';
-//import Immutable from 'immutable';
+import Immutable from 'immutable';
 
 window.$ = window.jQuery = $;
 window._ = _;
@@ -20,4 +20,4 @@ window.ReactDOM = ReactDOM;
 window.Rx = Rx;
 window.Radium = Radium;
 window.Tools = Tools;
-//window.Immutable=Immutable;
+window.Immutable=Immutable;

@@ -9,7 +9,6 @@ import IndexMain from './index/Index';
 import StudentManager from './studentManager/studentManager';
 import PersonSys from './personSys/personSys';
 
-
 window.config = {
     "pages": {
         "login": new LoginMain(),
