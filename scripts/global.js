@@ -21,3 +21,6 @@ window.Rx = Rx;
 window.Radium = Radium;
 window.Tools = Tools;
 window.Immutable=Immutable;
+require('jquery-ui/jquery-ui');
+require('bootstrap-sass/assets/javascripts/bootstrap.js');
+
