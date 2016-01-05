@@ -2,7 +2,7 @@
  * Created by anchao on 2015/12/29.
  */
 
-
+//var jQUI_tooltip=$.fn.tooltip.noConflict();
 //import PromiseDemo from './test/Promise';
 //import './test/es6';
 //import './test/reactTest';
@@ -40,6 +40,7 @@
 
 class Index {
     init() {
+        $('#first').tooltip();
         //var obj={
         //    name:'jerry',
         //    age:19

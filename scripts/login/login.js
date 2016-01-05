@@ -3,11 +3,16 @@
  */
 
 var Parent = require('./Parent.jsx');
+//require('jquery-ui/effect');
+//require('jquery-ui/effect-shake');
+//import 'jquery-ui/jquery-ui';
+
 
 var LoginView = Backbone.View.extend({
     el: '#first',
     initialize: function () {
         this.render();
+        $('#scroll').effect('shake').addClass( "big-blue", 1000, "easeOutBounce" );
     },
     render: function(){
         ReactDOM.render(<Parent />,this.el);

@@ -56,15 +56,16 @@ class StudentManager {
             },
             events: {
                 "dblclick span": function (e) {
-                    $(e.currentTarget).removeClass('show').addClass('editing').find(':input').focus();
+                    $(e.currentTarget).removeClass('show').addClass('editing')
+                        .find(':input').val($('.disp',e.currentTarget).text()).focus();
                 },
                 "blur input,select": function (e) {
-                    var $cur=$(e.target);
+                    var $cur=$(e.currentTarget);
                     var obj={};
                     obj[$cur.attr('name')]=$cur.val();
 
                     this.model.set(obj,{validate:true});
-                    $(e.target).parent().parent().removeClass('editing').addClass('show');
+                    $(e.currentTarget).parent().parent().removeClass('editing').addClass('show');
                 },
                 "click span a": function(){
                     this.model.destroy();
