@@ -20,6 +20,7 @@ var webpackstream = require('webpack-stream');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 
+var htmlreplace = require('gulp-html-replace');
 var RevAll = require('gulp-rev-all');
 
 //var jsdoc = require("gulp-jsdoc");
@@ -97,7 +98,14 @@ gulp.task('templates', function () {
 });
 
 gulp.task('htmls', function () {
+    var t = Date.now();
     return gulp.src(config.htmlSrc)
+        .pipe(
+            htmlreplace({
+                'css': 'css/main.css?t='+t,
+                'js': 'scripts/main.js?t='+t
+            })
+        )
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(config.dist))
         .pipe(reload({stream: true}));
