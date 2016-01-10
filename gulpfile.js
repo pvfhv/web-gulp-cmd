@@ -20,6 +20,8 @@ var webpackstream = require('webpack-stream');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 
+var RevAll = require('gulp-rev-all');
+
 //var jsdoc = require("gulp-jsdoc");
 
 var config = {
@@ -43,11 +45,6 @@ var config = {
     }
 };
 
-/**
- * Create a point.
- * @param {number} x - The x value.
- * @param {number} y - The y value.
- */
 
 //删除
 gulp.task('clean', function () {
@@ -196,7 +193,8 @@ gulp.task('webpack', function () {
                         }
                     }
                 ]
-            }
+            },
+            plugins: []
         }))
         .pipe(gulp.dest(config.distScript))
         .pipe(reload({stream: true}));
