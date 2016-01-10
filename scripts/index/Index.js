@@ -40,7 +40,35 @@
 
 class Index {
     init() {
-        $('#first').tooltip();
+        $('#template_test').html($('#svgTemplate2').html());
+
+        $('#bazi').draggable({
+            start:function(event,ui){
+                $(this).data('startPos',ui.position);
+                console.log(ui.offset);
+            },
+            drag:function(event,ui){
+                var oStartPos=$(this).data('startPos');
+                var oCurPos=ui.position;
+                var left = oCurPos.left - oStartPos.left;
+                var top = oCurPos.top - oStartPos.top;
+
+                var oldAttr = $(this).attr('transform');
+                $(this).attr('transform','translate('+left+','+top+')');
+                //if(/\w+?\((\d+?),(\d+?)\)/.test(oldAttr)){
+                //    var l = parseInt(RegExp.$1,10);
+                //    var t = parseInt(RegExp.$2,10);
+                //    if(l>0&&t>0){
+                //        $(this).attr('transform','translate('+l+left+','+t+top+')');
+                //    }else {
+                //
+                //    }
+                //}
+
+                console.log(oCurPos);
+            }
+        });
+
         $('#testES6').on('click',(e)=>{
             console.log(this);//class Index 或Index实例
             console.log(e.target.value);

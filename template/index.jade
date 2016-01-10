@@ -115,6 +115,15 @@ html
             <%for(var v of aRes){%>
             <div><%= v%></div>
             <%}%>
+        script#svgTemplate2(type="text/template")
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <g stroke-width="10" stroke="red" transform="translate(0,0)" id="bazi">
+            <circle r="80" fill="transparent"></circle>
+            <circle r="60" fill="transparent"></circle>
+            <circle r="40" fill="transparent"></circle>
+            <circle r="20" fill="transparent"></circle>
+            </g>
+            </svg>
         script#ReactTemplate(type="text/babel")
             <input type="text" value={this.state.value} onChange={this.handleChange} />
         script(src="scripts/main.js")
