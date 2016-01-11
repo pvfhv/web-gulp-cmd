@@ -21,7 +21,6 @@ var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 
 var replace = require('gulp-replace');
-var htmlreplace = require('gulp-html-replace');
 var makeUrlVer = require('gulp-make-css-url-version');
 
 //var jsdoc = require("gulp-jsdoc");
@@ -96,24 +95,17 @@ gulp.task('templates', function () {
             doctype: 'html',
             pretty: false
         }))
-        .pipe(
-            htmlreplace({
-                'css': 'css/main.css?v='+config.v,
-                'js': 'scripts/main.js?v='+config.v
-            })
-        )
-        .pipe(replace(/images?\/(\w+?)(.png|.ico)/g, 'images/$1$2?v='+config.v))
+        .pipe(replace(/images?\/(\w+?)(.png)/g, 'images/$1$2?v='+config.v))
+        .pipe(replace('css/main.css','css/main.css?v='+config.v))
+        .pipe(replace('scripts/main.js','scripts/main.js?v='+config.v))
         .pipe(gulp.dest(config.dist));
 });
 
 gulp.task('htmls', function () {
     return gulp.src(config.htmlSrc)
-        .pipe(
-            htmlreplace({
-                'css': 'css/main.css?v='+config.v,
-                'js': 'scripts/main.js?v='+config.v
-            })
-        )
+        .pipe(replace(/images?\/(\w+?)(.png)/g, 'images/$1$2?v='+config.v))
+        .pipe(replace('css/main.css','css/main.css?v='+config.v))
+        .pipe(replace('scripts/main.js','scripts/main.js?v='+config.v))
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(config.dist))
         .pipe(reload({stream: true}));

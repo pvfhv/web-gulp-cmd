@@ -8,9 +8,7 @@ html
         meta(name="description" content="")
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(href="images/favicon.ico" rel="shortcut icon")
-        <!-- build:css -->
         link(rel="stylesheet" href="css/main.css")
-        <!-- endbuild -->
     body
         div
             img(src="../images/logo.png")
@@ -128,6 +126,4 @@ html
             </svg>
         script#ReactTemplate(type="text/babel")
             <input type="text" value={this.state.value} onChange={this.handleChange} />
-        //build:js
         script(src="scripts/main.js")
-        //endbuild
