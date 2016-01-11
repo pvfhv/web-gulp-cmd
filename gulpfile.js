@@ -21,7 +21,7 @@ var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 
 var htmlreplace = require('gulp-html-replace');
-var RevAll = require('gulp-rev-all');
+var makeUrlVer = require('gulp-make-css-url-version');
 
 //var jsdoc = require("gulp-jsdoc");
 
@@ -43,7 +43,8 @@ var config = {
         extensions: ['.js', '.jsx', '.es6'],
         debug: true,
         transform: [["babelify", {"presets": ["es2015", "stage-0", "react"]}]]
-    }
+    },
+    'v':Date.now()
 };
 
 
@@ -94,16 +95,21 @@ gulp.task('templates', function () {
             doctype: 'html',
             pretty: false
         }))
+        .pipe(
+            htmlreplace({
+                'css': 'css/main.css?v='+config.t,
+                'js': 'scripts/main.js?v='+config.t
+            })
+        )
         .pipe(gulp.dest(config.dist));
 });
 
 gulp.task('htmls', function () {
-    var t = Date.now();
     return gulp.src(config.htmlSrc)
         .pipe(
             htmlreplace({
-                'css': 'css/main.css?t='+t,
-                'js': 'scripts/main.js?t='+t
+                'css': 'css/main.css?v='+config.t,
+                'js': 'scripts/main.js?v='+config.t
             })
         )
         .pipe(htmlmin({collapseWhitespace: true}))
@@ -121,6 +127,7 @@ gulp.task('styles', function () {
             css: config.distCss,
             sass: 'sass'
         }))
+        .pipe(makeUrlVer({useDate:true}))
         .pipe(gulp.dest(config.distCss))
         .pipe(reload({stream: true}));
 });
@@ -133,6 +140,7 @@ gulp.task('styles_build', function () {
             css: config.distCss,
             sass: 'sass'
         }))
+        .pipe(makeUrlVer({useDate:true}))
         .pipe(gulp.dest(config.distCss));
 });
 

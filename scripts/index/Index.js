@@ -42,18 +42,26 @@ class Index {
     init() {
         $('#template_test').html($('#svgTemplate2').html());
 
+        //$('#bazi').draggable();
+
         $('#bazi').draggable({
             start:function(event,ui){
                 $(this).data('startPos',ui.position);
-                console.log(ui.offset);
+                var oldAttr = $(this).attr('transform');
+                if(/\w+?\((\d+?),(\d+?)\)/.test(oldAttr)){
+                    $(this).data('translate',{left:parseInt(RegExp.$1,10),top:parseInt(RegExp.$2,10)});
+                }
             },
             drag:function(event,ui){
+                $(this).removeAttr('style');
                 var oStartPos=$(this).data('startPos');
+                var oTranslate=$(this).data('translate');
                 var oCurPos=ui.position;
-                var left = oCurPos.left - oStartPos.left;
-                var top = oCurPos.top - oStartPos.top;
+                var left = oCurPos.left - oStartPos.left + oTranslate.left;
+                var top = oCurPos.top - oStartPos.top + oTranslate.top;
 
                 var oldAttr = $(this).attr('transform');
+                console.log(`left=${left},top=${top}`);
                 $(this).attr('transform','translate('+left+','+top+')');
                 //if(/\w+?\((\d+?),(\d+?)\)/.test(oldAttr)){
                 //    var l = parseInt(RegExp.$1,10);
@@ -64,8 +72,9 @@ class Index {
                 //
                 //    }
                 //}
-
-                console.log(oCurPos);
+            },
+            stop:function(){
+                $(this).removeAttr('style');
             }
         });
 
