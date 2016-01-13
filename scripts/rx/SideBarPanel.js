@@ -6,9 +6,6 @@
 $('#container').data('conObj',new Rx.Subject());
 
 
-
-
-
 $('#container').data('conObj').subscribeOnNext(
     y=>{
         setTimeout(function(){

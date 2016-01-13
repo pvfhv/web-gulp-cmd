@@ -10,6 +10,7 @@ html
         link(href="images/favicon.ico" rel="shortcut icon")
         link(rel="stylesheet" href="css/main.css")
     body
+        div#template_test
         div
             img(src="../images/logo.png")
         div#links
@@ -79,15 +80,14 @@ html
                 |测试剪贴板功能
         div#scroll
             |这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容！
-        div#template_test
         script#scoreTemplate(type="text/template")
             <%= score >600? '优秀':'良好' %>
         script#personTemplate(type="text/template")
             div.person
                 <%= name%>|<%= age%>
         script#personTemplate2(type="text/template")
-            div.person
-                {{name}}*{{age}}
+            //div.person
+            //    {{name}}*{{age}}
         script#divTemplate(type="text/template")
             div.mess
                 <%=mess%>
@@ -116,9 +116,9 @@ html
             <div><%= v%></div>
             <%}%>
         script#svgTemplate2(type="text/template")
-            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-            <g stroke-width="10" stroke="red" transform="translate(100,200)" id="bazi">
-            <path stroke-width="2" d="M453 109 C453 117.4, 255.83333333333331 142.6, 255.83333333333331 151"></path>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" id="dynsvg">
+            <g stroke-width="10" stroke="red" transform="translate(0,0)" id="bazi">
+            <path stroke-width="2" class="dyn" fill="none"></path>
             </g>
             </svg>
         script#ReactTemplate(type="text/babel")
