@@ -33,7 +33,8 @@ export default class ReactTest {
         //this.nine();
         //this.ten();
         //this.eleven();
-        this.twelve();
+        //this.twelve();
+        this.thirtheen();
     }
 
     first() {
@@ -257,6 +258,43 @@ export default class ReactTest {
         });
 
         ReactDOM.render(<Hello />, oFirst);
+    }
+
+    thirtheen(){
+        //永远在一个节点上显示
+        let oFirst = $('#first').get(0);
+
+        let Test1 = React.createClass({
+            render:function(){
+                let hasGender = !!this.props.person.gender;
+                let gender = <div>性别：{this.props.person.gender}</div>;
+                return (
+                    <div>
+                        <div>姓名：{this.props.person.name}</div>
+                        <div>年龄：{this.props.person.age}</div>
+                        {
+                            hasGender?(
+                                <div>
+                                    <div>
+                                        <span>{gender}</span>
+                                    </div>
+                                </div>
+                            ):undefined
+                        }
+                    </div>
+                );
+            }
+        });
+
+        $('#btn_react1').click(function(){
+            let person = {name:'tom',age:10};
+            ReactDOM.render(<Test1 person={person} />,oFirst);
+        });
+
+        $('#btn_react2').click(function(){
+            let person = {name:'jerry',age:25,gender:'男'};
+            ReactDOM.render(<Test1 person={person} />,oFirst);
+        });
     }
 }
 
