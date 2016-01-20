@@ -35,7 +35,7 @@ var config = {
     'simulate': 'simulates/*.json',
     'distsimulate': 'dist/simulates',
     'distScript': 'dist/scripts',
-    'image': 'images/{,*/}*.{gif,jpeg,jpg,png,ico}',
+    'image': 'images/{,*/}*.{gif,jpeg,jpg,png,ico,svg}',
     'distImg': 'dist/images',
     'mainJs': 'main.js',
     'js': {
