@@ -15,8 +15,8 @@ import ReactTest from '../react/reactTest';
 
 class Index {
     init() {
-        let oReact = new ReactTest();
-        oReact.init();
+        //let oReact = new ReactTest();
+        //oReact.init();
     }
 }
 

@@ -50,6 +50,7 @@
     "backbone-localstorage": "^0.3.2",
     "baconjs": "^0.7.83",
     "bootstrap-sass": "^3.3.6",
+    "codemirror": "^5.10.0",
     "immutable": "^3.7.6",
     "jquery": "^2.2.0",
     "jquery-ui": "^1.10.5",

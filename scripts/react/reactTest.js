@@ -34,7 +34,8 @@ export default class ReactTest {
         //this.ten();
         //this.eleven();
         //this.twelve();
-        this.thirtheen();
+        //this.thirtheen();
+        this.fourteen();
     }
 
     first() {
@@ -295,6 +296,10 @@ export default class ReactTest {
             let person = {name:'jerry',age:25,gender:'男'};
             ReactDOM.render(<Test1 person={person} />,oFirst);
         });
+    }
+
+    fourteen(){
+
     }
 }
 
