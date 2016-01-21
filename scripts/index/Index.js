@@ -3,6 +3,7 @@
  */
 
 import ReactTest from '../react/reactTest';
+import CodeMirror from '../test/codemirror';
 //import './test/RxTest';
 //import './test/SideBarPanel';
 //import './test/baconTest';
@@ -17,6 +18,8 @@ class Index {
     init() {
         //let oReact = new ReactTest();
         //oReact.init();
+
+        new CodeMirror().init();
     }
 }
 
