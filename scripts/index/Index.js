@@ -16,10 +16,24 @@ import CodeMirror from '../test/codemirror';
 
 class Index {
     init() {
-        //let oReact = new ReactTest();
-        //oReact.init();
+        this.events();
+    }
 
-        new CodeMirror().init();
+    events(){
+        //生成编辑器
+        $('.code').click(function(){
+            new CodeMirror().init();
+        });
+
+        //react1
+        $('#btn_react1').click(function(){
+            new ReactTest().init();
+        });
+
+        //#btn_reacttodo
+        $('#btn_reacttodo').click(function(){
+            new ReactTest().init();
+        });
     }
 }
 

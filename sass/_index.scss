@@ -1,3 +1,18 @@
+body{
+  text-align: center;
+}
+body>div{
+  text-align: left;
+  width: 49%;
+  height:300px;
+  overflow: hidden;
+  border: 1px solid green;
+  display: inline-block;
+  margin: 0 auto;
+}
+body>div:nth-child(2n){
+  margin-left: 5px;
+}
 #links{
   a{
     margin-right: 10px;

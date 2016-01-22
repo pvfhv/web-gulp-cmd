@@ -10,7 +10,12 @@ html
         link(href="images/favicon.ico" rel="shortcut icon")
         link(rel="stylesheet" href="css/main.css")
     body
-        div#codesec
+        div#codemirror
+            button.code
+                |生成编辑器
+        div#first(title="abc")
+            button#btn_react1
+                | 测试react1
         div#template_test2
         div
             img(src="../images/logo.png")
@@ -40,8 +45,7 @@ html
             .row3
                 input(type="checkbox" checked)
                 input#searchbaidu(type="text")
-        div#first(title="abc")
-            | 这是
+
         div#btn_backbone
             button#btn_show
                 | 显示
@@ -51,8 +55,6 @@ html
             | 这里是一些个人信息
             input#back(type="button",value='后退',onclick="window.history.back()")
         div#btns
-            button#btn_react1
-                | 测试react1
             button#btn_react2
                 | 测试react2
             button#testES6(value="测试ES6中jQuery中的this")
@@ -83,7 +85,7 @@ html
                 |测试iterator_filter
             button#copy-button(data-clipboard-text="这里是剪贴板内容!")
                 |测试剪贴板功能
-        div#scroll
+        div#scroll1
             |这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容！
         script#scoreTemplate(type="text/template")
             <%= score >600? '优秀':'良好' %>

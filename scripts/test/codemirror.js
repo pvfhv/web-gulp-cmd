@@ -8,16 +8,13 @@ import 'codemirror/mode/python/python';
 
 class CMirror {
     init(){
-        $('#btn_react1').click(function(){
-            ReactDOM.render(<TextareaCls />,$('#codesec').get(0));
-        });
+        ReactDOM.render(<TextareaCodeMirror />,$('#codemirror').get(0));
     }
-
 }
 
-class TextareaCls extends React.Component{
+class TextareaCodeMirror extends React.Component{
     componentDidMount(){
-        CodeMirror.fromTextArea($('.code').get(0), {
+        CodeMirror.fromTextArea($('.codetextarea').get(0), {
             mode: 'text/x-sql',
             indentWithTabs: true,
             smartIndent: true,
@@ -34,7 +31,7 @@ class TextareaCls extends React.Component{
 
     render(){
         return (
-            <textarea className="code" rows="10" cols="30"></textarea>
+            <textarea className="codetextarea" rows="10" cols="30"></textarea>
         );
     }
 }

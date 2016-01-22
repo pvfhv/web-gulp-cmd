@@ -30,7 +30,7 @@ let oFirst = $('#first').get(0);
 //    }
 //}
 
-var  Hello = React.createClass({
+var Timer = React.createClass({
     getInitialState:function(){
         return {
             nCount:0
@@ -56,4 +56,4 @@ var  Hello = React.createClass({
     }
 });
 
-ReactDOM.render(<Hello />,oFirst);
+export default Timer;

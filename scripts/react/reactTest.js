@@ -2,7 +2,7 @@
  * Created by Anchao on 2015/11/10.
  */
 
-//import './Timer';
+import Timer from './Timer';
 //import './Todo';
 //import './MarkdownEditor';
 //import './CommentBox';
@@ -22,6 +22,7 @@
 
 export default class ReactTest {
     init() {
+        this.timer();
         //this.first();
         //this.second();
         //this.third();
@@ -35,7 +36,10 @@ export default class ReactTest {
         //this.eleven();
         //this.twelve();
         //this.thirtheen();
-        this.fourteen();
+    }
+
+    timer(){
+        ReactDOM.render(<Timer />,document.getElementById('first'));
     }
 
     first() {
@@ -296,10 +300,6 @@ export default class ReactTest {
             let person = {name:'jerry',age:25,gender:'男'};
             ReactDOM.render(<Test1 person={person} />,oFirst);
         });
-    }
-
-    fourteen(){
-
     }
 }
 
