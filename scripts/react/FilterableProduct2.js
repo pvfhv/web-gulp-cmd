@@ -10,7 +10,7 @@ var data = [
     {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
 ];
 
-class FilterableProductTable extends React.Component{
+class FilterableProductTable2 extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +22,7 @@ class FilterableProductTable extends React.Component{
     handleUserChange(filterText,inStockOnly){
         this.setState({
             filterText:filterText,
-            inStockeOnly:inStockOnly
+            inStockOnly:inStockOnly
         });
     }
 
@@ -46,7 +46,7 @@ class SearchBar extends React.Component{
             <form>
                 <input type="text" value={this.props.filterText} ref="searchText" onChange={this.handleChange.bind(this)} />
                 <p>
-                    <input type="checkbox" ref="stockCheckbox" onChange={this.handleChange} />
+                    <input type="checkbox" ref="stockCheckbox" onChange={this.handleChange.bind(this)} />
                     Only show products in stock
                 </p>
             </form>
@@ -82,7 +82,7 @@ class ProductTable extends React.Component{
         var rows=[];
         var lastCategory=null;
         for(var product of this.props.products){
-            if(product.name.indexOf(this.props.filterText)==-1||(!product.stocked&&this.props.inStockOnly)){
+            if(product.name.indexOf(this.props.filterText)===-1||(!product.stocked&&this.props.inStockOnly)){
                 continue;
             }
 
@@ -109,4 +109,4 @@ class ProductTable extends React.Component{
     }
 }
 
-ReactDOM.render(<FilterableProductTable />, $('#first').get(0));
+export {FilterableProductTable2};

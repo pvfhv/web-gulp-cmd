@@ -12,7 +12,7 @@ import CommentBoxReal1 from './CommentBoxReal1';
 import CommentBoxReal2 from './CommentBoxReal2';
 import CommentBoxReal3 from './CommentBoxReal3';
 import FilterableProductTable from './FilterableProduct';
-//import './FilterableProduct2';
+import {FilterableProductTable2} from './FilterableProduct2';
 //import './reactFactory';
 //import './reactLinked';
 //import './reactVariable';
@@ -23,7 +23,8 @@ import FilterableProductTable from './FilterableProduct';
 
 export default class ReactTest {
     init() {
-        this.product1();
+        this.product2();
+        //this.product1();
         //this.realComment3();
         //this.realComment2();
         //this.realComment1();
@@ -50,6 +51,10 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    product2(){
+        ReactDOM.render(<FilterableProductTable2 />, this.oFirstDiv);
     }
 
     product1(){

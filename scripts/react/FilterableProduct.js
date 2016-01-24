@@ -20,7 +20,7 @@ var FilterableProductTable = React.createClass({
     handleUserChange:function(filterText,inStockOnly){
         this.setState({
             filterText:filterText,
-            inStockeOnly:inStockOnly
+            inStockOnly:inStockOnly
         });
     },
     render: function () {
@@ -35,7 +35,6 @@ var FilterableProductTable = React.createClass({
 
 var SearchBar=React.createClass({
     handleChange:function (){
-        console.log(this.refs.stockCheckbox.checked);
         this.props.onUserChange(this.refs.searchText.value,this.refs.stockCheckbox.checked);
     },
     render:function(){
@@ -81,7 +80,7 @@ var ProductTable = React.createClass({
         var lastCategory=null;
         for(var product of this.props.products){
             //产品名称中没有找到过滤名称或库存不等于用户选择
-            if(product.name.toLowerCase().indexOf(this.props.filterText.toLowerCase())==-1||(!product.stocked&&this.props.inStockOnly)){
+            if(product.name.toLowerCase().indexOf(this.props.filterText.toLowerCase())===-1||(!product.stocked&&this.props.inStockOnly)){
                 continue;
             }
 
