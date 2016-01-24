@@ -16,21 +16,19 @@ class CommentBox extends React.Component{
     }
 
     loadCommentFromServer(){
-        $.get(this.props.url,function(oData){
+        $.getJSON(this.props.url).done((oData)=>{
             this.setState({
                 data:oData
             });
-        }.bind(this),'json');
+        });
     }
 
     handleCommentSubmit(comment){
-        return (comment)=>{
-            this.setState({
-                data:this.state.data.concat([comment])
-            });
+        this.setState({
+            data:this.state.data.concat([comment])
+        });
 
-            //this.loadCommentFromServer();
-        }
+        //this.loadCommentFromServer();
     }
 
     render(){
@@ -38,38 +36,8 @@ class CommentBox extends React.Component{
             <div className="commentbox">
                 <h1>Comments</h1>
                 <CommentList data={this.state.data} />
-                <CommentForm onCommentSubmit={this.handleCommentSubmit()} />
+                <CommentForm onCommentSubmit={this.handleCommentSubmit.bind(this)} />
             </div>
-        );
-    }
-}
-
-class CommentForm extends React.Component{
-    handleSubmit(){
-        return (e)=>{
-            e.preventDefault();
-            console.log(e);
-            var author=this.refs.author.value.trim();
-            var comment=this.refs.commentText.value.trim();
-
-            //提交服务器
-            this.props.onCommentSubmit({"author":author,"comment":comment});
-
-            //清空
-            this.refs.author.value="";
-            this.refs.commentText.value="";
-
-
-            return;
-        }
-    }
-    render(){
-        return (
-            <form className="commentForm" onSubmit={this.handleSubmit()}>
-               <input type="text" ref="author" placeholder="姓名" />
-                <input type="text" ref="commentText" placeholder="评论" />
-                <input type="submit" value="提交" />
-            </form>
         );
     }
 }
@@ -85,22 +53,18 @@ class CommentList extends React.Component{
 }
 
 class Comment extends React.Component{
-    handleMouseEnter(author){
-        return (e)=>{
-            //console.log(e.currentTarget);
-            console.log(author);
-            //console.log(e.target);
-        }
+    handleMouseEnter(e){
+        let oLi = e.target;
+        console.log(oLi.getAttribute('data-author'));
     }
 
     render(){
-        let handleMouseEnter = this.handleMouseEnter;
         return (
             <ul>
                 {
-                    this.props.data.map(function(obj,index){
+                    this.props.data.map((obj,index)=>{
                         return (
-                           <li author={obj.author} key={index}  onMouseEnter={handleMouseEnter(obj.author)}>{obj.comment+'_'+Date.now()}</li>
+                            <li data-author={obj.author} key={index} onClick={this.handleMouseEnter.bind(this)}>{obj.comment+'_'+Date.now()}</li>
                         );
                     })
                 }
@@ -109,4 +73,29 @@ class Comment extends React.Component{
     }
 }
 
-ReactDOM.render(<CommentBox pollInterval={2000} url="../simulates/comment.json" />,$('#first').get(0));
+class CommentForm extends React.Component{
+    handleSubmit(e){
+        e.preventDefault();
+        var author=this.refs.author.value.trim();
+        var comment=this.refs.commentText.value.trim();
+
+        //提交服务器
+        this.props.onCommentSubmit({"author":author,"comment":comment});
+
+        //清空
+        this.refs.author.value="";
+        this.refs.commentText.value="";
+    }
+
+    render(){
+        return (
+            <form className="commentForm" onSubmit={this.handleSubmit.bind(this)}>
+                <input type="text" ref="author" placeholder="姓名" />
+                <input type="text" ref="commentText" placeholder="评论" />
+                <input type="submit" value="提交" />
+            </form>
+        );
+    }
+}
+
+export default CommentBox;

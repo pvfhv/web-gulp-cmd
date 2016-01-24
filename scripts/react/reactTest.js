@@ -3,14 +3,15 @@
  */
 
 import Timer from './Timer';
-//import './Todo';
-//import './MarkdownEditor';
-//import './CommentBox';
-//import './CommentBoxHasMarkdown';
-//import './CommentBoxReal';
-//import './CommentBoxReal1';
-//import './CommentBoxReal2';
-//import './CommentBoxReal3';
+import TodoMain from './Todo';
+import MarkdownEditor from './MarkdownEditor';
+import CommentBox from './CommentBox';
+import CommentBoxHasMarkdown from './CommentBoxHasMarkdown';
+import CommentBoxReal from './CommentBoxReal';
+import CommentBoxReal1 from './CommentBoxReal1';
+import CommentBoxReal2 from './CommentBoxReal2';
+import CommentBoxReal3 from './CommentBoxReal3';
+import FilterableProductTable from './FilterableProduct';
 //import './FilterableProduct2';
 //import './reactFactory';
 //import './reactLinked';
@@ -22,7 +23,16 @@ import Timer from './Timer';
 
 export default class ReactTest {
     init() {
-        this.timer();
+        this.product1();
+        //this.realComment3();
+        //this.realComment2();
+        //this.realComment1();
+        //this.realComment();
+        //this.markdownComment();
+        //this.commentBox();
+        //this.markdownEditor();
+        //this.todoTest();
+        //this.timer();
         //this.first();
         //this.second();
         //this.third();
@@ -38,8 +48,49 @@ export default class ReactTest {
         //this.thirtheen();
     }
 
+    get oFirstDiv() {
+        return document.getElementById('first');
+    }
+
+    product1(){
+        ReactDOM.render(<FilterableProductTable />, this.oFirstDiv);
+    }
+
+    realComment3(){
+        ReactDOM.render(<CommentBoxReal3 pollInterval={2000} url="../simulates/comment.json" />,this.oFirstDiv);
+    }
+
+    realComment2(){
+        ReactDOM.render(<CommentBoxReal2 pollInterval={2000} url="../simulates/comment.json" />,this.oFirstDiv);
+    }
+
+    realComment1(){
+        ReactDOM.render(<CommentBoxReal1 url="../simulates/comment.json" />,this.oFirstDiv);
+    }
+
+    realComment(){
+        var data=[{author:'alex',comment:'good'},{author:'tom',comment:'better'}];
+        ReactDOM.render(<CommentBoxReal data={data} />,this.oFirstDiv);
+    }
+
+    markdownComment(){
+        ReactDOM.render(<CommentBoxHasMarkdown author="alex"><span>good!</span></CommentBoxHasMarkdown>,this.oFirstDiv);
+    }
+
+    commentBox(){
+        ReactDOM.render(<CommentBox />,this.oFirstDiv);
+    }
+
+    markdownEditor(){
+        ReactDOM.render(<MarkdownEditor />, this.oFirstDiv);
+    }
+
+    todoTest(){
+        ReactDOM.render(<TodoMain />, this.oFirstDiv);
+    }
+
     timer(){
-        ReactDOM.render(<Timer />,document.getElementById('first'));
+        ReactDOM.render(<Timer />,this.oFirstDiv);
     }
 
     first() {

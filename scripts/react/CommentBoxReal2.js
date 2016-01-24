@@ -16,11 +16,11 @@ class CommentBox extends React.Component{
     }
 
     loadCommentFromServer(){
-        $.get(this.props.url,function(oData){
+        $.getJSON(this.props.url).done(function(oData){
             this.setState({
                 data:oData
             });
-        }.bind(this),'json');
+        }.bind(this));
     }
 
     render(){
@@ -44,14 +44,13 @@ class CommentList extends React.Component{
 }
 
 class Comment extends React.Component{
-
     render(){
         return (
             <ul>
                 {
                     this.props.data.map(function(obj,index){
                         return (
-                           <li author={obj.author} key={index}>{obj.comment+'_'+Date.now()}</li>
+                           <li data-author={obj.author} key={index}>{obj.comment+'_'+Date.now()}</li>
                         );
                     })
                 }
@@ -60,4 +59,4 @@ class Comment extends React.Component{
     }
 }
 
-ReactDOM.render(<CommentBox pollInterval={2000} url="../simulates/comment.json" />,$('#first').get(0));
+export default CommentBox;

@@ -35,6 +35,7 @@ var FilterableProductTable = React.createClass({
 
 var SearchBar=React.createClass({
     handleChange:function (){
+        console.log(this.refs.stockCheckbox.checked);
         this.props.onUserChange(this.refs.searchText.value,this.refs.stockCheckbox.checked);
     },
     render:function(){
@@ -43,7 +44,7 @@ var SearchBar=React.createClass({
                 <input type="text" value={this.props.filterText} ref="searchText" onChange={this.handleChange} />
                 <p>
                     <input type="checkbox" ref="stockCheckbox" onChange={this.handleChange} />
-                    Only show products in stock
+                    只显示库存内有的
                 </p>
             </form>
         );
@@ -54,7 +55,7 @@ var ProductCategoryRow = React.createClass({
     render: function () {
         return (
             <tr>
-                <td colSpan="2">{this.props.category}</td>
+                <td colSpan="2" style={{color:'green'}}>{this.props.category}</td>
             </tr>
         );
     }
@@ -62,6 +63,7 @@ var ProductCategoryRow = React.createClass({
 
 var ProductRow = React.createClass({
     render: function () {
+        //没有库存的显示为红色
         var name = this.props.product.stocked ? this.props.product.name :
             <span style={{color:'red'}}>{this.props.product.name}</span>;
         return (
@@ -75,22 +77,15 @@ var ProductRow = React.createClass({
 
 var ProductTable = React.createClass({
     render: function () {
-        //var rows = [];
-        //var lastCategory = null;
-        //this.props.products.forEach(function (product) {
-        //    if (product.category !== lastCategory) {
-        //        rows.push(<ProductCategoryRow category={product.category} key={product.category}/>);
-        //    }
-        //    rows.push(<ProductRow product={product} key={product.name}/>);
-        //    lastCategory = product.category;
-        //});
         var rows=[];
         var lastCategory=null;
         for(var product of this.props.products){
-            if(product.name.indexOf(this.props.filterText)==-1||(!product.stocked&&this.props.inStockOnly)){
+            //产品名称中没有找到过滤名称或库存不等于用户选择
+            if(product.name.toLowerCase().indexOf(this.props.filterText.toLowerCase())==-1||(!product.stocked&&this.props.inStockOnly)){
                 continue;
             }
 
+            //增加各类标题
             if(product.category!=lastCategory){
                 rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
             }
@@ -114,4 +109,4 @@ var ProductTable = React.createClass({
     }
 });
 
-ReactDOM.render(<FilterableProductTable />, $('#first').get(0));
+export default FilterableProductTable;

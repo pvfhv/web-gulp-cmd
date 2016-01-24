@@ -4,7 +4,6 @@
 
 import marked from 'marked';
 
-let oFirst = $('#first').get(0);
 //外部插件
 //var MarkdownEditor = React.createClass({
 //    getInitialState: function() {
@@ -41,26 +40,20 @@ class MarkdownEditor extends React.Component {
         };
     }
 
-    handleChange() {
-        return (e)=> {
-            this.setState({value: e.target.value});
-        }
-    }
-
-    rawMarkup() {
-        return {__html: marked(this.state.value,{sanitize: true})}
+    handleChange(e) {
+        this.setState({value: e.target.value});
     }
 
     render() {
         return (
             <div className="MarkdownEditor">
                 <h3>Input</h3>
-                <textarea defaultValue={this.state.value} onChange={this.handleChange()}></textarea>
+                <textarea placeholder={this.state.value} onChange={this.handleChange.bind(this)}></textarea>
                 <h3>Output</h3>
-                <div className="content" dangerouslySetInnerHTML={this.rawMarkup()} />
+                <div className="content" dangerouslySetInnerHTML={{__html: marked(this.state.value,{sanitize: true})}} />
             </div>
         );
     }
 }
 
-ReactDOM.render(<MarkdownEditor />, oFirst);
+export default MarkdownEditor;

@@ -9,6 +9,10 @@ body>div{
   border: 1px solid green;
   display: inline-block;
   margin: 0 auto;
+
+  &:hover{
+    overflow: auto;
+  }
 }
 body>div:nth-child(2n){
   margin-left: 5px;

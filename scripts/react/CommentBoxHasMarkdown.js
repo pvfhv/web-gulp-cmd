@@ -5,20 +5,16 @@
 import marked from 'marked';
 
 class Comment extends React.Component {
-    rawMarkup() {
-        return {__html: marked(JSON.stringify(this.props.children), {sanitize: true})}
-    }
-
     render() {
         return (
             <div className="comment">
                 <h2 className="commentAuthor">
                     {this.props.author}
                 </h2>
-                <span dangerouslySetInnerHTML={this.rawMarkup()} />
+                <span dangerouslySetInnerHTML={{__html: marked(JSON.stringify(this.props.children), {sanitize: true})}} />
             </div>
         );
     }
 }
 
-ReactDOM.render(<Comment author="alex"><span>good!</span></Comment>,$('#first').get(0));
+export default Comment;

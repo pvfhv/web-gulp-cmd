@@ -63,7 +63,7 @@ class TodoList extends React.Component {
     }
 }
 
-class Main extends React.Component {
+class Todo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -72,23 +72,19 @@ class Main extends React.Component {
         };
     }
 
-    handleChange(){
-        return (e)=>{
-            this.setState({
-                text: e.target.value
-            });
-        }
+    handleChange(e){
+        this.setState({
+            text: e.target.value
+        });
     }
 
-    handleSubmit(){
-        return (e)=>{
-            this.setState({
-                items:this.state.items.concat([this.state.text]),
-                text:''
-            });
+    handleSubmit(e){
+        this.setState({
+            items:this.state.items.concat([this.state.text]),
+            text:''
+        });
 
-            e.preventDefault();
-        }
+        e.preventDefault();
     }
 
     render(){
@@ -96,8 +92,8 @@ class Main extends React.Component {
             <div>
                 <h3>Todo</h3>
                 <TodoList items={this.state.items} />
-                <form onSubmit={this.handleSubmit()}>
-                    <input type="text" value={this.state.text} onChange={this.handleChange()}/>
+                <form onSubmit={this.handleSubmit.bind(this)}>
+                    <input type="text" value={this.state.text} onChange={this.handleChange.bind(this)}/>
                     <button type="submit">{'add'+this.state.items.length}</button>
                 </form>
             </div>
@@ -105,4 +101,4 @@ class Main extends React.Component {
     }
 }
 
-ReactDOM.render(<Main />, oFirst);
+export default Todo;

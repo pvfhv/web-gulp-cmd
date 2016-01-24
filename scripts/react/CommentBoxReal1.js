@@ -11,11 +11,11 @@ class CommentBox extends React.Component{
     }
 
     componentDidMount(){
-        $.get(this.props.url,function(oData){
+        $.getJSON(this.props.url).done(function(oData){
             this.setState({
                 data:oData
             });
-        }.bind(this),'json')
+        }.bind(this))
     }
 
     render(){
@@ -39,14 +39,13 @@ class CommentList extends React.Component{
 }
 
 class Comment extends React.Component{
-
     render(){
         return (
             <ul>
                 {
                     this.props.data.map(function(obj,index){
                         return (
-                           <li author={obj.author} key={index}>{obj.comment}</li>
+                           <li data-author={obj.author} key={index}>{obj.comment}</li>
                         );
                     })
                 }
@@ -55,4 +54,4 @@ class Comment extends React.Component{
     }
 }
 
-ReactDOM.render(<CommentBox url="../simulates/comment.json" />,$('#first').get(0));
+export default CommentBox;

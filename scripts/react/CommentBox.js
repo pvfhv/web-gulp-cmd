@@ -15,7 +15,7 @@
 class Comment extends React.Component{
     render(){
         return (
-            <div className="comment" author={this.props.author}>{this.props.comment}</div>
+            <div className="comment" data-author={this.props.author}>{this.props.comment}</div>
         );
     }
 }
@@ -23,7 +23,10 @@ class Comment extends React.Component{
 class CommentList extends React.Component{
     render(){
         return (
-            React.createElement('div',{className:'commentList'},['我是一个评论列表',this.props.author])
+            <div className="commentList">
+                我是一个评论列表{this.props.author}
+            </div>
+            //React.createElement('div',{className:'commentList'},['我是一个评论列表',this.props.author])
         );
     }
 }
@@ -32,7 +35,10 @@ class CommentForm extends React.Component{
     render(){
         //var html=React.Children.map(this.props.children,function(v,k){return <span>{v}</span>;});
         return (
-            React.createElement('div',{className:'commentForm'},['评论表单',this.props.children])
+            <div className="commentForm">
+                评论表单：{this.props.children}
+            </div>
+            //React.createElement('div',{className:'commentForm'},['评论表单',this.props.children])
         );
     }
 }
@@ -40,15 +46,19 @@ class CommentForm extends React.Component{
 class CommentBox extends React.Component{
     render(){
         return (
-            //<div className="commentBox">
-            //    <h1>Comments</h1>
-            //    <CommentList />
-            //    <CommentForm />
-            //</div>
+            <div className="commentBox">
+                <h1>Comments</h1>
+                <CommentList author="tom" />
+                <CommentForm>
+                    <div>a</div>
+                    <div>b</div>
+                </CommentForm>
+                <Comment author="anchao" comment="good"></Comment>
+            </div>
 
-            React.createElement('div',{className:'commentBox'},[<h1 key="a">Comments</h1>,<CommentList key="b" author="anchao" />,<CommentForm key="c"><i>a</i><i>b</i></CommentForm>])
+            //React.createElement('div',{className:'commentBox'},[<h1 key="a">Comments</h1>,<CommentList key="b" author="anchao" />,<CommentForm key="c"><i>a</i><i>b</i></CommentForm>])
         );
     }
 }
 
-ReactDOM.render(React.createElement(CommentBox,null),$('#first').get(0));
+export default CommentBox;

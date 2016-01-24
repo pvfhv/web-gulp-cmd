@@ -17,26 +17,16 @@ class CommentList extends React.Component{
     render(){
         return (
             <div className="commentList">
-                <Comment data={this.props.data}></Comment>
+                <ul>
+                    {this.props.data.map(function(obj,key){
+                        return (
+                            <li data-author={obj.author} key={key}>{obj.comment}</li>
+                        );
+                    })}
+                </ul>
             </div>
         )
     }
 }
 
-class Comment extends React.Component{
-    render(){
-        return (
-            <ul>
-                {this.props.data.map(function(obj,key){
-                    return (
-                        <li author={obj.author} key={key}>{obj.comment}</li>
-                    );
-                })}
-            </ul>
-        );
-    }
-}
-
-
-var data=[{author:'alex',comment:'good'},{author:'tom',comment:'better'}];
-ReactDOM.render(<CommentBox data={data} />,$('#first').get(0));
+export default CommentBox;
