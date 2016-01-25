@@ -4,6 +4,8 @@
 
 import Timer from './Timer';
 import TodoMain from './Todo';
+import LinkedButton from './reactLinked';
+import VariableView from './reactVariable';
 import MarkdownEditor from './MarkdownEditor';
 import CommentBox from './CommentBox';
 import CommentBoxHasMarkdown from './CommentBoxHasMarkdown';
@@ -13,9 +15,7 @@ import CommentBoxReal2 from './CommentBoxReal2';
 import CommentBoxReal3 from './CommentBoxReal3';
 import FilterableProductTable from './FilterableProduct';
 import {FilterableProductTable2} from './FilterableProduct2';
-//import './reactFactory';
-//import './reactLinked';
-//import './reactVariable';
+import ReactFactory from './reactFactory';
 //import './reactspread';
 //import './reactMixin';
 //import './reactJiegou';
@@ -23,7 +23,8 @@ import {FilterableProductTable2} from './FilterableProduct2';
 
 export default class ReactTest {
     init() {
-        this.product2();
+        this.factory();
+        //this.product2();
         //this.product1();
         //this.realComment3();
         //this.realComment2();
@@ -32,6 +33,8 @@ export default class ReactTest {
         //this.markdownComment();
         //this.commentBox();
         //this.markdownEditor();
+        //this.variableTest();
+        //this.linkBtn();
         //this.todoTest();
         //this.timer();
         //this.first();
@@ -51,6 +54,12 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    factory(){
+        //普通Dom 要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名
+        var root=React.DOM.ul({className:'list-unstyled'},React.DOM.li({className:'product'},'tv'));
+        ReactDOM.render(root,this.oFirstDiv);
     }
 
     product2(){
@@ -88,6 +97,15 @@ export default class ReactTest {
 
     markdownEditor(){
         ReactDOM.render(<MarkdownEditor />, this.oFirstDiv);
+    }
+
+    variableTest(){
+        let data = [{"name":"变量1","value": "var1"},{"name":"变量2","value":"var2"}];
+        ReactDOM.render(<VariableView {...data} />,this.oFirstDiv);
+    }
+
+    linkBtn(){
+        ReactDOM.render(<LinkedButton />,this.oFirstDiv);
     }
 
     todoTest(){

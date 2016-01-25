@@ -1,9 +1,6 @@
 /**
  * Created by Administrator on 2015/11/29.
  */
-//普通Dom 要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名
-//var root=React.DOM.ul({className:'list-unstyled'},React.DOM.li({className:'product'},'tv'));
-//ReactDOM.render(root,document.querySelector('#first'));
 
 //var root =<div>abc</div>;
 //ReactDOM.render(root,document.querySelector('#first'));
@@ -18,21 +15,21 @@
 //});
 //ReactDOM.render(<Hello />,document.querySelector('#first'));
 
-var props={
-    x:100,
-    y:200,
-    z:300
-},
-    Component=React.createClass({
-        render:function(){
-            return (<div width="200" data-hello="abc">{'First \u00b7 Second'}<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"></svg></div>);
-        }
-    });
+//var props={
+//    x:100,
+//    y:200,
+//    z:300
+//},
+//    Component=React.createClass({
+//        render:function(){
+//            return (<div width="200" data-hello="abc">{'First \u00b7 Second'}<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"></svg></div>);
+//        }
+//    });
 
 //延展属性
 //var com=<Component {...props} x="500" />;
 //console.log(com.props.x);//500
-ReactDOM.render(<Component />,document.querySelector('#first'));
+//ReactDOM.render(<Component />,document.querySelector('#first'));
 
 //function test({...props}){
 //    console.log(typeof props);

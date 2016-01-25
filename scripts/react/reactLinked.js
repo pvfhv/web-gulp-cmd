@@ -25,4 +25,4 @@ class LinkedBtn extends React.Component{
     }
 }
 
-ReactDOM.render(<LinkedBtn />,document.querySelector('#first'));
+export default LinkedBtn;

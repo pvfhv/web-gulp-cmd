@@ -1,8 +1,7 @@
 /**
  * Created by Administrator on 2015/11/29.
+ * 重名检查
  */
-
-var data = [{"name":"变量1","value": "var1"},{"name":"变量2","value":"var2"}];
 
 class VariableView extends React.Component{
     constructor(props){
@@ -45,11 +44,11 @@ class VariableView extends React.Component{
 
 class VariableRowView extends React.Component{
     handleChange(){
-        var row=this.props.row;
+        var obj=this.props.row;
         var v =this.refs.tempVar.value;
-        row.value=v;
+        obj.value=v;
 
-        this.props.handleChange(this.props.index,row);
+        this.props.handleChange(this.props.index,obj);
     }
 
     render(){
@@ -59,5 +58,4 @@ class VariableRowView extends React.Component{
     }
 }
 
-
-ReactDOM.render(<VariableView {...data} />,document.querySelector('#first'));
+export default VariableView;
