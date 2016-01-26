@@ -29,8 +29,8 @@
 //延展属性
 //var com=<Component {...props} x="500" />;
 //console.log(com.props.x);//500
-//ReactDOM.render(<Component />,document.querySelector('#first'));
-
+////ReactDOM.render(<Component />,document.querySelector('#first'));
+//
 //function test({...props}){
 //    console.log(typeof props);
 //    console.log(props.x);

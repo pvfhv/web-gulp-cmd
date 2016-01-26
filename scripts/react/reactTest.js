@@ -16,14 +16,17 @@ import CommentBoxReal3 from './CommentBoxReal3';
 import FilterableProductTable from './FilterableProduct';
 import {FilterableProductTable2} from './FilterableProduct2';
 import ReactFactory from './reactFactory';
-//import './reactspread';
+import NamespaceTest from './Namespace';
+import Reactspread from './reactspread';
 //import './reactMixin';
-//import './reactJiegou';
+import {SingleChild} from './reactJiegou';
 
 
 export default class ReactTest {
     init() {
-        this.factory();
+        this.singleChild();
+        //this.namespaceTest();
+        //this.factory();
         //this.product2();
         //this.product1();
         //this.realComment3();
@@ -54,6 +57,14 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    singleChild(){
+        ReactDOM.render(<SingleChild><span>bb</span></SingleChild>,this.oFirstDiv);
+    }
+
+    namespaceTest(){
+        ReactDOM.render(<NamespaceTest />,this.oFirstDiv);
     }
 
     factory(){

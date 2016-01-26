@@ -3,32 +3,39 @@
  */
 // The ES6+ way
 //class Video extends React.Component {
-//    static defaultProps = {
-//        autoPlay: false,
-//        maxLoops: 10,
-//    }
-//    static propTypes = {
-//        autoPlay: React.PropTypes.bool.isRequired,
-//        maxLoops: React.PropTypes.number.isRequired,
-//        posterFrameSrc: React.PropTypes.string.isRequired,
-//        videoSrc: React.PropTypes.string.isRequired,
-//    }
-//    state = {
-//        loopsRemaining: this.props.maxLoops,
+//    constructor(props){
+//        super(props);
+//        this.state={
+//            loopsRemaining: this.props.maxLoops
+//        }
 //    }
 //}
-
-var CheckLink = React.createClass({
-    getInitialState:function(){
-
-    },
-    getDefaultProps:function(){},
-    render:function(){
-        return (
-            <a {...this.props}>{this.props.children}</a>
-        );
-    }
-});
+//
+//Video.defaultProps = {
+//    autoPlay: false,
+//    maxLoops: 10,
+//}
+//
+//Video.propTypes = {
+//    autoPlay: React.PropTypes.bool.isRequired,
+//    maxLoops: React.PropTypes.number.isRequired,
+//    posterFrameSrc: React.PropTypes.string.isRequired,
+//    videoSrc: React.PropTypes.string.isRequired,
+//}
+//
+//var CheckLink = React.createClass({
+//    getInitialState:function(){
+//        return {
+//            n:0
+//        }
+//    },
+//    getDefaultProps:function(){},
+//    render:function(){
+//        return (
+//            <a {...this.props}>{this.props.children}</a>
+//        );
+//    }
+//});
 //
 //ReactDOM.render(<CheckLink href="http://www.sohu.com">checked it!</CheckLink>,document.querySelector('#first'));
 
@@ -47,28 +54,28 @@ var CheckLink = React.createClass({
 //    }
 //});
 
-class MyComponent extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.handlerClick =()=>{
-            console.log(this.refs.div1.id);
-        }
-    }
-
-    static propTypes = {
-        children: React.PropTypes.element.isRequired
-    }
-
-    static defaultProps = {
-        children: <div>abc</div>
-    }
-
-    render() {
-        return (
-            <div id="div1" ref="div1" onClick={this.handlerClick}>{this.props.children}</div>
-        );
-    }
-}
-
-ReactDOM.render(<MyComponent><span>e</span></MyComponent>, document.querySelector('#first'));
+//class MyComponent extends React.Component {
+//    constructor(props) {
+//        super(props);
+//    }
+//
+//    handlerClick(){
+//        console.log(this.refs.div1.id);
+//    }
+//
+//    render() {
+//        return (
+//            <div id="div1" ref="div1" onClick={this.handlerClick.bind(this)}>{this.props.children}</div>
+//        );
+//    }
+//}
+//
+//MyComponent.propTypes ={
+//    children: React.PropTypes.element.isRequired
+//}
+//
+//MyComponent.defaultProps = {
+//    children: <div>abc</div>
+//}
+//
+//ReactDOM.render(<MyComponent><span>这里必须有子元素</span></MyComponent>, document.querySelector('#first'));

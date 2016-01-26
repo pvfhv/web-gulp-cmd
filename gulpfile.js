@@ -199,7 +199,8 @@ gulp.task('webpack', function () {
                         loader: 'babel',
                         query: {
                             cacheDirectory: true,
-                            presets: ['es2015', 'stage-0', 'react']
+                            presets: ['es2015', 'stage-0', 'react'],
+                            compact:false
                         }
                     }
                 ]
@@ -231,7 +232,8 @@ gulp.task('webpack_build', function () {
                         loader: 'babel',
                         query: {
                             cacheDirectory: true,
-                            presets: ['es2015', 'stage-0', 'react']
+                            presets: ['es2015', 'stage-0', 'react'],
+                            compact:false
                         }
                     }
                 ]
