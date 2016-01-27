@@ -64,13 +64,17 @@
 class SingleChild extends React.Component{
     render(){
         return (
-            <div>{this.props.children}</div>
+            <div>{this.props.children}{this.props.name}</div>
         );
     }
 }
 
 SingleChild.propTypes={
     children:React.PropTypes.element.isRequired
+}
+
+SingleChild.defaultProps={
+    name:'tom'
 }
 
 export {SingleChild};

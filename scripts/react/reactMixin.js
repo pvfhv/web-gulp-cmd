@@ -7,9 +7,11 @@ var SetIntervalMixin ={
         this.intervals=[];
     },
     setInterval:function(){
+        //setInterval的返回值压入数组
         this.intervals.push(setInterval.apply(null,arguments));
     },
     componentWillUnMount:function(){
+        //对数组中的元素执行clearInterval
         this.intervals.map(clearInterval);
     }
 };
@@ -22,6 +24,7 @@ var TickTock = React.createClass({
         }
     },
     componentDidMount:function(){
+        //这里必须使用this.setInterval，执行mixins里的定义的setInterval
         this.setInterval(this.ticks,1000);
     },
     ticks:function(){
@@ -38,7 +41,7 @@ var TickTock = React.createClass({
     }
 });
 
-ReactDOM.render(<TickTock />,document.querySelector('#first'));
+export default TickTock;
 
 
 //测试数据

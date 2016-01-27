@@ -18,13 +18,14 @@ import {FilterableProductTable2} from './FilterableProduct2';
 import ReactFactory from './reactFactory';
 import NamespaceTest from './Namespace';
 import Reactspread from './reactspread';
-//import './reactMixin';
+import TickTock from './reactMixin';
 import {SingleChild} from './reactJiegou';
 
 
 export default class ReactTest {
     init() {
-        this.singleChild();
+        this.mixinTest();
+        //this.singleChild();
         //this.namespaceTest();
         //this.factory();
         //this.product2();
@@ -59,8 +60,12 @@ export default class ReactTest {
         return document.getElementById('first');
     }
 
+    mixinTest(){
+        ReactDOM.render(<TickTock />,this.oFirstDiv);
+    }
+
     singleChild(){
-        ReactDOM.render(<SingleChild><span>bb</span></SingleChild>,this.oFirstDiv);
+        ReactDOM.render(<SingleChild><span>name:</span></SingleChild>,this.oFirstDiv);
     }
 
     namespaceTest(){
