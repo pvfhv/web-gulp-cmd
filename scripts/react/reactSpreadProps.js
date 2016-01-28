@@ -40,12 +40,23 @@
 //        var te=checked?'x'+title:'O'+title;
 //
 //        return (
-//            <div><input {...other} type="checkbox" className={clsName} onChange={this.handleChange.bind(this)} checked={checked}/>{title}</div>
+//            <div>
+//                <input type="checkbox" className={clsName} onChange={this.handleChange.bind(this)} checked={checked} />
+//                <Fancy.Child {...other}></Fancy.Child>
+//            </div>
 //        );
 //    }
 //}
 //
-//ReactDOM.render(<Fancy checked="true" title="abc" name="tom" />,$('#first')[0]);
+//Fancy.Child =  class Child extends React.Component{
+//    render(){
+//        return (
+//            <div>other:{JSON.stringify(this.props)}</div>
+//        );
+//    }
+//}
+//
+//ReactDOM.render(<Fancy checked="true" title="abc" otherAttr="hehe" name="tom" />,$('#first')[0]);
 
 //var Fancy = React.createClass({
 //    render: function() {

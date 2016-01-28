@@ -35,7 +35,7 @@ class NamespaceTestMain extends React.Component{
 NamespaceTestMain.Title = class Title extends React.Component{
     render(){
         return (
-            <h1>标题</h1>
+            <h1>标题:{this.props.title}</h1>
         );
     }
 }
@@ -55,7 +55,7 @@ class App extends React.Component{
     render(){
         return (
             <NamespaceTestMain>
-                <NamespaceTestMain.Title></NamespaceTestMain.Title>
+                <NamespaceTestMain.Title title="姓名"></NamespaceTestMain.Title>
                 <NamespaceTestMain.Body searchType="内容"></NamespaceTestMain.Body>
             </NamespaceTestMain>
         );

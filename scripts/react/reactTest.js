@@ -19,12 +19,16 @@ import ReactFactory from './reactFactory';
 import NamespaceTest from './Namespace';
 import Reactspread from './reactspread';
 import TickTock from './reactMixin';
-import {SingleChild} from './reactJiegou';
+import {SingleChild} from './reactSpreadProps';
+import StateLessFN from './stateLessFn';
+import FormTest from './FormTest';
 
 
 export default class ReactTest {
     init() {
-        this.mixinTest();
+        this.formTest();
+        //this.statelessFn();
+        //this.mixinTest();
         //this.singleChild();
         //this.namespaceTest();
         //this.factory();
@@ -58,6 +62,14 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    formTest(){
+        ReactDOM.render(<FormTest />,this.oFirstDiv);
+    }
+
+    statelessFn(){
+        ReactDOM.render(<StateLessFN name="tom" />,this.oFirstDiv);
     }
 
     mixinTest(){
