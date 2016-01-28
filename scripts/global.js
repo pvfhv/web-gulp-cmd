@@ -8,7 +8,6 @@ import Backbone from 'backbone';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Rx from 'rx';
-import Radium from 'radium';
 import Tools from './common/Tools';
 import Immutable from 'immutable';
 
@@ -18,7 +17,6 @@ window.Backbone = Backbone;
 window.React = React;
 window.ReactDOM = ReactDOM;
 window.Rx = Rx;
-window.Radium = Radium;
 window.Tools = Tools;
 window.Immutable=Immutable;
 require('jquery-ui/jquery-ui');

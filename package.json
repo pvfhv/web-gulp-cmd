@@ -57,6 +57,7 @@
     "marked": "^0.3.5",
     "plotly.js": "^1.4.1",
     "react": "^0.14.6",
+    "react-addons-css-transition-group": "^0.14.6",
     "react-dom": "^0.14.6",
     "rsvp": "^3.1.0",
     "rx": "^4.0.7",

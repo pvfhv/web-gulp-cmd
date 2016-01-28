@@ -22,11 +22,13 @@ import TickTock from './reactMixin';
 import {SingleChild} from './reactSpreadProps';
 import StateLessFN from './stateLessFn';
 import FormTest from './FormTest';
+import ReactCssTransitionGroup from './reactcsstransitiongroup';
 
 
 export default class ReactTest {
     init() {
-        this.formTest();
+        this.reactCssTransitionGroup();
+        //this.formTest();
         //this.statelessFn();
         //this.mixinTest();
         //this.singleChild();
@@ -62,6 +64,10 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    reactCssTransitionGroup(){
+        ReactDOM.render(<ReactCssTransitionGroup />,this.oFirstDiv);
     }
 
     formTest(){
