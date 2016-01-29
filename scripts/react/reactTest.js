@@ -23,11 +23,15 @@ import {SingleChild} from './reactSpreadProps';
 import StateLessFN from './stateLessFn';
 import FormTest from './FormTest';
 import ReactCssTransitionGroup from './reactcsstransitiongroup';
+import ReactLinkedState from './react-linked-state-mixin';
+import TestUtilities from './testUtilities';
 
 
 export default class ReactTest {
     init() {
-        this.reactCssTransitionGroup();
+        this.testUtilities();
+        //this.reactLinkState();
+        //this.reactCssTransitionGroup();
         //this.formTest();
         //this.statelessFn();
         //this.mixinTest();
@@ -66,8 +70,17 @@ export default class ReactTest {
         return document.getElementById('first');
     }
 
+    testUtilities(){
+        ReactDOM.render(<TestUtilities />,this.oFirstDiv);
+    }
+
+    reactLinkState(){
+        ReactDOM.render(<ReactLinkedState />,this.oFirstDiv);
+    }
+
     reactCssTransitionGroup(){
-        ReactDOM.render(<ReactCssTransitionGroup />,this.oFirstDiv);
+        //ReactDOM.render(<ReactCssTransitionGroup />,this.oFirstDiv);
+        ReactDOM.render(<ReactCssTransitionGroup imageSrc="../images/logo.png" />,this.oFirstDiv);
     }
 
     formTest(){

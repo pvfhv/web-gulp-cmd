@@ -20,7 +20,6 @@ class TodoList extends React.Component{
     }
 
     handleRemove(i){
-        console.log(i);
         let aNew = this.state.items.slice();
         aNew.splice(i,1);
         this.setState({
@@ -28,18 +27,28 @@ class TodoList extends React.Component{
         });
     }
 
-    render(){
-        let items = this.state.items.map((item,index)=>{
-           return (
-               <li key={item} onClick={this.handleRemove.bind(this,index)}>{item}</li>
-           );
-        });
+    //render(){
+    //    let items = this.state.items.map((item,index)=>{
+    //       return (
+    //           <li key={item} onClick={this.handleRemove.bind(this,index)}>{item}</li>
+    //       );
+    //    });
+    //
+    //    return (
+    //        <div>
+    //            <button onClick={this.handleAdd.bind(this)}>增加</button>
+    //            <ReactCssTransitionGroup component="ul" className="animateList" transitionName={{enter:'enter',leave:'leave',appear:'appear'}} transitionEnterTimeout={500} transitionLeaveTimeout={300} transitionAppear={true} transitionAppearTimeout={500}>
+    //                {items}
+    //            </ReactCssTransitionGroup>
+    //        </div>
+    //    );
+    //}
 
+    render(){
         return (
             <div>
-                <button onClick={this.handleAdd.bind(this)}>增加</button>
-                <ReactCssTransitionGroup component="ul" className="animateList" transitionName={{enter:'enter',leave:'leave',appear:'appear'}} transitionEnterTimeout={500} transitionLeaveTimeout={300} transitionAppear={true} transitionAppearTimeout={500}>
-                    {items}
+                <ReactCssTransitionGroup transitionName={{enter:'enter',leave:'leave',appear:'appear'}} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={300} transitionAppear={true} transitionAppearTimeout={500}>
+                    <img src={this.props.imageSrc} key={this.props.imageSrc}/>
                 </ReactCssTransitionGroup>
             </div>
         );
