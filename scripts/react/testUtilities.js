@@ -3,24 +3,32 @@
  */
 import ReactTestUtils from 'react-addons-test-utils';
 
-class ToDoButtons extends React.Component{
-    handleClick(e){
+class SimulateButtons extends React.Component{
+    handleClick(){
         alert('ok');
     }
 
     handleClick2(){
-        console.log('btn2 clicked');
-        ReactTestUtils.Simulate.click(this.btn1)
+        this.btn1.value = 'test'
+        ReactTestUtils.Simulate.change(this.btn1);
+        ReactTestUtils.Simulate.keyDown(this.btn1,{key:'Enter',keyCode:13,which:13});
+
+
+        //ReactTestUtils.Simulate.click(this.btn1);
+    }
+
+    handleKeyDown(e){
+        alert(e.keyCode);
     }
 
     render(){
         return (
             <div>
-                <button onClick={this.handleClick.bind(this)} ref={ref=>this.btn1=ref}>弹出ok</button>
+                <input onKeyDown={this.handleKeyDown.bind(this)} onClick={this.handleClick.bind(this)} ref={ref=>this.btn1=ref} />
                 <button onClick={this.handleClick2.bind(this)}>测试按钮</button>
             </div>
         );
     }
 }
 
-export default ToDoButtons;
+export default SimulateButtons;
