@@ -22,7 +22,6 @@ class Timer extends React.Component{
     }
 
     render(){
-        console.log(this.state.nCount);
         return (
             <div>经过{this.state.nCount}秒！</div>
         );
