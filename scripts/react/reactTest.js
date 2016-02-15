@@ -26,11 +26,13 @@ import ReactCssTransitionGroup from './reactcsstransitiongroup';
 import ReactLinkedState from './react-linked-state-mixin';
 import TestUtilities from './testUtilities';
 import AddonsClone from './reactaddonsclone';
+import KeyedFragments from './KeyedFragments';
 
 
 export default class ReactTest {
     init() {
-        this.addonsclone();
+        this.keyedFragment();
+        //this.addonsclone();
         //this.testUtilities();
         //this.reactLinkState();
         //this.reactCssTransitionGroup();
@@ -70,6 +72,10 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    keyedFragment(){
+        ReactDOM.render(<KeyedFragments leftChildren={<div key="a">左</div>} rightChildren={<div key="b">右</div>} swapped={true}>a</KeyedFragments>,this.oFirstDiv);
     }
 
     addonsclone() {
