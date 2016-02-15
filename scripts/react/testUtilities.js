@@ -4,6 +4,26 @@
 import ReactTestUtils from 'react-addons-test-utils';
 import Timer from './Timer';
 
+class TestComponent extends React.Component{
+    render(){
+        return (
+            <div className="hascls">
+                <TestTarget />
+                <span className="hascls">span</span>
+                <div className="notcls">div</div>
+            </div>
+        );
+    }
+}
+
+class TestTarget extends React.Component{
+    render(){
+        return (
+            <a href="#">超链接</a>
+        );
+    }
+}
+
 class SimulateButtons extends React.Component{
     handleClick(){
         alert('ok');
@@ -27,7 +47,45 @@ class SimulateButtons extends React.Component{
         //console.log(ReactTestUtils.isElement(<sss />));//true
         //console.log(ReactTestUtils.isElement(<SimulateButtons />));//true
         //console.log(ReactTestUtils.isElementOfType(<SimulateButtons />,SimulateButtons));//true
-        console.log(ReactTestUtils.isElementOfType(<SimulateButtons />,Timer));//false
+        //console.log(ReactTestUtils.isElementOfType(<SimulateButtons />,Timer));//false
+
+        //let subject = ReactTestUtils.renderIntoDocument(<div />);
+        //console.log(ReactTestUtils.isDOMComponent(subject));//true
+
+        //let subject = ReactTestUtils.renderIntoDocument(<Timer />);
+        //console.log(ReactTestUtils.isCompositeComponent(subject));//true
+        //console.log(ReactTestUtils.isCompositeComponentWithType(subject,Timer));//true
+        //console.log(ReactTestUtils.isCompositeComponentWithType(subject,SimulateButtons));//false
+
+        //let componentTree = ReactTestUtils.renderIntoDocument(<TestComponent />);
+        //let aDivs = ReactTestUtils.findAllInRenderedTree(componentTree,c=>c.tagName == 'DIV');
+        //console.log(aDivs);//[div,div]
+
+        let componentTree = ReactTestUtils.renderIntoDocument(<TestComponent />);
+        //let aCls = ReactTestUtils.scryRenderedDOMComponentsWithClass(componentTree,'hascls');
+        //console.log(aCls);//[div.hascls, span.hascls]
+        //let one = ReactTestUtils.findRenderedDOMComponentWithClass(componentTree,'notcls');
+        //console.log(one);//2个就抛异常
+        //let aTags = ReactTestUtils.scryRenderedDOMComponentsWithTag(componentTree,'div');
+        //console.log(aTags);//[div.hascls, div.notcls]
+        //let one = ReactTestUtils.findRenderedDOMComponentWithTag(componentTree,'span');
+        //console.log(one);//2个就抛异常
+        //let aTypes = ReactTestUtils.scryRenderedComponentsWithType(componentTree,TestTarget);
+        //console.log(aTypes);//[TestTarget, TestTarget]
+        //let one = ReactTestUtils.findRenderedComponentWithType(componentTree,TestTarget);
+        //console.log(one);//2个就抛异常
+
+
+        //试验阶段
+        let render = ReactTestUtils.createRenderer();
+        let spy = function(){};
+        render.render(<TestComponent onClick={spy} />);
+        let subject = render.getRenderOutput();
+
+        //console.log(subject.type); //div
+        //console.log(subject.props.className);//hascls
+        //console.log(React.Children.count(subject.props.children));//3
+        console.log(spy.call.length);//1
 
 
 

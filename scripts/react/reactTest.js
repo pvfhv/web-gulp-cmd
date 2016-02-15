@@ -25,11 +25,13 @@ import FormTest from './FormTest';
 import ReactCssTransitionGroup from './reactcsstransitiongroup';
 import ReactLinkedState from './react-linked-state-mixin';
 import TestUtilities from './testUtilities';
+import AddonsClone from './reactaddonsclone';
 
 
 export default class ReactTest {
     init() {
-        this.testUtilities();
+        this.addonsclone();
+        //this.testUtilities();
         //this.reactLinkState();
         //this.reactCssTransitionGroup();
         //this.formTest();
@@ -70,97 +72,102 @@ export default class ReactTest {
         return document.getElementById('first');
     }
 
-    testUtilities(){
-        ReactDOM.render(<TestUtilities />,this.oFirstDiv);
+    addonsclone() {
+        ReactDOM.render(<AddonsClone><p>这里会变成蓝色字体！</p></AddonsClone>, this.oFirstDiv);
     }
 
-    reactLinkState(){
-        ReactDOM.render(<ReactLinkedState />,this.oFirstDiv);
+    testUtilities() {
+        ReactDOM.render(<TestUtilities />, this.oFirstDiv);
     }
 
-    reactCssTransitionGroup(){
+    reactLinkState() {
+        ReactDOM.render(<ReactLinkedState />, this.oFirstDiv);
+    }
+
+    reactCssTransitionGroup() {
         //ReactDOM.render(<ReactCssTransitionGroup />,this.oFirstDiv);
-        ReactDOM.render(<ReactCssTransitionGroup imageSrc="../images/logo.png" />,this.oFirstDiv);
+        ReactDOM.render(<ReactCssTransitionGroup imageSrc="../images/logo.png"/>, this.oFirstDiv);
     }
 
-    formTest(){
-        ReactDOM.render(<FormTest />,this.oFirstDiv);
+    formTest() {
+        ReactDOM.render(<FormTest />, this.oFirstDiv);
     }
 
-    statelessFn(){
-        ReactDOM.render(<StateLessFN name="tom" />,this.oFirstDiv);
+    statelessFn() {
+        ReactDOM.render(<StateLessFN name="tom"/>, this.oFirstDiv);
     }
 
-    mixinTest(){
-        ReactDOM.render(<TickTock />,this.oFirstDiv);
+    mixinTest() {
+        ReactDOM.render(<TickTock />, this.oFirstDiv);
     }
 
-    singleChild(){
-        ReactDOM.render(<SingleChild><span>name:</span></SingleChild>,this.oFirstDiv);
+    singleChild() {
+        ReactDOM.render(<SingleChild><span>name:</span></SingleChild>, this.oFirstDiv);
     }
 
-    namespaceTest(){
-        ReactDOM.render(<NamespaceTest />,this.oFirstDiv);
+    namespaceTest() {
+        ReactDOM.render(<NamespaceTest />, this.oFirstDiv);
     }
 
-    factory(){
+    factory() {
         //普通Dom 要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名
-        var root=React.DOM.ul({className:'list-unstyled'},React.DOM.li({className:'product'},'tv'));
-        ReactDOM.render(root,this.oFirstDiv);
+        var root = React.DOM.ul({className: 'list-unstyled'}, React.DOM.li({className: 'product'}, 'tv'));
+        ReactDOM.render(root, this.oFirstDiv);
     }
 
-    product2(){
+    product2() {
         ReactDOM.render(<FilterableProductTable2 />, this.oFirstDiv);
     }
 
-    product1(){
+    product1() {
         ReactDOM.render(<FilterableProductTable />, this.oFirstDiv);
     }
 
-    realComment3(){
-        ReactDOM.render(<CommentBoxReal3 pollInterval={2000} url="../simulates/comment.json" />,this.oFirstDiv);
+    realComment3() {
+        ReactDOM.render(<CommentBoxReal3 pollInterval={2000} url="../simulates/comment.json"/>, this.oFirstDiv);
     }
 
-    realComment2(){
-        ReactDOM.render(<CommentBoxReal2 pollInterval={2000} url="../simulates/comment.json" />,this.oFirstDiv);
+    realComment2() {
+        ReactDOM.render(<CommentBoxReal2 pollInterval={2000} url="../simulates/comment.json"/>, this.oFirstDiv);
     }
 
-    realComment1(){
-        ReactDOM.render(<CommentBoxReal1 url="../simulates/comment.json" />,this.oFirstDiv);
+    realComment1() {
+        ReactDOM.render(<CommentBoxReal1 url="../simulates/comment.json"/>, this.oFirstDiv);
     }
 
-    realComment(){
-        var data=[{author:'alex',comment:'good'},{author:'tom',comment:'better'}];
-        ReactDOM.render(<CommentBoxReal data={data} />,this.oFirstDiv);
+    realComment() {
+        var data = [{author: 'alex', comment: 'good'}, {author: 'tom', comment: 'better'}];
+        ReactDOM.render(<CommentBoxReal data={data}/>, this.oFirstDiv);
     }
 
-    markdownComment(){
-        ReactDOM.render(<CommentBoxHasMarkdown author="alex"><span>good!</span></CommentBoxHasMarkdown>,this.oFirstDiv);
+    markdownComment() {
+        ReactDOM.render(<CommentBoxHasMarkdown
+            author="alex"><span>good!</span></CommentBoxHasMarkdown>, this.oFirstDiv);
     }
 
-    commentBox(){
-        ReactDOM.render(<CommentBox />,this.oFirstDiv);
+    commentBox() {
+        ReactDOM.render(<CommentBox />, this.oFirstDiv);
     }
 
-    markdownEditor(){
+    markdownEditor() {
         ReactDOM.render(<MarkdownEditor />, this.oFirstDiv);
     }
 
-    variableTest(){
-        let data = [{"name":"变量1","value": "var1"},{"name":"变量2","value":"var2"}];
-        ReactDOM.render(<VariableView {...data} />,this.oFirstDiv);
+    variableTest() {
+        let data = [{"name": "变量1", "value": "var1"}, {"name": "变量2", "value": "var2"}];
+        ReactDOM.render(<VariableView {...data} />, this.oFirstDiv);
     }
 
-    linkBtn(){
-        ReactDOM.render(<LinkedButton />,this.oFirstDiv);
+    linkBtn() {
+        ReactDOM.render(<LinkedButton />, this.oFirstDiv);
     }
 
-    todoTest(){
+    todoTest() {
         ReactDOM.render(<TodoMain />, this.oFirstDiv);
     }
 
-    timer(){
-        ReactDOM.render(<Timer />,this.oFirstDiv);
+    timer() {
+        ReactDOM.render(<Timer />, this.oFirstDiv);
     }
 
     first() {
@@ -184,39 +191,39 @@ export default class ReactTest {
         let oFirst = $('#first').get(0);
         ReactDOM.render(
             <div>{
-                ["alex","lucy"].map(function(v){
-                return <h1>{`hello,${v}`}</h1>;
-            })}</div>,oFirst);
+                ["alex", "lucy"].map(function (v) {
+                    return <h1>{`hello,${v}`}</h1>;
+                })}</div>, oFirst);
     }
 
-    four(){
-        let arr=["a","b"];
+    four() {
+        let arr = ["a", "b"];
         let oFirst = $('#first').get(0);
-        ReactDOM.render(<div>{arr}</div>,oFirst);
+        ReactDOM.render(<div>{arr}</div>, oFirst);
     }
 
-    five(){
+    five() {
         let oFirst = $('#first').get(0);
-        let NodeList=React.createClass({
-          render:function(){
-              return (
-                  <ol>{
-                      React.Children.map(this.props.children,function(child){
-                          return <li>{child}</li>;
-                      })
-                  }</ol>);
-          }
+        let NodeList = React.createClass({
+            render: function () {
+                return (
+                    <ol>{
+                        React.Children.map(this.props.children, function (child) {
+                            return <li>{child}</li>;
+                        })
+                    }</ol>);
+            }
         });
 
         ReactDOM.render(<NodeList>
             <div>abc</div>
             <div>efg</div>
-        </NodeList>,oFirst);
+        </NodeList>, oFirst);
     }
 
-    six(){
+    six() {
         let oFirst = $('#first').get(0);
-        let HelloMsg=React.createClass({
+        let HelloMsg = React.createClass({
             propTypes: {
                 title: React.PropTypes.string.isRequired
             },
@@ -225,11 +232,11 @@ export default class ReactTest {
             }
         });
 
-        let data='中国';
-        ReactDOM.render(<HelloMsg title={data} />,oFirst);
+        let data = '中国';
+        ReactDOM.render(<HelloMsg title={data}/>, oFirst);
     }
 
-    seven(){
+    seven() {
         let oFirst = $('#first').get(0);
         let HelloMsg = React.createClass({
             getDefaultProps: function () {
@@ -247,7 +254,7 @@ export default class ReactTest {
         ReactDOM.render(<HelloMsg />, oFirst);
     }
 
-    eight(){
+    eight() {
         let oFirst = $('#first').get(0);
         //类名首字母要大写
         let MyComponent = React.createClass({
@@ -274,7 +281,7 @@ export default class ReactTest {
         ReactDOM.render(<MyComponent />, oFirst);
     }
 
-    nine(){
+    nine() {
         let oFirst = $('#first').get(0);
         //state
         var MyComponent = React.createClass({
@@ -301,7 +308,7 @@ export default class ReactTest {
 
     }
 
-    ten(){
+    ten() {
         let oFirst = $('#first').get(0);
         var MyComponent = React.createClass({
             getInitialState: function () {
@@ -324,7 +331,7 @@ export default class ReactTest {
         ReactDOM.render(<MyComponent />, oFirst);
     }
 
-    eleven(){
+    eleven() {
         let oFirst = $('#first').get(0);
         let Hello = React.createClass({
             getInitialState: function () {
@@ -356,7 +363,7 @@ export default class ReactTest {
         ReactDOM.render(<Hello name="world"/>, oFirst);
     }
 
-    twelve(){
+    twelve() {
         let oFirst = $('#first').get(0);
         //ajax
         let Hello = React.createClass({
@@ -386,12 +393,12 @@ export default class ReactTest {
         ReactDOM.render(<Hello />, oFirst);
     }
 
-    thirtheen(){
+    thirtheen() {
         //永远在一个节点上显示
         let oFirst = $('#first').get(0);
 
         let Test1 = React.createClass({
-            render:function(){
+            render: function () {
                 let hasGender = !!this.props.person.gender;
                 let gender = <div>性别：{this.props.person.gender}</div>;
                 return (
@@ -399,27 +406,27 @@ export default class ReactTest {
                         <div>姓名：{this.props.person.name}</div>
                         <div>年龄：{this.props.person.age}</div>
                         {
-                            hasGender?(
+                            hasGender ? (
                                 <div>
                                     <div>
                                         <span>{gender}</span>
                                     </div>
                                 </div>
-                            ):undefined
+                            ) : undefined
                         }
                     </div>
                 );
             }
         });
 
-        $('#btn_react1').click(function(){
-            let person = {name:'tom',age:10};
-            ReactDOM.render(<Test1 person={person} />,oFirst);
+        $('#btn_react1').click(function () {
+            let person = {name: 'tom', age: 10};
+            ReactDOM.render(<Test1 person={person}/>, oFirst);
         });
 
-        $('#btn_react2').click(function(){
-            let person = {name:'jerry',age:25,gender:'男'};
-            ReactDOM.render(<Test1 person={person} />,oFirst);
+        $('#btn_react2').click(function () {
+            let person = {name: 'jerry', age: 25, gender: '男'};
+            ReactDOM.render(<Test1 person={person}/>, oFirst);
         });
     }
 }
