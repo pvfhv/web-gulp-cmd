@@ -240,6 +240,7 @@ gulp.task('webpack_build', function () {
             },
             plugins: [new webpack.optimize.UglifyJsPlugin({minimize: true})]
         }))
+        .pipe(replace('console.log','handleConsole.log'))
         .pipe(gulp.dest(config.distScript));
 });
 

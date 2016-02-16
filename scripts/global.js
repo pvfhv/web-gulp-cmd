@@ -12,6 +12,7 @@ import Tools from './common/Tools';
 import Immutable from 'immutable';
 
 window.$ = window.jQuery = $;
+window.handleConsole={log:$.noop};
 window._ = _;
 window.Backbone = Backbone;
 window.React = React;

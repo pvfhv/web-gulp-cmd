@@ -27,11 +27,17 @@ import ReactLinkedState from './react-linked-state-mixin';
 import TestUtilities from './testUtilities';
 import AddonsClone from './reactaddonsclone';
 import KeyedFragments from './KeyedFragments';
+import Immutability from './addonsupdate';
+import PureRender from './pureRender';
+import PerformanceTools from './PerformanceTools';
 
 
 export default class ReactTest {
     init() {
-        this.keyedFragment();
+        this.performanceToolsTest();
+        //this.pureRenderTest();
+        //this.ImmutabilityHelpers();
+        //this.keyedFragment();
         //this.addonsclone();
         //this.testUtilities();
         //this.reactLinkState();
@@ -72,6 +78,18 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    performanceToolsTest(){
+        ReactDOM.render(<PerformanceTools />,this.oFirstDiv);
+    }
+
+    pureRenderTest(){
+        ReactDOM.render(<PureRender className="abc" />,this.oFirstDiv);
+    }
+
+    ImmutabilityHelpers(){
+        ReactDOM.render(<Immutability />,this.oFirstDiv);
     }
 
     keyedFragment(){
