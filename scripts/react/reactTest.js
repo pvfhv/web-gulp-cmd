@@ -30,11 +30,17 @@ import KeyedFragments from './KeyedFragments';
 import Immutability from './addonsupdate';
 import PureRender from './pureRender';
 import PerformanceTools from './PerformanceTools';
+import ShallowCompare from './shallowcompare';
+import TestImmutable from './advancePerformance';
+import TopAPI from './topAPI';
 
 
 export default class ReactTest {
     init() {
-        this.performanceToolsTest();
+        this.testTopAPI();
+        //this.testImutable();
+        //this.performanceToolsTest();
+        //this.shallowCompareTest();
         //this.pureRenderTest();
         //this.ImmutabilityHelpers();
         //this.keyedFragment();
@@ -80,8 +86,20 @@ export default class ReactTest {
         return document.getElementById('first');
     }
 
+    testTopAPI(){
+        ReactDOM.render(<TopAPI />,this.oFirstDiv);
+    }
+
+    testImutable(){
+        ReactDOM.render(<TestImmutable />,this.oFirstDiv);
+    }
+
     performanceToolsTest(){
         ReactDOM.render(<PerformanceTools />,this.oFirstDiv);
+    }
+
+    shallowCompareTest(){
+        ReactDOM.render(<ShallowCompare className="abc"></ShallowCompare>,this.oFirstDiv);
     }
 
     pureRenderTest(){
