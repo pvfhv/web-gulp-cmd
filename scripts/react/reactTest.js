@@ -87,7 +87,15 @@ export default class ReactTest {
     }
 
     testTopAPI(){
-        ReactDOM.render(<TopAPI />,this.oFirstDiv);
+        ReactDOM.render(<TopAPI />,this.oFirstDiv,()=>{
+            //if(ReactDOM.unmountComponentAtNode(this.oFirstDiv)){
+            //    alert('移除成功');
+            //}else {
+            //    alert('移除失败');
+            //}
+
+            console.log(ReactDOM.findDOMNode(TopAPI))
+        });
     }
 
     testImutable(){

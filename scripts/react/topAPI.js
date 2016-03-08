@@ -4,7 +4,7 @@
 
 class TopAPI extends React.Component{
     render(){
-        let child = React.createElement('div',{style:{color:'red',background:'yellow'}},'<p>abc</p>');
+        let child = React.createElement('div',{style:{color:'red',background:'yellow'},id:'div100'},'<p>abc</p>');
         let temp1 = React.DOM.div(null,'hello');
         let b = React.isValidElement(child);//true
         console.log(b);
@@ -43,7 +43,6 @@ var TestMap = React.createClass({
                    //        <li>{obj}</li>
                    //    );
                    //})
-
                    React.Children.forEach(this.props.children,function(obj,index){
                        //console.log(React.isValidElement(obj));  //true
                        //console.log($.isPlainObject(obj.props));
@@ -53,11 +52,22 @@ var TestMap = React.createClass({
                        }
                    })
                }
-               {arr.map(function(obj,index){
-                   return (
-                       <li key={index}>{obj}</li>
-                   );
+               {arr.map((obj,index)=>{
+                   var sText = "";
+
+                   if(index==React.Children.count(this.props.children)-1){
+                       sText = <li key={index}>{obj}{index}</li>;
+                   }else{
+                       sText = <li key={index}>{obj}</li>;
+                   }
+
+                   return sText;
                })}
+               {
+                   //React.Children.only(this.props.children)
+
+                   React.Children.toArray(this.props.children).splice(1,1)
+               }
            </ul>
        );
    }
