@@ -93,8 +93,6 @@ export default class ReactTest {
             //}else {
             //    alert('移除失败');
             //}
-
-            console.log(ReactDOM.findDOMNode(TopAPI))
         });
     }
 

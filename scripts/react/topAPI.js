@@ -2,6 +2,8 @@
  * Created by anchao on 2016/2/22.
  */
 
+import ReactDOMServer from 'react-dom/server';
+
 class TopAPI extends React.Component{
     render(){
         let child = React.createElement('div',{style:{color:'red',background:'yellow'},id:'div100'},'<p>abc</p>');
@@ -32,7 +34,10 @@ class TopAPI extends React.Component{
 }
 
 var TestMap = React.createClass({
-
+    componentDidMount :function(){
+       var oUl = ReactDOM.findDOMNode(this);
+       $(oUl).find('li').eq (0).css('background','red');
+   },
    render:function(){
        let arr = [];
        return (
@@ -67,6 +72,12 @@ var TestMap = React.createClass({
                    //React.Children.only(this.props.children)
 
                    React.Children.toArray(this.props.children).splice(1,1)
+               }
+               {
+                   ReactDOMServer.renderToString(<div id="div2">服务器端的字符串渲染</div>)
+               }
+               {
+                   ReactDOMServer.renderToStaticMarkup(<div id="div3">服务器端的字符串渲染没有多余的代码</div>)
                }
            </ul>
        );
