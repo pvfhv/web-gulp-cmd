@@ -33,11 +33,13 @@ import PerformanceTools from './PerformanceTools';
 import ShallowCompare from './shallowcompare';
 import TestImmutable from './advancePerformance';
 import TopAPI from './topAPI';
+import ComponentAPI from './componentAPI';
 
 
 export default class ReactTest {
     init() {
-        this.testTopAPI();
+        this.testComponentAPI();
+        //this.testTopAPI();
         //this.testImutable();
         //this.performanceToolsTest();
         //this.shallowCompareTest();
@@ -84,6 +86,13 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    testComponentAPI(){
+        //静态方法
+        ComponentAPI.getProps({n:1});
+        ReactDOM.render(<ComponentAPI n={1} />,this.oFirstDiv);
+        ReactDOM.render(<ComponentAPI />,document.querySelector('#template_test2'));
     }
 
     testTopAPI(){
