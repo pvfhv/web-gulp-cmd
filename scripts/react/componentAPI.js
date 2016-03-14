@@ -53,7 +53,7 @@ let ComAPI = React.createClass({
             console.log(props);
         }
     },
-    displayName:'ComAPI',
+    displayName:'abc',
     handleClick: function () {
         //console.log(this.isMounted());//true
         //console.log(ReactDOM.findDOMNode(this));
@@ -68,6 +68,36 @@ let ComAPI = React.createClass({
         //this.replaceState({
         //    n:this.state.n+1
         //})
+    },
+    componentWillMount:function(){
+        var that = this;
+        $.getJSON('../../simulates/PersonData.json')
+            .done(function(oData){
+                console.log('componentWillMount:'+JSON.stringify(oData));
+                that.setState({
+                    n: 150
+                })
+            });
+    },
+    componentDidMount:function(){
+        var that = this;
+        $.getJSON('../../simulates/response.json')
+            .done(function(oData){
+                console.log('componentDidMount:'+JSON.stringify(oData));
+                _.delay(function(){
+                    that.setState({
+                        n: 250
+                    })
+                },2000);
+            });
+    },
+    componentWillReceiveProps:function(nextprops){
+        console.log(this.props.n+'---'+JSON.stringify(nextprops));
+        //this.setState({
+        //    n:nextprops.n
+        //});
+
+        console.log(this.state.n);
     },
     render: function () {
         return (

@@ -90,8 +90,16 @@ export default class ReactTest {
 
     testComponentAPI(){
         //静态方法
-        ComponentAPI.getProps({n:1});
-        ReactDOM.render(<ComponentAPI n={1} />,this.oFirstDiv);
+        //ComponentAPI.getProps({n:1});
+        //console.log(ComponentAPI.displayName);
+        //
+        //ReactDOM.render(<ComponentAPI n={1} />,this.oFirstDiv);
+
+        _.delay(()=>{
+            ComponentAPI.props={
+                m:1000
+            };
+        },2000);
         ReactDOM.render(<ComponentAPI />,document.querySelector('#template_test2'));
     }
 
