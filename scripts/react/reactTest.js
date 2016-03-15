@@ -34,11 +34,13 @@ import ShallowCompare from './shallowcompare';
 import TestImmutable from './advancePerformance';
 import TopAPI from './topAPI';
 import ComponentAPI from './componentAPI';
+import Lifecycle from './Lifecycle';
 
 
 export default class ReactTest {
     init() {
-        this.testComponentAPI();
+        this.testLifecycle();
+        //this.testComponentAPI();
         //this.testTopAPI();
         //this.testImutable();
         //this.performanceToolsTest();
@@ -86,6 +88,12 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    testLifecycle(){
+        ReactDOM.render(<Lifecycle n={1} />,this.oFirstDiv);
+        ReactDOM.render(<Lifecycle n={2} />,this.oFirstDiv);
+        ReactDOM.render(<Lifecycle n={3} />,this.oFirstDiv);
     }
 
     testComponentAPI(){
