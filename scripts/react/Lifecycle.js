@@ -49,17 +49,20 @@ var Component = React.createClass({
     },
     _handleCompositionStart:function(e){
         $(e.currentTarget).prop('comStart',true);
-        console.log('中文输入开始');
+        console.log('中文输入开始'+e.data);
     },
     _handleCompositionEnd:function(e){
         $(e.currentTarget).prop('comStart',false);
         console.log('中文输入结束');
     },
+    _handleCompositionUpdate:function(e){
+        console.log(e.data);
+    },
     render: function () {
         return (
             <div>
                 <span onClick={this.handleClick}>isClick:{this.state.isClick?"yes":"no"}</span>
-                <input type="text" onInput={this._handleInput} onCompositionStart={this._handleCompositionStart} onCompositionEnd={this._handleCompositionEnd}/>
+                <input type="text" onInput={this._handleInput} onCompositionStart={this._handleCompositionStart} onCompositionEnd={this._handleCompositionEnd} onCompositionUpdate={this._handleCompositionUpdate}/>
                 <input type="button" value="移除组件" onClick={this.removeComponent}/>
                 <input type="button" value="重新渲染" onClick={this.rerender}/>
             </div>
