@@ -92,8 +92,8 @@ export default class ReactTest {
 
     testLifecycle(){
         ReactDOM.render(<Lifecycle n={1} />,this.oFirstDiv);
-        ReactDOM.render(<Lifecycle n={2} />,this.oFirstDiv);
-        ReactDOM.render(<Lifecycle n={3} />,this.oFirstDiv);
+        //ReactDOM.render(<Lifecycle n={2} />,this.oFirstDiv);
+        //ReactDOM.render(<Lifecycle n={3} />,this.oFirstDiv);
     }
 
     testComponentAPI(){
