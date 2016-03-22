@@ -64,3 +64,12 @@ body>div:nth-child(2n){
     transition: opacity .5s ease-in;
   }
 }
+#dragdiv{
+  width: 100px;
+  height:100px;
+  background-color: yellow;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}

@@ -39,32 +39,51 @@ var Component = React.createClass({
         ReactDOM.unmountComponentAtNode(document.getElementById('first'))&&console.log('移除成功');
     },
     _handleInputChange:function(e){
-        //$(e.currentTarget).val(e.currentTarget.value);
+        this.setState({
+            x:$(e.currentTarget).val()
+        });
     },
     _handleInput:function(e){
-        if($(e.currentTarget).prop('comStart')){
-            return;
-        }
-        console.log(e.currentTarget.value.length);
+        //if($(e.currentTarget).prop('comStart')){
+        //    return;
+        //}
+        //console.log(e.currentTarget.value.length);
     },
     _handleCompositionStart:function(e){
-        $(e.currentTarget).prop('comStart',true);
-        console.log('中文输入开始'+e.data);
+        //$(e.currentTarget).prop('comStart',true);
+        //console.log('中文输入开始'+e.data);
     },
     _handleCompositionEnd:function(e){
-        $(e.currentTarget).prop('comStart',false);
-        console.log('中文输入结束');
+        //$(e.currentTarget).prop('comStart',false);
+        //console.log('中文输入结束');
     },
     _handleCompositionUpdate:function(e){
-        console.log(e.data);
+        //console.log('Update'+e.data);
+    },
+    _handleKeyDown:function(e){
+        //console.log(e.altKey);
+        //console.log(e.getModifierState('Alt'));
+        //console.log(e.key);//Alt shift。。
+        //console.log(e.locale);
+        //console.log(e.repeat);
+        console.log(e.which);
+    },
+    _handleFocus:function(e){
+        console.log(e.DOMEventTarget);
+    },
+    _handleDragStart:function(e){
+        console.log(e.clientX);
+        e.preventDefault();
     },
     render: function () {
         return (
             <div>
-                <span onClick={this.handleClick}>isClick:{this.state.isClick?"yes":"no"}</span>
-                <input type="text" onInput={this._handleInput} onCompositionStart={this._handleCompositionStart} onCompositionEnd={this._handleCompositionEnd} onCompositionUpdate={this._handleCompositionUpdate}/>
-                <input type="button" value="移除组件" onClick={this.removeComponent}/>
+                <span onClick={this.handleClick}>isClick:{this.state.isClick?"yes":"no"}</span><br />
+                <input type="text" value1={this.state.x} onInput={this._handleInput} onCompositionStart={this._handleCompositionStart} onCompositionEnd={this._handleCompositionEnd} onCompositionUpdate={this._handleCompositionUpdate} onChange1={this._handleInputChange}/><br />
+                <input type="text" onFocus={this._handleFocus} onKeyDown={this._handleKeyDown} /><br />
+                <input type="button" value="移除组件" onClick={this.removeComponent}/><br />
                 <input type="button" value="重新渲染" onClick={this.rerender}/>
+                <div id="dragdiv" onDragStart={this._handleDragStart}>我可以拖动</div>
             </div>
         );
     }
