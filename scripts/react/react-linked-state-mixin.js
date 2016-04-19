@@ -80,12 +80,15 @@ let TodoForm = React.createClass({
     render:function(){
         let valueLink = this.linkState('message');
         let handleChange = function(e){
+            console.log( e.target );
             valueLink.requestChange(e.target.value);
         };
 
         return (
           <div>
-              <input type="text" value={valueLink.value} onChange={handleChange} />
+              <input type="text" ref={function(input) {
+                if(input!=null){ input.focus();}
+              }} value={valueLink.value} onChange={handleChange} />
           </div>
         );
     }

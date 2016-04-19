@@ -2,46 +2,86 @@
  * Created by Anchao on 2015/11/12.
  */
 
-//todo原生
-var TodoList=React.createClass({
-   render:function(){
-       return (
-           <ul>
-               {this.props.items.map(function(v,k){
-                   return (
-                       <li key={k}>{v}</li>
-                   );
-               })}
-           </ul>
-       );
-   }
+//孙子组件与爷爷组件通信
+var ObservableObj = new Rx.Subject();
+
+
+var TodoList = React.createClass({
+    handleClick: function (e) {
+        $(document.body).trigger('deleteRow', $(e.target).index());
+        // ObservableObj.onNext({type: 'delete', index: $(e.target).index()});
+    },
+    componentDidMount: function () {
+        $(document).on('click', '[type="checkbox"]', function () {
+                $(this).parent().siblings().find('input').prop('checked', $(this).is(':checked'));
+            }
+        );
+    },
+    render: function () {
+        return (
+            <ul>
+                {this.props.items.map(function (v, k) {
+                    return (
+                        <li onDoubleClick={this.handleClick} key={k}>
+                            <input type="checkbox" value={v}/>
+                            {v}
+                        </li>
+                    )
+                }.bind(this))}
+            </ul>
+        );
+    }
 });
 
-var Todo=React.createClass({
-    getInitialState:function(){
+var Todo = React.createClass({
+    getInitialState: function () {
         return {
-            items:[],
-            text:''
+            items: [],
+            text: ''
         }
     },
-    handleChange:function(e){
-        this.setState({text:e.target.value});
+    componentDidMount: function () {
+        $(document.body).on('deleteRow', function (e, data) {
+            var newItems = this.state.items.filter(function (v, k) {
+                return k != data;
+            });
+
+            this.setState({items:newItems});
+        }.bind(this));
+
+        // ObservableObj.subscribe(function (data) {
+        //     switch (data.type) {
+        //         case 'delete':
+        //             var newItems = this.state.items.filter(function (v, k) {
+        //                 return k != data.index;
+        //             });
+        //
+        //             this.setState({items: newItems});
+        //             break;
+        //     }
+        // }.bind(this));
     },
-    handleSubmit:function(e){
+    componentWillUnmount: function () {
+        this.ObservableObj = null;
+    },
+    handleChange: function (e) {
+        this.setState({text: e.target.value});
+    },
+    handleSubmit: function (e) {
         this.setState({
-            items:this.state.items.concat([this.state.text]),
-            text:''
+            items: this.state.items.concat([this.state.text]),
+            text: ''
         });
         e.preventDefault();
     },
-    render:function(){
+    render: function () {
         return (
             <div>
-                <h3>todo</h3>
+                <h3>todoList</h3>
                 <TodoList items={this.state.items}></TodoList>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.text} onChange={this.handleChange} />
-                    <button>{'add'+this.state.items.length}</button>
+                    <input type="text" value={this.state.text} onChange={this.handleChange}/>
+                    <button>{'add' + this.state.items.length}</button>
                 </form>
             </div>
         );

@@ -2,7 +2,7 @@
  * Created by anchao on 2016/2/15.
  */
 
-import cloneWithProps from 'react-addons-clone-with-props';
+// import cloneWithProps from 'react-addons-clone-with-props';
 
 let _makeblue = function(ele){
   //return cloneWithProps(ele,{style:{color:'blue',background:'yellow'}});

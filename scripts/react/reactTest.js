@@ -39,7 +39,7 @@ import Lifecycle from './Lifecycle';
 
 export default class ReactTest {
     init() {
-        this.testLifecycle();
+        // this.testLifecycle();
         //this.testComponentAPI();
         //this.testTopAPI();
         //this.testImutable();
@@ -50,7 +50,7 @@ export default class ReactTest {
         //this.keyedFragment();
         //this.addonsclone();
         //this.testUtilities();
-        //this.reactLinkState();
+        // this.reactLinkState();
         //this.reactCssTransitionGroup();
         //this.formTest();
         //this.statelessFn();
@@ -69,7 +69,7 @@ export default class ReactTest {
         //this.markdownEditor();
         //this.variableTest();
         //this.linkBtn();
-        //this.todoTest();
+        this.todoTest();
         //this.timer();
         //this.first();
         //this.second();

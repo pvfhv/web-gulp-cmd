@@ -43,7 +43,7 @@ body>div:nth-child(2n){
 
   .enter.enter-active {
     opacity: 1;
-    transition: opacity 500ms ease-in;
+    @include transition(opacity 500ms ease-in);
   }
 
   .leave {
