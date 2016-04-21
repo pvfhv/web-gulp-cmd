@@ -41,6 +41,7 @@ var Todo = React.createClass({
         }
     },
     componentDidMount: function () {
+        //观察者模式
         $(document.body).on('deleteRow', function (e, data) {
             var newItems = this.state.items.filter(function (v, k) {
                 return k != data;
