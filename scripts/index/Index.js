@@ -4,6 +4,8 @@
 
 import ReactTest from '../react/reactTest';
 import CodeMirror from '../test/codemirror';
+import EchartsTest from '../echarts/eChartsTest';
+
 //import './test/RxTest';
 //import './test/SideBarPanel';
 //import './test/baconTest';
@@ -28,6 +30,16 @@ class Index {
         //react1
         $('#btn_react1').click(function(){
             new ReactTest().init();
+        });
+
+        //react1
+        $('#btn_hidediv').click(function(){
+            $('#template_test2').toggle();
+        });
+
+        //echarts
+        $('#btn_echarts').click(function(){
+            new EchartsTest().init();
         });
 
         //#btn_reacttodo
