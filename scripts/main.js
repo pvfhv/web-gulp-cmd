@@ -8,13 +8,15 @@ import LoginMain from './login/login';
 import IndexMain from './index/Index';
 import StudentManager from './studentManager/studentManager';
 import PersonSys from './personSys/personSys';
+import Todo from './todo/todo';
 
 window.config = {
     "pages": {
         "login": new LoginMain(),
         "index": new IndexMain(),
         "studentManager": new StudentManager(),
-        "personsys": new PersonSys()
+        "personsys": new PersonSys(),
+        "todo":new Todo()
     }
 };
 
