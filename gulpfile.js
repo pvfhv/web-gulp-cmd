@@ -157,6 +157,15 @@ gulp.task('copyFlash', function () {
         .pipe(gulp.dest(dest));
 });
 
+//copy plotly
+gulp.task('copyPlotly', function () {
+    var src = 'scripts/plugins/plotly-latest.min.js';
+    var dest = config.distScript;
+
+    gulp.src(src)
+        .pipe(gulp.dest(dest));
+});
+
 //copy simulates
 gulp.task('copySimulate', function () {
     gulp.src(config.simulate)
@@ -164,7 +173,7 @@ gulp.task('copySimulate', function () {
 });
 
 gulp.task('copy', function () {
-    gulp.start(['copyFont', 'copyFlash', 'copySimulate']);
+    gulp.start(['copyFont', 'copyFlash', 'copyPlotly','copySimulate']);
 });
 
 //image

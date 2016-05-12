@@ -20,6 +20,8 @@ html
                 | 隐藏div
             button#btn_echarts
                 | 测试echarts
+            button#btn_testPromise
+                | 测试Promise
         div#template_test2
         div#second
             img(src="../images/logo.png")
@@ -135,3 +137,4 @@ html
         script#ReactTemplate(type="text/babel")
             <input type="text" value={this.state.value} onChange={this.handleChange} />
         script(src="scripts/main.js")
+        script(src="scripts/plotly-latest.min.js")

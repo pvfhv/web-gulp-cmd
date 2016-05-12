@@ -42,6 +42,11 @@ class Index {
             new EchartsTest().init();
         });
 
+        //echarts
+        $('#btn_testPromise').click(function(){
+            alert('ok');
+        });
+
         //#btn_reacttodo
         $('#btn_reacttodo').click(function(){
             new ReactTest().init();
