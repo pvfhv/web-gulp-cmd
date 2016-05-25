@@ -7,7 +7,7 @@ var ObservableObj = new Rx.Subject();
 
 
 var TodoList = React.createClass({
-    handleClick: function (e) {
+    handleDoubleClick: function (e) {
         $(document.body).trigger('deleteRow', $(e.target).index());
         // ObservableObj.onNext({type: 'delete', index: $(e.target).index()});
     },
@@ -22,7 +22,7 @@ var TodoList = React.createClass({
             <ul>
                 {this.props.items.map(function (v, k) {
                     return (
-                        <li onDoubleClick={this.handleClick} key={k}>
+                        <li onDoubleClick={this.handleDoubleClick} key={k}>
                             <input type="checkbox" value={v}/>
                             {v}
                         </li>

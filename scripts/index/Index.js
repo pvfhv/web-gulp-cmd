@@ -44,7 +44,9 @@ class Index {
 
         //echarts
         $('#btn_testPromise').click(function(){
-            alert('ok');
+            $.get('../simulates/testAjax.json',function () {
+                console.log('ok');
+            });
         });
 
         //#btn_reacttodo

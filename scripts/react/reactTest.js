@@ -35,10 +35,12 @@ import TestImmutable from './advancePerformance';
 import TopAPI from './topAPI';
 import ComponentAPI from './componentAPI';
 import Lifecycle from './Lifecycle';
+import DragTest from './DragTest';
 
 
 export default class ReactTest {
     init() {
+        this.dragTest();
         // this.testLifecycle();
         //this.testComponentAPI();
         //this.testTopAPI();
@@ -69,7 +71,7 @@ export default class ReactTest {
         //this.markdownEditor();
         //this.variableTest();
         //this.linkBtn();
-        this.todoTest();
+        // this.todoTest();
         //this.timer();
         //this.first();
         //this.second();
@@ -88,6 +90,10 @@ export default class ReactTest {
 
     get oFirstDiv() {
         return document.getElementById('first');
+    }
+
+    dragTest(){
+        ReactDOM.render(<DragTest />, document.getElementById('template_test2'));
     }
 
     testLifecycle(){
