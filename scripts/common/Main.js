@@ -1,7 +1,7 @@
 class Main{
   init(){
     this.gotoPage();
-    this.event();
+    // this.event();
   }
 
   event(){

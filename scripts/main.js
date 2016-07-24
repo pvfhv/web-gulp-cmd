@@ -9,14 +9,16 @@ import IndexMain from './index/Index';
 import StudentManager from './studentManager/studentManager';
 import PersonSys from './personSys/personSys';
 import Todo from './todo/todo';
+import RounterTest from './router/RounterTest';
 
 window.config = {
     "pages": {
         "login": new LoginMain(),
-        "index": new IndexMain(),
-        "studentManager": new StudentManager(),
-        "personsys": new PersonSys(),
-        "todo":new Todo()
+        "index": new IndexMain()
+        // "studentManager": new StudentManager(),
+        // "personsys": new PersonSys(),
+        // "todo":new Todo(),
+        // "route":new RounterTest()
     }
 };
 
