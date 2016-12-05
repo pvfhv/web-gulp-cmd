@@ -7,7 +7,7 @@ var gulp = require('gulp');
 var del = require('del');
 var changed = require('gulp-changed');
 //html
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var htmlmin = require('gulp-htmlmin');
 //css
 var compass = require('gulp-compass');
@@ -29,7 +29,7 @@ var config = {
     'dist': 'dist',
     'html': 'dist/*.html',
     'htmlSrc': 'template/*.html',
-    'jade': 'template/*.jade',
+    'pug': 'template/*.pug',
     'sass': 'sass/**/*.scss',
     'distCss': 'dist/css',
     'simulate': 'simulates/*.json',
@@ -89,9 +89,9 @@ gulp.task('clean', function () {
 
 //html_template
 gulp.task('templates', function () {
-    gulp.src(config.jade)
-        .pipe(changed(config.jade))
-        .pipe(jade({
+    gulp.src(config.pug)
+        .pipe(changed(config.pug))
+        .pipe(pug({
             doctype: 'html',
             pretty: false
         }))
@@ -263,7 +263,7 @@ gulp.task('browserSync', function () {
     });
 
     //监听模板html变化
-    gulp.watch("template/*.jade", ['templates']);
+    gulp.watch("template/*.pug", ['templates']);
     //监听sass变化
     gulp.watch(config.sass, ['styles']);
     //监听image变化
