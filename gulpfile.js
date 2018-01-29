@@ -198,18 +198,17 @@ gulp.task('webpack', function () {
             },
             devtool: "source-map",
             resolve: {
-                extensions: ['', '.js', '.jsx']
+                extensions: ['.js', '.jsx']
             },
             module: {
-                loaders: [
+                rules: [
                     {
                         test: /\.jsx?$/,
                         exclude: /(node_modules|bower_components)/,
-                        loader: 'babel',
-                        query: {
+                        loader: 'babel-loader',
+                        options: {
                             cacheDirectory: true,
-                            presets: ['es2015', 'stage-0', 'react'],
-                            compact:false
+                            presets: ['env', 'stage-0', 'react'],
                         }
                     }
                 ]

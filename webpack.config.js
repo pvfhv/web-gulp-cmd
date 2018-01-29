@@ -10,6 +10,7 @@ module.exports = {
     entry: [
         'webpack/hot/dev-server',
         'webpack-dev-server/client?http://localhost:4000',
+        'webpack/hot/only-dev-server',
         path.resolve(__dirname, 'scripts/main.js')
     ],
     resolve: {
@@ -26,13 +27,12 @@ module.exports = {
     },
     devtool:"source-map",
     module: {
-        loaders: [{
+        rules: [{
             test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx
-            loader: 'babel', // 加载模块 "babel" 是 "babel-loader" 的缩写
-            query: {
+            loader: 'babel-loader', // 加载模块 "babel" 是 "babel-loader" 的缩写
+            options: {
                 cacheDirectory: true,
-                presets: ['es2015', 'stage-0', 'react'],
-                compact: false
+                presets: ['env', 'stage-0', 'react']
             }
         }]
         // noParse: [pathToReact, pathToReactDOM]

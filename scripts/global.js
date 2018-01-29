@@ -20,6 +20,5 @@ window.ReactDOM = ReactDOM;
 window.Rx = Rx;
 window.Tools = Tools;
 window.Immutable=Immutable;
-require('jquery-ui/jquery-ui');
+// require('jquery-ui/jquery-ui');
 require('bootstrap-sass/assets/javascripts/bootstrap.js');
-
